@@ -1,186 +1,194 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <title>하금티 취준</title>
-    <style>
-      .container {
-        position: relative;
-        width: 400px;
-        height: 600px;
-        border: 1px solid #ccc;
-        background-color: #f9f9f9;
-        margin-bottom: 20px;
-      }
-      .character {
-        width: 100%;
-        height: 100%;
-      }
-      /* 드랍 존: 캐릭터 컨테이너 내부에 상의와 하의 영역을 고정 */
-      .drop-zone {
-        position: absolute;
-        width: 100%;
-        height: 50%;
-        left: 0;
-      }
-      #dropZoneTop {
-        top: 0;
-      }
-      #dropZoneBottom {
-        top: 50%;
-      }
-      /* 드랍 영역 오버레이 (시각적 도움) */
-      .drop-zone-overlay {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border: 2px dashed #ff0000;
-        box-sizing: border-box;
-        pointer-events: none;
-        opacity: 0.3;
-      }
-      .clothes-panel {
-        margin-top: 20px;
-      }
-      .clothes {
-        width: 100px;
-        cursor: grab;
-        margin-right: 10px;
-      }
-      /* 드랍된 의상 이미지 스타일 */
-      .dropped-clothes {
-        position: absolute;
-      }
-      .reset-button {
-        margin-top: 20px;
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #ff6b6b;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-      .reset-button:hover {
-        background-color: #ff5252;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>하금티 면접 옷 입히기</h1>
-    <!-- 캐릭터 컨테이너 -->
-    <div class="container" id="characterContainer">
-      <img src="../assets/cloth/character.png" alt="캐릭터" class="character" />
-      <!-- 상의 드랍 존 (상단 고정 영역) -->
-      <div class="drop-zone" id="dropZoneTop" data-type="top">
-        <div class="drop-zone-overlay"></div>
-      </div>
-      <!-- 하의 드랍 존 (하단 고정 영역) -->
-      <div class="drop-zone" id="dropZoneBottom" data-type="bottom">
-        <div class="drop-zone-overlay"></div>
-      </div>
-    </div>
 
-    <!-- 의상 패널: 상의와 하의 이미지를 각각 지정 -->
-    <div class="clothes-panel">
-      <!-- 상의: shirt1.png, shirt2.png, ... -->
-      <img
-        src="../assets/cloth/shirt1.png"
-        alt="상의1"
-        class="clothes"
-        draggable="true"
-        data-type="top"
-      />
-      <img
-        src="../assets/cloth/shirt2.png"
-        alt="상의2"
-        class="clothes"
-        draggable="true"
-        data-type="top"
-      />
+<head>
+  <meta charset="UTF-8" />
+  <title>하금티 취준</title>
+  <style>
+    .container {
+      position: relative;
+      width: 400px;
+      height: 600px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      margin-bottom: 20px;
+    }
 
-      <!-- 하의: pants1.png, pants2.png, ... -->
-      <img
-        src="../assets/cloth/pants1.png"
-        alt="하의1"
-        class="clothes"
-        draggable="true"
-        data-type="bottom"
-      />
-      <img
-        src="../assets/cloth/pants2.png"
-        alt="하의2"
-        class="clothes"
-        draggable="true"
-        data-type="bottom"
-      />
-    </div>
+    .character {
+      position: absolute;
+      z-index: 0;
+    }
 
-    <!-- 초기화 버튼 추가 -->
-    <button class="reset-button" id="resetButton">초기화</button>
+    .clothes {
+      cursor: grab;
+      margin-right: 10px;
+    }
 
-    <script>
-      // 각 의상 이미지에 드래그 시작 이벤트 등록, src와 data-type을 함께 전달
-      const clothesItems = document.querySelectorAll(".clothes");
-      clothesItems.forEach((item) => {
-        item.addEventListener("dragstart", function (e) {
-          const data = {
-            src: e.target.src,
-            type: e.target.dataset.type,
-          };
-          e.dataTransfer.setData("application/json", JSON.stringify(data));
-        });
+    .clothes.dragging {
+      opacity: 0.5;
+    }
+
+    .clothes.dropped {
+      position: absolute;
+      transform: translateX(-50%);
+    }
+
+    .clothes.dropped.shirt1 {
+      top: 20%;
+      left: 61%;
+      z-index: 2;
+    }
+
+    .clothes.dropped.shirt2 {
+      top: 20%;
+      left: 59%;
+      z-index: 2;
+    }
+
+    .clothes.dropped.shirt3 {
+      top: 20%;
+      left: 58%;
+      z-index: 2;
+    }
+
+    .clothes.dropped.pants1 {
+      top: 43%;
+      left: 58%;
+      z-index: 1;
+    }
+
+    .clothes.dropped.pants2 {
+      top: 40%;
+      left: 57%;
+      z-index: 1;
+    }
+
+    .clothes.dropped.pants3 {
+      top: 42%;
+      left: 58%;
+      z-index: 1;
+    }
+
+    .clothes-panel {
+      margin-top: 20px;
+    }
+
+    .reset-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #ff6b6b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .reset-button:hover {
+      background-color: #ff5252;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>하금티 취준</h1>
+  <div class="container" id="characterContainer">
+    <img src="../assets/cloth/character.png" alt="캐릭터" class="character" />
+  </div>
+
+  <div class="clothes-panel">
+    <h3>상의</h3>
+    <img src="../assets/cloth/shirt1.png" alt="상의1" class="clothes" draggable="true" />
+    <img src="../assets/cloth/shirt2.png" alt="상의2" class="clothes" draggable="true" />
+    <img src="../assets/cloth/shirt3.png" alt="상의3" class="clothes" draggable="true" />
+    <h3>하의</h3>
+    <img src="../assets/cloth/pants1.png" alt="하의1" class="clothes" draggable="true" />
+    <img src="../assets/cloth/pants2.png" alt="하의2" class="clothes" draggable="true" />
+    <img src="../assets/cloth/pants3.png" alt="하의3" class="clothes" draggable="true" />
+  </div>
+
+  <button class="reset-button" id="resetButton">초기화</button>
+
+  <script>
+    const clothesItems = document.querySelectorAll('.clothes');
+    const container = document.querySelector('.container');
+    const resetButton = document.getElementById('resetButton');
+
+    // 초기화 버튼 이벤트 리스너
+    resetButton.addEventListener('click', () => {
+      const droppedClothes = container.querySelectorAll('.dropped');
+      droppedClothes.forEach(clothes => clothes.remove());
+    });
+
+    clothesItems.forEach(clothes => {
+      clothes.addEventListener('dragstart', (e) => {
+        clothes.classList.add('dragging');
       });
 
-      // 각 드랍 존에 드래그 오버 및 드랍 이벤트 처리
-      const dropZones = document.querySelectorAll(".drop-zone");
-      dropZones.forEach((zone) => {
-        zone.addEventListener("dragover", function (e) {
-          e.preventDefault();
-        });
-
-        zone.addEventListener("drop", function (e) {
-          e.preventDefault();
-          const data = JSON.parse(e.dataTransfer.getData("application/json"));
-          // 의상의 타입과 드랍 존의 타입이 일치하면
-          if (data.type === zone.dataset.type) {
-            // 기존에 배치된 의상이 있다면 삭제
-            const existing = zone.querySelector(".dropped-clothes");
-            if (existing) {
-              existing.remove();
-            }
-            // 새 의상 이미지 생성
-            const newClothes = document.createElement("img");
-            newClothes.src = data.src;
-            newClothes.classList.add("dropped-clothes");
-            // 고정된 위치에 배치: 상의는 상단, 하의는 하단에 중앙 정렬
-            if (zone.dataset.type === "top") {
-              newClothes.style.top = "20px";
-              newClothes.style.left = "50%";
-              newClothes.style.transform = "translateX(-50%)";
-            } else if (zone.dataset.type === "bottom") {
-              newClothes.style.bottom = "20px";
-              newClothes.style.left = "50%";
-              newClothes.style.transform = "translateX(-50%)";
-            }
-            zone.appendChild(newClothes);
-          } else {
-            alert(
-              "이 영역에는 " +
-                (zone.dataset.type === "top" ? "상의" : "하의") +
-                "만 배치할 수 있습니다."
-            );
-          }
-        });
+      clothes.addEventListener('dragend', (e) => {
+        clothes.classList.remove('dragging');
       });
+    });
 
-      // 초기화 버튼 기능 구현
-      document
-        .getElementById("resetButton")
-        .addEventListener("click", function () {
-          const droppedClothes = document.querySelectorAll(".dropped-clothes");
-          droppedClothes.forEach((clothes) => clothes.remove());
-        });
-    </script>
-  </body>
+    container.addEventListener('dragover', (e) => {
+      e.preventDefault();
+    });
+
+    container.addEventListener('drop', (e) => {
+      e.preventDefault();
+
+      // 드롭된 위치가 컨테이너 내부인지 확인
+      const rect = container.getBoundingClientRect();
+      if (e.clientX >= rect.left && e.clientX <= rect.right &&
+        e.clientY >= rect.top && e.clientY <= rect.bottom) {
+
+        // 드래그된 의상 요소 찾기
+        const draggedClothes = document.querySelector('.dragging');
+        if (!draggedClothes) return;
+
+        // 새로운 이미지 요소 생성
+        const newClothes = document.createElement('img');
+        newClothes.src = draggedClothes.src;
+        newClothes.classList.add('clothes', 'dropped');
+
+        // 의상 종류에 따라 다른 클래스 추가
+        if (draggedClothes.src.includes('shirt1')) {
+          newClothes.classList.add('shirt1');
+          // 기존 상의 제거
+          const existingShirts = container.querySelectorAll('.dropped.shirt1, .dropped.shirt2, .dropped.shirt3');
+          existingShirts.forEach(shirt => shirt.remove());
+        } else if (draggedClothes.src.includes('shirt2')) {
+          newClothes.classList.add('shirt2');
+          // 기존 상의 제거
+          const existingShirts = container.querySelectorAll('.dropped.shirt1, .dropped.shirt2, .dropped.shirt3');
+          existingShirts.forEach(shirt => shirt.remove());
+        } else if (draggedClothes.src.includes('shirt3')) {
+          newClothes.classList.add('shirt3');
+          // 기존 상의 제거
+          const existingShirts = container.querySelectorAll('.dropped.shirt1, .dropped.shirt2, .dropped.shirt3');
+          existingShirts.forEach(shirt => shirt.remove());
+        } else if (draggedClothes.src.includes('pants1')) {
+          newClothes.classList.add('pants1');
+          // 기존 하의 제거
+          const existingPants = container.querySelectorAll('.dropped.pants1, .dropped.pants2, .dropped.pants3');
+          existingPants.forEach(pants => pants.remove());
+        } else if (draggedClothes.src.includes('pants2')) {
+          newClothes.classList.add('pants2');
+          // 기존 하의 제거
+          const existingPants = container.querySelectorAll('.dropped.pants1, .dropped.pants2, .dropped.pants3');
+          existingPants.forEach(pants => pants.remove());
+        } else if (draggedClothes.src.includes('pants3')) {
+          newClothes.classList.add('pants3');
+          // 기존 하의 제거
+          const existingPants = container.querySelectorAll('.dropped.pants1, .dropped.pants2, .dropped.pants3');
+          existingPants.forEach(pants => pants.remove());
+        }
+
+        // 컨테이너에 추가
+        container.appendChild(newClothes);
+      }
+    });
+  </script>
+</body>
+
 </html>
