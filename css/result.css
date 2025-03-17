@@ -1,0 +1,15 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: #d9d9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section {
+  background-image: url(../assets/window.png);
+  width: 80%;
+  height: 80%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
