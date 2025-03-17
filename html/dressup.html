@@ -5,12 +5,68 @@
   <meta charset="UTF-8" />
   <title>하금티 취준</title>
   <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+      background: url('../assets/cloth/dressup_background.png') no-repeat center center fixed;
+      background-size: cover;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    html {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #ffffff;
+      text-align: center;
+      font-size: 2.5em;
+      margin: 0 0 15px 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      flex-shrink: 0;
+    }
+
+    .main-container {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex: 1;
+      height: calc(100% - 50px);
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .left-panel {
+      flex: 0 0 85%;
+      max-width: 1200px;
+      height: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .right-panel {
+      flex: 0 0 15%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 400px;
+      height: 100%;
+    }
+
     .container {
       position: relative;
       width: 400px;
       height: 600px;
-      border: 1px solid #ccc;
-      background-color: #f9f9f9;
+      border: none;
       margin-bottom: 20px;
     }
 
@@ -22,15 +78,19 @@
     .clothes {
       cursor: grab;
       margin-right: 10px;
+      position: relative;
+      z-index: 1;
     }
 
     .clothes.dragging {
       opacity: 0.5;
+      z-index: 1000;
     }
 
     .clothes.dropped {
       position: absolute;
       transform: translateX(-50%);
+      z-index: 2;
     }
 
     .clothes.dropped.hair1 {
@@ -166,76 +226,189 @@
     }
 
     .clothes-panel {
-      margin-top: 20px;
+      background: url('../assets/cloth/closet.png') no-repeat center center;
+      background-size: contain;
+      height: 100%;
+      width: 100%;
+      position: relative;
+      padding: 30px;
+      z-index: 0;
+    }
+
+    .clothes-panel img {
+      position: relative;
+      background-color: transparent;
+      padding: 3px;
+      border-radius: 5px;
+      transition: transform 0.2s;
+      max-width: 85px;
+      cursor: grab;
+    }
+
+    .accessary-section {
+      position: absolute;
+      width: 51%;
+      height: 7%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 39px;
+      padding: 8px;
+      justify-content: center;
+      align-items: center;
+      top: 55%;
+      left: 12%;
+      z-index: 1;
+    }
+
+    .hair-section {
+      position: absolute;
+      width: 41%;
+      height: 7%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 93px;
+      padding: 8px;
+      justify-content: center;
+      align-items: center;
+      top: 30%;
+      left: 18%;
+      z-index: 1;
+    }
+
+    .shirt-section {
+      position: absolute;
+      width: 41%;
+      height: 8%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 93px;
+      padding: 8px;
+      justify-content: center;
+      align-items: center;
+      top: 38%;
+      left: 18%;
+      z-index: 1;
+    }
+
+    .pants-section {
+      position: absolute;
+      width: 41%;
+      height: 8%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 93px;
+      padding: 8px;
+      justify-content: center;
+      align-items: center;
+      top: 46%;
+      left: 18%;
+      z-index: 1;
+    }
+
+    .shoes-section {
+      position: absolute;
+      width: 59%;
+      height: 5%;
+      top: 64%;
+      left: 7%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 20px;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .shoes-pair {
+      position: relative;
+      display: inline-flex;
+      gap: 5px;
+      background-color: transparent;
+      padding: 5px;
+      border-radius: 8px;
+    }
+
+    .shoes-pair img {
+      position: relative;
+      max-width: 60px;
     }
 
     .reset-button {
       margin-top: 20px;
-      padding: 10px 20px;
+      padding: 12px 25px;
       font-size: 16px;
-      background-color: #ff6b6b;
+      background: linear-gradient(to right, #ff6b6b, #ff5252);
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 25px;
       cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+      align-self: center;
     }
 
     .reset-button:hover {
-      background-color: #ff5252;
-    }
-
-    .shoes-pair {
-      display: inline-block;
-      margin-right: 20px;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+      background: linear-gradient(to right, #ff5252, #ff4242);
     }
   </style>
 </head>
 
 <body>
-  <h1>하금티 취준</h1>
-  <div class="container" id="characterContainer">
-    <img src="../assets/cloth/character.png" alt="캐릭터" class="character" />
+  <div class="main-container">
+    <div class="left-panel">
+      <div class="clothes-panel">
+        <div class="accessary-section">
+          <img src="../assets/cloth/accessary1.png" alt="액세서리1" class="clothes" draggable="true" />
+          <img src="../assets/cloth/accessary2.png" alt="액세서리2" class="clothes" draggable="true" />
+          <img src="../assets/cloth/accessary3.png" alt="액세서리3" class="clothes" draggable="true" />
+          <img src="../assets/cloth/accessary4.png" alt="액세서리4" class="clothes" draggable="true" />
+          <img src="../assets/cloth/accessary5.png" alt="액세서리5" class="clothes" draggable="true" />
+        </div>
+        <div class="hair-section">
+          <img src="../assets/cloth/hair1.png" alt="머리1" class="clothes" draggable="true" />
+          <img src="../assets/cloth/hair2.png" alt="머리2" class="clothes" draggable="true" />
+          <img src="../assets/cloth/hair3.png" alt="머리3" class="clothes" draggable="true" />
+        </div>
+        <div class="shirt-section">
+          <img src="../assets/cloth/shirt1.png" alt="상의1" class="clothes" draggable="true" />
+          <img src="../assets/cloth/shirt2.png" alt="상의2" class="clothes" draggable="true" />
+          <img src="../assets/cloth/shirt3.png" alt="상의3" class="clothes" draggable="true" />
+        </div>
+        <div class="pants-section">
+          <img src="../assets/cloth/pants1.png" alt="하의1" class="clothes" draggable="true" />
+          <img src="../assets/cloth/pants2.png" alt="하의2" class="clothes" draggable="true" />
+          <img src="../assets/cloth/pants3.png" alt="하의3" class="clothes" draggable="true" />
+        </div>
+        <div class="shoes-section">
+          <div class="shoes-pair">
+            <img src="../assets/cloth/shoes1-1.png" alt="신발1-왼쪽" class="clothes" draggable="true" data-pair="shoes1" />
+            <img src="../assets/cloth/shoes1-2.png" alt="신발1-오른쪽" class="clothes" draggable="true" data-pair="shoes1" />
+          </div>
+          <div class="shoes-pair">
+            <img src="../assets/cloth/shoes2-1.png" alt="신발2-왼쪽" class="clothes" draggable="true" data-pair="shoes2" />
+            <img src="../assets/cloth/shoes2-2.png" alt="신발2-오른쪽" class="clothes" draggable="true" data-pair="shoes2" />
+          </div>
+          <div class="shoes-pair">
+            <img src="../assets/cloth/shoes3-1.png" alt="신발3-왼쪽" class="clothes" draggable="true" data-pair="shoes3" />
+            <img src="../assets/cloth/shoes3-2.png" alt="신발3-오른쪽" class="clothes" draggable="true" data-pair="shoes3" />
+          </div>
+          <div class="shoes-pair">
+            <img src="../assets/cloth/shoes4-1.png" alt="신발4-왼쪽" class="clothes" draggable="true" data-pair="shoes4" />
+            <img src="../assets/cloth/shoes4-2.png" alt="신발4-오른쪽" class="clothes" draggable="true" data-pair="shoes4" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right-panel">
+      <div class="container" id="characterContainer">
+        <img src="../assets/cloth/character.png" alt="캐릭터" class="character" />
+      </div>
+      <button class="reset-button" id="resetButton">초기화</button>
+    </div>
   </div>
-
-  <div class="clothes-panel">
-    <h3>액세서리</h3>
-    <img src="../assets/cloth/accessary1.png" alt="액세서리1" class="clothes" draggable="true" />
-    <img src="../assets/cloth/accessary2.png" alt="액세서리2" class="clothes" draggable="true" />
-    <img src="../assets/cloth/accessary3.png" alt="액세서리3" class="clothes" draggable="true" />
-    <img src="../assets/cloth/accessary4.png" alt="액세서리4" class="clothes" draggable="true" />
-    <img src="../assets/cloth/accessary5.png" alt="액세서리5" class="clothes" draggable="true" />
-    <h3>머리</h3>
-    <img src="../assets/cloth/hair1.png" alt="머리1" class="clothes" draggable="true" />
-    <img src="../assets/cloth/hair2.png" alt="머리2" class="clothes" draggable="true" />
-    <img src="../assets/cloth/hair3.png" alt="머리3" class="clothes" draggable="true" />
-    <h3>상의</h3>
-    <img src="../assets/cloth/shirt1.png" alt="상의1" class="clothes" draggable="true" />
-    <img src="../assets/cloth/shirt2.png" alt="상의2" class="clothes" draggable="true" />
-    <img src="../assets/cloth/shirt3.png" alt="상의3" class="clothes" draggable="true" />
-    <h3>하의</h3>
-    <img src="../assets/cloth/pants1.png" alt="하의1" class="clothes" draggable="true" />
-    <img src="../assets/cloth/pants2.png" alt="하의2" class="clothes" draggable="true" />
-    <img src="../assets/cloth/pants3.png" alt="하의3" class="clothes" draggable="true" />
-    <h3>신발</h3>
-    <div class="shoes-pair">
-      <img src="../assets/cloth/shoes1-1.png" alt="신발1-왼쪽" class="clothes" draggable="true" data-pair="shoes1" />
-      <img src="../assets/cloth/shoes1-2.png" alt="신발1-오른쪽" class="clothes" draggable="true" data-pair="shoes1" />
-    </div>
-    <div class="shoes-pair">
-      <img src="../assets/cloth/shoes2-1.png" alt="신발2-왼쪽" class="clothes" draggable="true" data-pair="shoes2" />
-      <img src="../assets/cloth/shoes2-2.png" alt="신발2-오른쪽" class="clothes" draggable="true" data-pair="shoes2" />
-    </div>
-    <div class="shoes-pair">
-      <img src="../assets/cloth/shoes3-1.png" alt="신발3-왼쪽" class="clothes" draggable="true" data-pair="shoes3" />
-      <img src="../assets/cloth/shoes3-2.png" alt="신발3-오른쪽" class="clothes" draggable="true" data-pair="shoes3" />
-    </div>
-    <div class="shoes-pair">
-      <img src="../assets/cloth/shoes4-1.png" alt="신발4-왼쪽" class="clothes" draggable="true" data-pair="shoes4" />
-      <img src="../assets/cloth/shoes4-2.png" alt="신발4-오른쪽" class="clothes" draggable="true" data-pair="shoes4" />
-    </div>
-  </div>
-
-  <button class="reset-button" id="resetButton">초기화</button>
 
   <script>
     const clothesItems = document.querySelectorAll('.clothes');
