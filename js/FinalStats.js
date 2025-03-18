@@ -32,7 +32,18 @@ document.querySelectorAll(".donut-chart").forEach((chart) => {
   chart.addEventListener("mouseleave", () => {
     if (currentPercent >= percent) {
       overlay.classList.add("hide-overlay");
-      text.classList.add("hide-overlay"); // 애니메이션 후 오버레이 숨기기
+      text.classList.add("hide-overlay");
     }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const scoreItems = document.querySelectorAll('[id^="scoreitem"]');
+
+  scoreItems.forEach((item) => {
+    const score = item.getAttribute("data-score");
+    setTimeout(() => {
+      item.style.width = `${score}%`;
+    }, 100);
   });
 });
