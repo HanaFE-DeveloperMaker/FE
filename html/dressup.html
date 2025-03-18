@@ -353,6 +353,34 @@
       box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
       background: linear-gradient(to right, #ff5252, #ff4242);
     }
+
+    .complete-button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background: linear-gradient(to right, #4CAF50, #45a049);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+      align-self: center;
+      margin-left: 10px;
+    }
+
+    .complete-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+      background: linear-gradient(to right, #45a049, #3d8b40);
+    }
+
+    .button-container {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+    }
   </style>
 </head>
 
@@ -406,7 +434,10 @@
       <div class="container" id="characterContainer">
         <img src="../assets/cloth/character.png" alt="캐릭터" class="character" />
       </div>
-      <button class="reset-button" id="resetButton">초기화</button>
+      <div class="button-container">
+        <button class="reset-button" id="resetButton">초기화</button>
+        <button class="complete-button" id="completeButton">완료</button>
+      </div>
     </div>
   </div>
 
@@ -414,11 +445,52 @@
     const clothesItems = document.querySelectorAll('.clothes');
     const container = document.querySelector('.container');
     const resetButton = document.getElementById('resetButton');
+    const completeButton = document.getElementById('completeButton');
 
     // 초기화 버튼 이벤트 리스너
     resetButton.addEventListener('click', () => {
       const droppedClothes = container.querySelectorAll('.dropped');
       droppedClothes.forEach(clothes => clothes.remove());
+      // 로컬 스토리지의 모든 의상 데이터 삭제
+      localStorage.removeItem('hair');
+      localStorage.removeItem('shirt');
+      localStorage.removeItem('pants');
+      localStorage.removeItem('accessary');
+      localStorage.removeItem('shoes');
+    });
+
+    // 완료 버튼 이벤트 리스너
+    completeButton.addEventListener('click', () => {
+      // 현재 입은 옷들의 정보를 가져옴
+      const currentHair = container.querySelector('.dropped[class*="hair"]');
+      const currentShirt = container.querySelector('.dropped[class*="shirt"]');
+      const currentPants = container.querySelector('.dropped[class*="pants"]');
+      const currentAccessary = container.querySelector('.dropped[class*="accessary"]');
+      const currentShoes = container.querySelector('.dropped[class*="shoes"]');
+
+      // 각 의상의 정보를 로컬 스토리지에 저장
+      if (currentHair) {
+        const hairClass = Array.from(currentHair.classList).find(cls => cls.startsWith('hair'));
+        localStorage.setItem('hair', hairClass);
+      }
+      if (currentShirt) {
+        const shirtClass = Array.from(currentShirt.classList).find(cls => cls.startsWith('shirt'));
+        localStorage.setItem('shirt', shirtClass);
+      }
+      if (currentPants) {
+        const pantsClass = Array.from(currentPants.classList).find(cls => cls.startsWith('pants'));
+        localStorage.setItem('pants', pantsClass);
+      }
+      if (currentAccessary) {
+        const accessaryClass = Array.from(currentAccessary.classList).find(cls => cls.startsWith('accessary'));
+        localStorage.setItem('accessary', accessaryClass);
+      }
+      if (currentShoes) {
+        const shoesClass = Array.from(currentShoes.classList).find(cls => cls.startsWith('shoes'));
+        localStorage.setItem('shoes', shoesClass);
+      }
+
+      alert('현재 입은 옷이 저장되었습니다!');
     });
 
     clothesItems.forEach(clothes => {
@@ -453,73 +525,27 @@
         newClothes.classList.add('clothes', 'dropped');
 
         // 의상 종류에 따라 다른 클래스 추가
-        if (draggedClothes.src.includes('hair1')) {
-          newClothes.classList.add('hair1');
+        if (draggedClothes.src.includes('hair')) {
+          const hairNumber = draggedClothes.src.match(/hair(\d)/)[1];
+          newClothes.classList.add(`hair${hairNumber}`);
           // 기존 머리 제거
           const existingHair = container.querySelectorAll('.dropped.hair1, .dropped.hair2, .dropped.hair3');
           existingHair.forEach(hair => hair.remove());
-        } else if (draggedClothes.src.includes('hair2')) {
-          newClothes.classList.add('hair2');
-          // 기존 머리 제거
-          const existingHair = container.querySelectorAll('.dropped.hair1, .dropped.hair2, .dropped.hair3');
-          existingHair.forEach(hair => hair.remove());
-        } else if (draggedClothes.src.includes('hair3')) {
-          newClothes.classList.add('hair3');
-          // 기존 머리 제거
-          const existingHair = container.querySelectorAll('.dropped.hair1, .dropped.hair2, .dropped.hair3');
-          existingHair.forEach(hair => hair.remove());
-        } else if (draggedClothes.src.includes('shirt1')) {
-          newClothes.classList.add('shirt1');
+        } else if (draggedClothes.src.includes('shirt')) {
+          const shirtNumber = draggedClothes.src.match(/shirt(\d)/)[1];
+          newClothes.classList.add(`shirt${shirtNumber}`);
           // 기존 상의 제거
           const existingShirts = container.querySelectorAll('.dropped.shirt1, .dropped.shirt2, .dropped.shirt3');
           existingShirts.forEach(shirt => shirt.remove());
-        } else if (draggedClothes.src.includes('shirt2')) {
-          newClothes.classList.add('shirt2');
-          // 기존 상의 제거
-          const existingShirts = container.querySelectorAll('.dropped.shirt1, .dropped.shirt2, .dropped.shirt3');
-          existingShirts.forEach(shirt => shirt.remove());
-        } else if (draggedClothes.src.includes('shirt3')) {
-          newClothes.classList.add('shirt3');
-          // 기존 상의 제거
-          const existingShirts = container.querySelectorAll('.dropped.shirt1, .dropped.shirt2, .dropped.shirt3');
-          existingShirts.forEach(shirt => shirt.remove());
-        } else if (draggedClothes.src.includes('pants1')) {
-          newClothes.classList.add('pants1');
+        } else if (draggedClothes.src.includes('pants')) {
+          const pantsNumber = draggedClothes.src.match(/pants(\d)/)[1];
+          newClothes.classList.add(`pants${pantsNumber}`);
           // 기존 하의 제거
           const existingPants = container.querySelectorAll('.dropped.pants1, .dropped.pants2, .dropped.pants3');
           existingPants.forEach(pants => pants.remove());
-        } else if (draggedClothes.src.includes('pants2')) {
-          newClothes.classList.add('pants2');
-          // 기존 하의 제거
-          const existingPants = container.querySelectorAll('.dropped.pants1, .dropped.pants2, .dropped.pants3');
-          existingPants.forEach(pants => pants.remove());
-        } else if (draggedClothes.src.includes('pants3')) {
-          newClothes.classList.add('pants3');
-          // 기존 하의 제거
-          const existingPants = container.querySelectorAll('.dropped.pants1, .dropped.pants2, .dropped.pants3');
-          existingPants.forEach(pants => pants.remove());
-        } else if (draggedClothes.src.includes('accessary1')) {
-          newClothes.classList.add('accessary1');
-          // 기존 액세서리 제거
-          const existingAccessary = container.querySelectorAll('.dropped.accessary1, .dropped.accessary2, .dropped.accessary3, .dropped.accessary4, .dropped.accessary5');
-          existingAccessary.forEach(accessary => accessary.remove());
-        } else if (draggedClothes.src.includes('accessary2')) {
-          newClothes.classList.add('accessary2');
-          // 기존 액세서리 제거
-          const existingAccessary = container.querySelectorAll('.dropped.accessary1, .dropped.accessary2, .dropped.accessary3, .dropped.accessary4, .dropped.accessary5');
-          existingAccessary.forEach(accessary => accessary.remove());
-        } else if (draggedClothes.src.includes('accessary3')) {
-          newClothes.classList.add('accessary3');
-          // 기존 액세서리 제거
-          const existingAccessary = container.querySelectorAll('.dropped.accessary1, .dropped.accessary2, .dropped.accessary3, .dropped.accessary4, .dropped.accessary5');
-          existingAccessary.forEach(accessary => accessary.remove());
-        } else if (draggedClothes.src.includes('accessary4')) {
-          newClothes.classList.add('accessary4');
-          // 기존 액세서리 제거
-          const existingAccessary = container.querySelectorAll('.dropped.accessary1, .dropped.accessary2, .dropped.accessary3, .dropped.accessary4, .dropped.accessary5');
-          existingAccessary.forEach(accessary => accessary.remove());
-        } else if (draggedClothes.src.includes('accessary5')) {
-          newClothes.classList.add('accessary5');
+        } else if (draggedClothes.src.includes('accessary')) {
+          const accessaryNumber = draggedClothes.src.match(/accessary(\d)/)[1];
+          newClothes.classList.add(`accessary${accessaryNumber}`);
           // 기존 액세서리 제거
           const existingAccessary = container.querySelectorAll('.dropped.accessary1, .dropped.accessary2, .dropped.accessary3, .dropped.accessary4, .dropped.accessary5');
           existingAccessary.forEach(accessary => accessary.remove());
@@ -548,6 +574,58 @@
 
         // 컨테이너에 추가
         container.appendChild(newClothes);
+      }
+    });
+
+    // 페이지 로드 시 저장된 의상 데이터 불러오기
+    window.addEventListener('load', () => {
+      const savedHair = localStorage.getItem('hair');
+      const savedShirt = localStorage.getItem('shirt');
+      const savedPants = localStorage.getItem('pants');
+      const savedAccessary = localStorage.getItem('accessary');
+      const savedShoes = localStorage.getItem('shoes');
+
+      if (savedHair) {
+        const hairImg = document.createElement('img');
+        hairImg.src = `../assets/cloth/${savedHair}.png`;
+        hairImg.classList.add('clothes', 'dropped', savedHair);
+        container.appendChild(hairImg);
+      }
+
+      if (savedShirt) {
+        const shirtImg = document.createElement('img');
+        shirtImg.src = `../assets/cloth/${savedShirt}.png`;
+        shirtImg.classList.add('clothes', 'dropped', savedShirt);
+        container.appendChild(shirtImg);
+      }
+
+      if (savedPants) {
+        const pantsImg = document.createElement('img');
+        pantsImg.src = `../assets/cloth/${savedPants}.png`;
+        pantsImg.classList.add('clothes', 'dropped', savedPants);
+        container.appendChild(pantsImg);
+      }
+
+      if (savedAccessary) {
+        const accessaryImg = document.createElement('img');
+        accessaryImg.src = `../assets/cloth/${savedAccessary}.png`;
+        accessaryImg.classList.add('clothes', 'dropped', savedAccessary);
+        container.appendChild(accessaryImg);
+      }
+
+      if (savedShoes) {
+        const shoesNumber = savedShoes.match(/shoes(\d)/)[1];
+        // 왼쪽 신발
+        const leftShoe = document.createElement('img');
+        leftShoe.src = `../assets/cloth/shoes${shoesNumber}-1.png`;
+        leftShoe.classList.add('clothes', 'dropped', `shoes${shoesNumber}-1`);
+        container.appendChild(leftShoe);
+
+        // 오른쪽 신발
+        const rightShoe = document.createElement('img');
+        rightShoe.src = `../assets/cloth/shoes${shoesNumber}-2.png`;
+        rightShoe.classList.add('clothes', 'dropped', `shoes${shoesNumber}-2`);
+        container.appendChild(rightShoe);
       }
     });
   </script>
