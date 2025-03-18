@@ -1,0 +1,129 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+h1,
+p {
+  font-family: "42dot Sans", sans-serif;
+  font-style: normal;
+}
+section {
+  width: 80%;
+  height: 80%;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #e4c599;
+  border-radius: 8px;
+  position: relative;
+}
+header {
+  position: absolute;
+  width: 300px;
+  height: 60px;
+  color: #ffffff;
+  background-color: #938065;
+  border: 1px solid #e4c599;
+  border-radius: 4px;
+  top: -30px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 4px;
+}
+#profile {
+  width: 30%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+/* #profile > img {
+  width: 200px;
+  height: 200px;
+  border-radius: 1000px;
+  border: 1px solid #938065;
+} */
+#profile > button {
+  width: 160px;
+  height: 60px;
+  background-color: #40c2b97c;
+  border: 1px solid #40c2ba;
+  color: #ffffff;
+  border-radius: 4px;
+  font-size: 20px;
+  margin: 20px 0px;
+}
+#profile > button:hover {
+  background-color: #13f0e17c;
+  box-shadow: 0px 0px 10px #40c2ba;
+}
+.donut-chart {
+  width: 200px;
+  height: 200px;
+}
+
+.circular-chart {
+  width: 100%;
+  height: 100%;
+}
+
+.circle-bg {
+  fill: none;
+  stroke: #747474;
+  stroke-width: 3.8;
+}
+
+.circle {
+  fill: none;
+  stroke: #e4c599;
+  stroke-width: 3.8;
+  stroke-dasharray: 75, 100;
+  stroke-linecap: round;
+}
+
+.percentage {
+  font-size: 8px;
+  fill: #ffffff;
+  font-weight: bold;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+.profile-img {
+  /* width: 15px;
+  height: 15px; */
+  clip-path: circle(50%);
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  transition: opacity 0.5s ease-out;
+}
+
+.overlay .percentage {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+}
+.donut-chart:hover .overlay {
+  opacity: 1;
+  pointer-events: all;
+}
+.hide-overlay {
+  opacity: 0;
+}
