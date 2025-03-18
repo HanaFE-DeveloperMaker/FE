@@ -459,22 +459,36 @@
       if (currentHair) {
         const hairClass = Array.from(currentHair.classList).find(cls => cls.startsWith('hair'));
         localStorage.setItem('hair', hairClass);
+      } else {
+        localStorage.setItem('hair', 'hair0');
       }
+
       if (currentShirt) {
         const shirtClass = Array.from(currentShirt.classList).find(cls => cls.startsWith('shirt'));
         localStorage.setItem('shirt', shirtClass);
+      } else {
+        localStorage.setItem('shirt', 'shirt0');
       }
+
       if (currentPants) {
         const pantsClass = Array.from(currentPants.classList).find(cls => cls.startsWith('pants'));
         localStorage.setItem('pants', pantsClass);
+      } else {
+        localStorage.setItem('pants', 'pants0');
       }
+
       if (currentAccessary) {
         const accessaryClass = Array.from(currentAccessary.classList).find(cls => cls.startsWith('accessary'));
         localStorage.setItem('accessary', accessaryClass);
+      } else {
+        localStorage.setItem('accessary', 'accessary0');
       }
+
       if (currentShoes) {
         const shoesClass = Array.from(currentShoes.classList).find(cls => cls.startsWith('shoes'));
         localStorage.setItem('shoes', shoesClass);
+      } else {
+        localStorage.setItem('shoes', 'shoes0');
       }
 
       alert('현재 입은 옷이 저장되었습니다!');
