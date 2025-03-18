@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function typeWriter() {
     isTyping = true; // 현재 문장 출력 중
+
     if (i < texts[index].length) {
       textElement.innerHTML += texts[index].charAt(i);
       i++;
@@ -48,38 +49,43 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function showFullText() {
-    if (isTyping) {
-      // 현재 글자 출력 중이라면 즉시 전체 문장 출력
-      clearTimeout(typingInterval); // typeWriter() 중단
-      textElement.innerHTML = texts[index]; // 전체 문장 표시
-      i = texts[index].length; // 인덱스를 끝까지 이동
-      isTyping = false; // 출력 완료 상태
-      next.style.display = "block"; // 삼각형 보이기
-      next.classList.add("blink");
-    } else {
-      // 문장이 끝난 후 다음 문장으로 변경
-      index++;
-      if (index < texts.length - 1) {
-        // 일반적인 대사 출력
-        i = 0;
-        textElement.innerHTML = ""; // 이전 문장 삭제
-        next.style.display = "none"; // 삼각형 숨기기
-        typeWriter(); // 다음 문장 출력
-      } else if (index === texts.length - 1) {
-        // 마지막 대사 출력 후, next 누르면 선택지 표시
-        i = 0;
-        textElement.innerHTML = "";
-        next.style.display = "none";
-        typeWriter();
-        next.addEventListener("click", showChoices, { once: true });
-      }
+    // 현재 글자 출력 중이라면 즉시 전체 문장 출력
+    clearTimeout(typingInterval); // typeWriter() 중단
+    textElement.innerHTML = texts[index]; // 전체 문장 표시
+    i = texts[index].length; // 인덱스를 끝까지 이동
+    isTyping = false; // 출력 완료 상태
+    next.style.display = "block"; // 삼각형 보이기
+    next.classList.add("blink");
+  }
+
+  function nextToText() {
+    // 🔹 마지막 문장이면 바로 선택지 표시
+    if (index === texts.length - 1) {
+      showChoices();
+      return;
     }
+
+    // 문장이 끝난 후 다음 문장으로 변경
+    index++;
+
+    i = 0;
+    textElement.innerHTML = "";
+    next.style.display = "none";
+
+    // 삼각형 클릭 시 showFullText()가 바로 실행되는 문제 방지
+    setTimeout(() => {
+      isTyping = true; // 🔥 다음 이벤트 루프에서 확실히 적용되도록 함!
+      typeWriter(); // 🔥 한 글자씩 출력 시작!
+    }, 10); // 💡 아주 짧은 시간(10ms) 후에 실행!
   }
 
   function showChoices() {
-    next.style.display = "none";
-    textElement.style.display = "none"; // 기존 텍스트 숨기기
-    choices.style.display = "flex"; // 선택지 표시
+    // 선택지가 한 번 선택되었으면 다시 안 보이게 예외처리
+    if (choices.style.display !== "none") {
+      next.style.display = "none";
+      textElement.style.display = "none"; // 기존 텍스트 숨기기
+      choices.style.display = "flex"; // 선택지 표시
+    }
   }
 
   function showEnding(event) {
@@ -87,7 +93,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (endings[selectedEnding]) {
       body.style.backgroundImage = endings[selectedEnding].background;
+
       choices.style.display = "none";
+
       textElement.style.display = "block"; // 다시 텍스트를 보이게
       textElement.innerHTML = endings[selectedEnding].text; // 엔딩 텍스트 표시
     } else {
@@ -95,17 +103,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  function handleInput(event) {
+    if (isTyping) {
+      showFullText(); // 글자가 출력 중이면 전체 문장 출력
+    } else {
+      nextToText(); // 글자 출력이 완료되었으면 다음 문장으로 이동
+    }
+  }
+
   // 👉 삼각형 클릭 시 다음 문장 or 전체 문장 표시
-  next.addEventListener("click", showFullText);
+  next.addEventListener("click", handleInput);
 
   // 👉 다이얼로그(`dialog`) 클릭 시 다음 문장 or 전체 문장 표시
-  dialog.addEventListener("click", showFullText);
+  dialog.addEventListener("click", handleInput);
 
   // 👉 `Enter` 또는 `Space` 키 입력 시 다음 문장 or 전체 문장 표시
   document.addEventListener("keydown", function (event) {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault(); // 스페이스바의 기본 동작(스크롤)을 막음
-      showFullText();
+      handleInput();
     }
   });
 
