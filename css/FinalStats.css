@@ -205,3 +205,30 @@ header {
 .hide-overlay {
   opacity: 0;
 }
+.modal-overlay {
+  position: fixed;
+  background-color: #00000067;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+.display-none {
+  display: none;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+#reminder {
+  width: 50%;
+  height: 50%;
+  background-color: #ffffff;
+  animation: fade-in 0.5s;
+}

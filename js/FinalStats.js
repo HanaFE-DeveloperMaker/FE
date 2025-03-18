@@ -47,3 +47,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 100);
   });
 });
+
+const remindBtn = document.querySelector("#remind-btn");
+const modalOverlay = document.querySelector(".modal-overlay");
+remindBtn.addEventListener("click", () => {
+  modalOverlay.classList.remove("display-none");
+});
+modalOverlay.addEventListener("click", () => {
+  modalOverlay.classList.add("display-none");
+});
