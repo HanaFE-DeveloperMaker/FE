@@ -226,9 +226,97 @@ header {
     opacity: 1;
   }
 }
-#reminder {
+/* #reminder {
   width: 50%;
   height: 50%;
   background-color: #ffffff;
   animation: fade-in 0.5s;
+} */
+#reminder {
+  position: relative;
+  width: 50%;
+  height: 50%;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: #ffffff;
+  animation: fade-in 0.5s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
+
+.carousel-track {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s ease-in-out;
+}
+
+.carousel-slide {
+  min-width: 100%;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+@keyframes scrollAnimation {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.carousel-track.auto-scroll {
+  animation: scrollAnimation 6s linear infinite;
+}
+
+/* 버튼 스타일 */
+/* .prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 50%;
+}
+
+.prev {
+  left: 10px;
+}
+.next {
+  right: 10px;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+} */
+
+/* 인디케이터 (점) */
+/* .carousel-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.carousel-dots span {
+  width: 12px;
+  height: 12px;
+  background-color: #bbb;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-dots span.active {
+  background-color: #333;
+} */

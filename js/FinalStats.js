@@ -56,3 +56,35 @@ remindBtn.addEventListener("click", () => {
 modalOverlay.addEventListener("click", () => {
   modalOverlay.classList.add("display-none");
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const track = document.querySelector(".carousel-track");
+  const slides = document.querySelectorAll(".carousel-slide");
+
+  let currentIndex = 0;
+  const totalSlides = slides.length;
+
+  function moveToNextSlide() {
+    currentIndex++;
+    if (currentIndex >= totalSlides) {
+      currentIndex = 0;
+    }
+    track.style.transform = `translateY(-${currentIndex * 100}%)`;
+  }
+
+  // 일정 시간마다 자동 스크롤
+  let autoScroll = setInterval(moveToNextSlide, 3000);
+
+  // 마우스 오버 시 스크롤 멈춤
+  document.querySelector("#reminder").addEventListener("mouseenter", () => {
+    clearInterval(autoScroll);
+  });
+
+  // 마우스 벗어나면 다시 재생
+  document.querySelector("#reminder").addEventListener("mouseleave", () => {
+    autoScroll = setInterval(moveToNextSlide, 3000);
+  });
+
+  // 영화 크레딧 같은 계속 흐르는 애니메이션 (옵션)
+  track.classList.add("auto-scroll");
+});
