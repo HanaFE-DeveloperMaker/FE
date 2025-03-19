@@ -50,41 +50,72 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const remindBtn = document.querySelector("#remind-btn");
 const modalOverlay = document.querySelector(".modal-overlay");
+const reminder = document.querySelector("#reminder");
 remindBtn.addEventListener("click", () => {
   modalOverlay.classList.remove("display-none");
+  reminder.classList.remove("display-none");
 });
 modalOverlay.addEventListener("click", () => {
   modalOverlay.classList.add("display-none");
+  reminder.classList.add("display-none");
 });
 
 document.addEventListener("DOMContentLoaded", () => {
   const track = document.querySelector(".carousel-track");
-  const slides = document.querySelectorAll(".carousel-slide");
+  const slides = Array.from(document.querySelectorAll(".carousel-slide")); // 슬라이드를 배열로 변환
 
   let currentIndex = 0;
   const totalSlides = slides.length;
+  let autoScroll;
 
-  function moveToNextSlide() {
-    currentIndex++;
-    if (currentIndex >= totalSlides) {
-      currentIndex = 0;
+  // 슬라이드 높이를 동적으로 설정
+  function updateSlideHeight() {
+    if (window.getComputedStyle(reminder).display === "none") {
+      return; // reminder가 보이지 않으면 높이 설정 안 함
     }
-    track.style.transform = `translateY(-${currentIndex * 100}%)`;
+    const reminderHeight = reminder.clientHeight;
+
+    slides.forEach((slide) => {
+      slide.style.height = `${reminderHeight}px`;
+    });
+
+    // track의 높이를 슬라이드 개수만큼 설정
+    track.style.height = `${reminderHeight * totalSlides}px`;
   }
 
-  // 일정 시간마다 자동 스크롤
-  let autoScroll = setInterval(moveToNextSlide, 3000);
+  function moveToNextSlide() {
+    console.log(`currentIndex: ${currentIndex}, totalSlides: ${totalSlides}`);
 
-  // 마우스 오버 시 스크롤 멈춤
-  document.querySelector("#reminder").addEventListener("mouseenter", () => {
-    clearInterval(autoScroll);
-  });
+    if (currentIndex < totalSlides - 1) {
+      currentIndex++;
+      const translateYValue = -currentIndex * reminder.clientHeight; // 부모 높이를 기준으로 이동
+      track.style.transform = `translateY(${translateYValue}px)`;
+      track.style.transition = "transform 1.5s ease-in-out"; // 부드러운 애니메이션 적용
+      console.log(`Transform: ${track.style.transform}`);
+    } else {
+      clearInterval(autoScroll); // 마지막 슬라이드에서 멈춤
+      console.log("Carousel Stopped.");
+    }
+  }
 
-  // 마우스 벗어나면 다시 재생
-  document.querySelector("#reminder").addEventListener("mouseleave", () => {
-    autoScroll = setInterval(moveToNextSlide, 3000);
-  });
+  let prevDisplay = window.getComputedStyle(reminder).display;
 
-  // 영화 크레딧 같은 계속 흐르는 애니메이션 (옵션)
+  setInterval(() => {
+    const currentDisplay = window.getComputedStyle(reminder).display;
+
+    // reminder가 보이기 시작하면 슬라이드 높이 업데이트
+    if (currentDisplay !== prevDisplay) {
+      prevDisplay = currentDisplay;
+      if (currentDisplay !== "none") {
+        updateSlideHeight();
+      }
+    }
+  }, 100);
+
+  window.addEventListener("resize", updateSlideHeight);
+  updateSlideHeight();
+
+  autoScroll = setInterval(moveToNextSlide, 5000);
+
   track.classList.add("auto-scroll");
 });
