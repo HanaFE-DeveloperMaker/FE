@@ -8,6 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const startButton = document.getElementById("startButton");
   const nickname = document.querySelector("input");
 
+  const startSound = new Audio("../assets/sound/start.wav"); // 시작 버튼 효과음
+
+  const fadeOverlay = document.createElement("div");
+  fadeOverlay.classList.add("fade-overlay");
+  document.body.appendChild(fadeOverlay);
+
   if (!isFullScreen()) {
     Swal.fire({
       title: "화면 설정",
@@ -39,6 +45,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     localStorage.setItem("nickname", nickname.value);
 
-    window.location.href = "study.html";
+    startSound.play();
+
+    fadeOverlay.style.opacity = "1";
+
+    setTimeout(() => {
+      window.location.href = "study.html";
+    }, 1200);
   });
 });

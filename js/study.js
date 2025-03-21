@@ -26,4 +26,15 @@ const endings = {
   },
 };
 
+window.onload = function () {
+  document.body.style.opacity = "1"; // 🔥 페이드인 효과 시작
+
+  // 검정 오버레이를 서서히 사라지게 함
+  const fadeOverlay = document.querySelector(".fade-in-overlay");
+  setTimeout(() => {
+    fadeOverlay.style.opacity = "0"; // 오버레이 점점 투명해짐
+    setTimeout(() => fadeOverlay.remove(), 1000); // 애니메이션 후 요소 삭제
+  }, 100);
+};
+
 initializeScene(texts, endings, "wake-up.html");

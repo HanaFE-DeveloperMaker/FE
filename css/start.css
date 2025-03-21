@@ -81,3 +81,16 @@ input:focus {
   box-shadow: inset 0 2px 0 #aa4444, 1px 4px 0 #551111; /* 위쪽 그림자를 더 어둡게, 아래쪽 그림자 줄어들게*/
   transform: translateY(4px);
 }
+
+.fade-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black; /* 검정 배경 */
+  opacity: 0; /* 기본적으로 투명 */
+  transition: opacity 1s ease-in-out; /* 서서히 변하도록 설정 */
+  pointer-events: none; /* 클릭 방해 방지 */
+  z-index: 9999; /* 모든 요소 위에 표시 */
+}
