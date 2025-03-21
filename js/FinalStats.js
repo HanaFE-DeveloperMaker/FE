@@ -53,10 +53,17 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   divElements.forEach((item, index) => {
     const label = item.querySelector("label");
-    const scoreNum = item.querySelector("p");
+    const integrity = item.querySelector(".integrity-modal");
+    const scoreNum = item.querySelector("span");
     scoreNum.textContent = `${scores[label.textContent]}/30`;
     scoreNum.style.left = `${(scores[label.textContent] * 100) / 30 - 16}%`;
     const chart = document.getElementById(`scoreitem-${index + 1}`);
+    label.addEventListener("mouseover", () => {
+      integrity.classList.remove("display-none");
+    });
+    label.addEventListener("mouseout", () => {
+      integrity.classList.add("display-none");
+    });
     chart.addEventListener("mouseover", () => {
       scoreNum.classList.remove("display-none");
     });
