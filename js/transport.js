@@ -2,15 +2,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const scenes = {
     start: {
       type: "text",
-      text: "",
+      text: "... ... ... ... ...",
       background: "url('../assets/img_transport.png')",
-      next: "start0"
+      next: "start1"
     },
     start0: {
       type: "text",
       text: "",
       background: "url('../assets/img_transport.png')",
-      next: "start1"
+      next: "start1",
+      sound: "../assets/sound/transport.wav"
     },
     start1: {
       type: "text",
@@ -62,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
       text: "",
       background: "url('../assets/img_bus.png')",
       next: "bus1",
-      sound: "null"
+      sound: null
     },
     bus1: {
       type: "text",
@@ -80,13 +81,15 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "text",
       text: "버스를 타고 가는데, 할머니 한 분이 큰 짐을 들고 타셨다....",
       background: "url('../assets/img_bus_grandmother.png')",
-      next: "bus3"
+      next: "bus3",
+      sound: "../assets/sound/bus.wav"
     },
     bus3: {
       type: "text",
       text: "어제 잠을 많이 못자서 피곤하긴 한데...<br>자리를 양보해 드릴까?",
       background: "url('../assets/img_bus_grandmother.png')",
-      next: "bus4"
+      next: "bus4",
+      sound: null
     },
     bus4: {
       type: "choice",
@@ -111,6 +114,12 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "text",
       text: "큰 짐을 든 할머니: 아이고 정말 고마워요 ...! 복 받을 거야 !!",
       background: "url('../assets/img_bus_good.png')",
+      next: "bus_good2"
+    },
+    bus_good2: {
+      type: "text",
+      text: "",
+      background: "url('../assets/img_bus_good.png')",
       next: "hana"
     },
     bus_bad0: {
@@ -129,9 +138,23 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "text",
       text: "Zzzzz....",
       background: "url('../assets/img_bus_bad.png')",
-      next: "hana"
+      next: "bus_bad2",
+      sound:"../assets/sound/sleep.wav",
+    },
+    bus_bad2: {
+      type: "text",
+      text: "",
+      background: "url('../assets/img_bus_bad.png')",
+      next: "hana",
+      sound:null
     },
     hana: {
+      type: "text",
+      text: "... ... ... ... ...",
+      background: "url('../assets/img_hana.png')",
+      next: "hana1"
+    },
+    hana1: {
       type: "text",
       text: "휴 드디어 도착했다.<br>건물이 너무 멋지잖아?! 꼭 합격하고 말거야 !!",
       background: "url('../assets/img_hana.png')",
@@ -208,13 +231,21 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "text",
       text: "띠리링 -",
       background: "url('../assets/img_mail.png')",
-      next: "mail2"
+      next: "mail2",
+      sound:"../assets/sound/mail.mp3"
     },
     mail2: {
       type: "text",
       text: "헉 결과 메일이잖아? 얼른 확인해야지",
       background: "url('../assets/img_mail.png')",
-      next: "null"
+      next: "mail3",
+      sound: null
+    },
+    mail3: {
+      type: "text",
+      text: "헉 결과 메일이잖아? 얼른 확인해야지",
+      background: "url('../assets/img_mail.png')",
+      next: null
     },
     success1: {
       type: "text",
@@ -226,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "text",
       text: "야호 최종 합격이다!!!!!!!!!!!!!!!",
       background: "url('../assets/img_happy.png')",
-      next: "null"
+      next: null
     },
     fail1: {
       type: "text",
@@ -244,7 +275,7 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "text",
       text: "또 떨어졌잖아 .... ....",
       background: "url('../assets/img_sad.png')",
-      next: "null"
+      next: null
     },
     fail_nude: {
       type: "text",
@@ -262,7 +293,7 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "text",
       text: "옷차림 때문에 지각해서 면접 응시를 못하다니....",
       background: "url('../assets/img_sad.png')",
-      next: "null"
+      next: null
     },
   };
 
@@ -272,7 +303,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let typingInterval; 
   let scores = { 열정: 0, 열린마음: 0, 손님우선: 0, 전문성: 0, 존중과배려: 0 }; 
 
-  let currentAudio = null; // 현재 재생 중인 오디오 저장
+  let currentAudio = null;
 
   const dialog = document.getElementById("dialog");
   const textElement = document.getElementById("text");
@@ -280,10 +311,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const choices = document.getElementById("choices");
   const body = document.body;
 
-  // 효과음 재생 함수
   function playSound(soundSrc) {
     if (soundSrc === null) {
-      // 사운드 종료 요청이 있는 경우
+
       if (currentAudio) {
         currentAudio.pause();
         currentAudio.currentTime = 0;
@@ -293,18 +323,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (soundSrc && (!currentAudio || currentAudio.src !== soundSrc)) {
-      // 기존 오디오를 중단하지 않고 새로운 오디오만 변경
       if (currentAudio) {
         currentAudio.pause();
       }
       currentAudio = new Audio(soundSrc);
-      currentAudio.loop = true; // 배경음 지속
+      currentAudio.loop = false; 
       currentAudio.play();
     }
   }
 
   function showScene(sceneKey) {
-    if (sceneKey === "mail2") {
+    if (sceneKey === "mail3") {
       let totalScore = Object.values(scores).reduce((acc, val) => acc + val, 0);
       sceneKey = totalScore >= 100 ? "success1" : "fail1";
     }
@@ -323,8 +352,7 @@ document.addEventListener("DOMContentLoaded", function () {
       };
   }
 
-// 효과음 재생
-playSound(scene.sound);
+    playSound(scene.sound);
 
     if (scene.type === "text") {
 
@@ -343,12 +371,12 @@ playSound(scene.sound);
         setTimeout(() => {
             window.location.href = "FinalStats.html"; 
         }, 2000);
-      } else if (sceneKey === "subway" || sceneKey === "bus" || sceneKey === "bus_good" || sceneKey === "bus_bad" || sceneKey === "interview_good" || sceneKey === "interview_bad" || sceneKey === "start"|| sceneKey === "start0") {
+      } else if (sceneKey === "subway" || sceneKey === "bus" || sceneKey === "bus_good" || sceneKey === "bus_bad" || sceneKey === "interview_good" || sceneKey === "interview_bad" ||  sceneKey === "bus_good2" ||  sceneKey === "bus_bad2") {
         dialog.style.display = "none"; 
         setTimeout(() => {
             showScene(scene.next); 
             dialog.style.display = "block";
-        }, 1000);
+        }, 10);
       } else {
         dialog.style.display = "block"; 
         startTypingEffect(scene.text, () => {
