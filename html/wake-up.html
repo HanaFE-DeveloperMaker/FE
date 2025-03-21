@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wake Up</title>
+    <link rel="stylesheet" href="../css/script.css" />
+    <link rel="stylesheet" href="../css/wake-up.css" />
+  </head>
+  <body>
+    <div class="dialog" id="dialog">
+      <span id="text"></span>
+      <div class="next" id="next"></div>
+
+      <div class="choices" id="choices">
+        <div class="choice" data-ending="sleep">
+          잠깐은 괜찮겠지... 다시 눕는다.
+        </div>
+        <div class="choice" data-ending="wash">
+          일찍 일어난 김에 빨리 씻자! 정신을 부여잡고 씻으러 간다.
+        </div>
+      </div>
+    </div>
+    <script type="module" src="../js/wake-up.js"></script>
+  </body>
+</html>

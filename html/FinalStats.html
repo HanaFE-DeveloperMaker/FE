@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Final-Stats</title>
+    <link rel="stylesheet" href="../css/FinalStats.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=42dot+Sans:wght@300..800&family=Nanum+Gothic&family=Noto+Sans+KR:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section>
+      <header><h1>최종 결과</h1></header>
+      <div id="profile">
+        <div class="donut-chart" data-percent="75">
+          <svg viewBox="0 0 36 36" class="circular-chart">
+            <path
+              class="circle-bg"
+              d="M18 2.0845 
+                 a 15.9155 15.9155 0 0 1 0 31.831 
+                 a 15.9155 15.9155 0 0 1 0 -31.831"
+            />
+
+            <path
+              class="circle"
+              d="M18 2.0845 
+                 a 15.9155 15.9155 0 0 1 0 31.831 
+                 a 15.9155 15.9155 0 0 1 0 -31.831"
+            />
+            <image x="6" y="6" width="24" height="24" class="profile-img" />
+
+            <circle
+              cx="18"
+              cy="18"
+              r="13"
+              class="overlay"
+              fill="rgba(0, 0, 0, 0.5)"
+            ></circle>
+            <text x="18" y="20" class="percentage">75%</text>
+          </svg>
+        </div>
+        <button>SUCCESS</button>
+      </div>
+      <div id="score-list">
+        <div>
+          <label for="score-1">열정</label>
+          <div class="chart-container">
+            <hr class="base-chart" />
+            <hr id="scoreitem-1" data-score="75" />
+          </div>
+        </div>
+        <div>
+          <label for="score-2">열린마음</label>
+          <div class="chart-container">
+            <hr class="base-chart" />
+            <hr id="scoreitem-2" data-score="75" />
+          </div>
+        </div>
+        <div>
+          <label for="score-3">손님우선</label>
+          <div class="chart-container">
+            <hr class="base-chart" />
+            <hr id="scoreitem-3" data-score="60" />
+          </div>
+        </div>
+        <div>
+          <label for="score-4">전문성</label>
+          <div class="chart-container">
+            <hr class="base-chart" />
+            <hr id="scoreitem-4" data-score="80" />
+          </div>
+        </div>
+        <div>
+          <label for="score-5">존중과 배려</label>
+          <div class="chart-container">
+            <hr class="base-chart" />
+            <hr id="scoreitem-5" data-score="40" />
+          </div>
+        </div>
+        <button id="remind-btn">나의 오늘 하루 되짚어보기🔍</button>
+      </div>
+    </section>
+    <div class="modal-overlay display-none"></div>
+    <div id="reminder" class="display-none">
+      <div class="carousel-track">
+        <div class="carousel-slide">
+          <img src="../assets/profile_fail.png" alt="Slide 1" />
+          <div class="movie-film"></div>
+        </div>
+        <div class="carousel-slide">
+          <img src="../assets/profile_success.png" alt="Slide 2" />
+        </div>
+        <div class="carousel-slide">
+          <img src="../assets/window.png" alt="Slide 3" />
+        </div>
+        <div class="carousel-slide">
+          <h1>Special Thanks</h1>
+          <p><span>팀장</span>허동민</p>
+          <p><span>팀원</span>박지민</p>
+          <p><span>팀원</span>임하늘</p>
+          <p><span>팀원</span>주소영</p>
+        </div>
+      </div>
+    </div>
+    <script src="../js/FinalStats.js"></script>
+  </body>
+</html>
