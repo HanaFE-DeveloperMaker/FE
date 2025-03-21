@@ -76,7 +76,6 @@ body {
   position: relative;
   padding-left: 30px; /* 삼각형 위치 확보 */
   margin: 10px 0;
-  cursor: pointer;
   border-radius: 5px;
   transition: 0.3s;
 }
