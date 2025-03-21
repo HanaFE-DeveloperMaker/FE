@@ -18,4 +18,4 @@ const endings = {
   },
 };
 
-initializeScene(texts, endings, "dress.html");
+initializeScene(texts, endings, "Dress.html");

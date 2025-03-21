@@ -1,4 +1,4 @@
-@import url("script.css");
+@import url("Script.css");
 
 .fade-in-overlay {
   position: fixed;
@@ -13,7 +13,7 @@
 }
 
 body {
-  background-image: url(../assets/study.png);
+  background-image: url(../assets/study.webp);
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }

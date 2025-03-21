@@ -16,7 +16,7 @@ const endings = {
   },
   friend: {
     text: "친구: 아니 글쎄 여자친구가 .... ....",
-    background: "url('../assets/friend.png')",
+    background: "url('../assets/friend.webp')",
     score: { 존중과배려: 5, 열린마음: 10, 손님우선: 5 },
   },
   rest: {
@@ -37,4 +37,4 @@ window.onload = function () {
   }, 100);
 };
 
-initializeScene(texts, endings, "wake-up.html");
+initializeScene(texts, endings, "WakeUp.html");
