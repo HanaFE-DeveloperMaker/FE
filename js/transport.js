@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "text",
       text: "???: 예끼 이놈아! 공공장소에 누가 그런 차림으로 다녀?! 당장 나가!!",
       background: "url('../assets/img_nude.png')",
-      next: "fail_nude",
+      next: "fail_nude2",
       sound:null
     },
     bus2: {
