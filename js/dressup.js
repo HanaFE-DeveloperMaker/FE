@@ -34,7 +34,7 @@ const getInterviewValue = () => {
 
   // 이스터에그 체크 (옷을 안 입거나 양말만 신은 경우)
   if (shirt === "shirt0" || pants === "pants0" || shoes === "shoes1-1") {
-    return "fail"; // 대중교통에서 쫓겨남
+    return 0; // 대중교통에서 쫓겨남
   } else {
     let value = 0;
     if (hairGroup1.includes(hair)) value += 0;
