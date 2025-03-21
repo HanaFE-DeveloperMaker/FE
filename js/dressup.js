@@ -176,6 +176,16 @@ class EventHandlers {
       this.handleDrop(e);
     });
 
+    // 드롭된 옷 클릭 이벤트 추가
+    elements.container.addEventListener("click", (e) => {
+      if (
+        e.target.classList.contains("clothes") &&
+        e.target.classList.contains("dropped")
+      ) {
+        e.target.remove(); // 클릭한 옷 제거
+      }
+    });
+
     // 버튼 이벤트
     elements.resetButton.addEventListener("click", this.handleReset.bind(this));
     elements.completeButton.addEventListener(
@@ -184,7 +194,10 @@ class EventHandlers {
     );
 
     // 모달 확인 버튼 이벤트 추가
-    elements.modalConfirm.addEventListener("click", this.handleComplete.bind(this));
+    elements.modalConfirm.addEventListener(
+      "click",
+      this.handleComplete.bind(this)
+    );
 
     elements.modalCancel.addEventListener(
       "click",
