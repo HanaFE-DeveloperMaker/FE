@@ -81,14 +81,14 @@ document.addEventListener("DOMContentLoaded", function () {
     bus2: {
       type: "text",
       text: "버스를 타고 가는데, 할머니 한 분이 큰 짐을 들고 타셨다....",
-      background: "url('../assets/img_bus_grandmother.png')",
+      background: "url('../assets/img_bus_grandmother.webp')",
       next: "bus3",
       sound: "../assets/sound/bus.wav"
     },
     bus3: {
       type: "text",
       text: "어제 잠을 많이 못자서 피곤하긴 한데...<br>자리를 양보해 드릴까?",
-      background: "url('../assets/img_bus_grandmother.png')",
+      background: "url('../assets/img_bus_grandmother.webp')",
       next: "bus4",
       sound: null
     },
@@ -102,50 +102,50 @@ document.addEventListener("DOMContentLoaded", function () {
     bus_good0: {
       type: "text",
       text: "",
-      background: "url('../assets/img_bus_good.png')",
+      background: "url('../assets/img_bus_good.webp')",
       next: "bus_good"
     },
     bus_good: {
       type: "text",
       text: "",
-      background: "url('../assets/img_bus_good.png')",
+      background: "url('../assets/img_bus_good.webp')",
       next: "bus_good1"
     },
     bus_good1: {
       type: "text",
       text: "큰 짐을 든 할머니: 아이고 정말 고마워요 ...! 복 받을 거야 !!",
-      background: "url('../assets/img_bus_good.png')",
+      background: "url('../assets/img_bus_good.webp')",
       next: "bus_good2"
     },
     bus_good2: {
       type: "text",
       text: "",
-      background: "url('../assets/img_bus_good.png')",
+      background: "url('../assets/img_bus_good.webp')",
       next: "hana"
     },
     bus_bad0: {
       type: "text",
       text: "",
-      background: "url('../assets/img_bus_good.png')",
+      background: "url('../assets/img_bus_good.webp')",
       next: "bus_bad"
     },
     bus_bad: {
       type: "text",
       text: "",
-      background: "url('../assets/img_bus_good.png')",
+      background: "url('../assets/img_bus_good.webp')",
       next: "bus_bad1"
     },
     bus_bad1: {
       type: "text",
       text: "Zzzzz....",
-      background: "url('../assets/img_bus_bad.png')",
+      background: "url('../assets/img_bus_bad.webp')",
       next: "bus_bad2",
       sound:"../assets/sound/sleep.wav",
     },
     bus_bad2: {
       type: "text",
       text: "",
-      background: "url('../assets/img_bus_bad.png')",
+      background: "url('../assets/img_bus_bad.webp')",
       next: "hana",
       sound:null
     },
@@ -159,30 +159,36 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "text",
       text: "휴 드디어 도착했다.<br>건물이 너무 멋지잖아?! 꼭 합격하고 말거야 !!",
       background: "url('../assets/img_hana.png')",
+      next: "interview0"
+    },
+    interview0: {
+      type: "text",
+      text: "",
+      background: "url('../assets/img_waiting.webp')",
       next: "interview1"
     },
     interview1: {
       type: "text",
       text: "면접관: 안녕하세요. 하나 금융 티아이 최종 면접 시작하겠습니다.",
-      background: "url('../assets/img_interview.png')",
+      background: "url('../assets/img_interview.webp')",
       next: "interview2"
     },
     interview2: {
       type: "text",
       text: "면접관: (면접 복장에 따른 질문) 굉장히 편한 복장이네요. 회사에서도 자유로운 분위기를 선호하시는 편인가요?",
-      background: "url('../assets/img_interview.png')",
+      background: "url('../assets/img_interview.webp')",
       next: "interview3"
     },
     interview3: {
       type: "text",
       text: "..... ..... ..... ..... ..... .....",
-      background: "url('../assets/img_interview.png')",
+      background: "url('../assets/img_interview.webp')",
       next: "interview4"
     },
     interview4: {
       type: "text",
       text: "면접관: 네, 이상으로 면접 모두 마치겠습니다. 혹시 마지막으로 하시고 싶은 말씀 있으실까요?",
-      background: "url('../assets/img_interview.png')",
+      background: "url('../assets/img_interview.webp')",
       next: "interview5"
     },
     interview5: {
@@ -195,37 +201,37 @@ document.addEventListener("DOMContentLoaded", function () {
     interview_good0: {
       type: "text",
       text: "",
-      background: "url('../assets/img_interview.png')",
+      background: "url('../assets/img_interview.webp')",
       next: "interview_good"
     },
     interview_good: {
       type: "text",
       text: "",
-      background: "url('../assets/img_interview.png')",
+      background: "url('../assets/img_interview.webp')",
       next: "interview_good1"
     },
     interview_good1: {
       type: "text",
       text: "아까 제가 했던 답변을 추가 보완해도 괜찮을 까요?<br>... ... ...",
-      background: "url('../assets/img_interview.png')",
+      background: "url('../assets/img_interview.webp')",
       next: "mail1"
     },
     interview_bad0: {
       type: "text",
       text: "",
-      background: "url('../assets/img_interview.png')",
+      background: "url('../assets/img_interview.webp')",
       next: "interview_bad"
     },
     interview_bad: {
       type: "text",
       text: "",
-      background: "url('../assets/img_interview.png')",
+      background: "url('../assets/img_interview.webp')",
       next: "interview_bad1"
     },
     interview_bad1: {
       type: "text",
       text: "뽑아주시면 열심히 하겠습니다 !",
-      background: "url('../assets/img_interview.png')",
+      background: "url('../assets/img_interview.webp')",
       next: "mail1"
     },
     mail1: {
@@ -383,6 +389,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const scene = scenes[sceneKey];
     currentScene = sceneKey;
+
+    if (sceneKey === "interview0") {
+      const result = parseInt(localStorage.getItem("interview-dialog") || "0");
+      const question = interviewQuestions[result] || "회사에서도 자유로운 분위기를 선호하시나요?";
+      scene.text = result + "님 들어와주세요 !";
+    }
 
     if (sceneKey === "interview2") {
       const result = parseInt(localStorage.getItem("interview-dialog") || "0");
