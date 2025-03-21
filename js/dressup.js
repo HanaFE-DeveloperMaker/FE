@@ -294,7 +294,7 @@ class EventHandlers {
   handleShirtDrop(draggedClothes) {
     const shirtNumber = draggedClothes.src.match(/shirt(\d)/)[1];
     this.clothesManager.removeClothes(
-      ".dropped.shirt1, .dropped.shirt2, .dropped.shirt3"
+      ".dropped.shirt0, .dropped.shirt1, .dropped.shirt2, .dropped.shirt3, .dropped.shirt4"
     );
     this.clothesManager.addClothes(draggedClothes.src, [`shirt${shirtNumber}`]);
   }
@@ -302,7 +302,7 @@ class EventHandlers {
   handlePantsDrop(draggedClothes) {
     const pantsNumber = draggedClothes.src.match(/pants(\d)/)[1];
     this.clothesManager.removeClothes(
-      ".dropped.pants1, .dropped.pants2, .dropped.pants3"
+      ".dropped.pants0, .dropped.pants1, .dropped.pants2, .dropped.pants3, .dropped.pants4"
     );
     this.clothesManager.addClothes(draggedClothes.src, [`pants${pantsNumber}`]);
   }
