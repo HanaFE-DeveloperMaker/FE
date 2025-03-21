@@ -348,7 +348,7 @@ class EventHandlers {
     });
 
     elements.modal.style.display = "none";
-    location.href = "transport.html";
+    location.href = "Transport.html";
   }
 }
 

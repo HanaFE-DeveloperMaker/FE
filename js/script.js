@@ -135,7 +135,7 @@ export function initializeScene(texts, endings, nextPage) {
       }, 500); // ⏳ 0.5초 대기 후 실행
     } else {
       // ending 없으면 dressup 장면으로 이동
-      window.location.href = "dressup.html";
+      window.location.href = "DressUp.html";
     }
   }
 
