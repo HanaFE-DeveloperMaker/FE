@@ -16,4 +16,4 @@ const endings = {
   },
 };
 
-initializeScene(texts, endings, "wake-up.html"); // 다음 화면 임시로
+initializeScene(texts, endings, "dress.html"); // 다음 화면 임시로
