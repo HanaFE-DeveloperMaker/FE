@@ -99,8 +99,9 @@ export function initializeScene(texts, endings, nextPage) {
           { once: true }
         );
       }, 500); // ⏳ 0.5초 대기 후 실행
-    } else {  // TODO: 옷장이랑 연결
-      console.error("선택된 엔딩을 찾을 수 없음:", selectedEnding);
+    } else {
+      // ending 없으면 dressup 장면으로 이동
+      window.location.href = "dressup.html";
     }
   }
 
