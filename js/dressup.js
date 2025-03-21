@@ -133,6 +133,7 @@ class ClothesManager {
 class StorageManager {
   static saveClothes(clothesType, value) {
     localStorage.setItem(clothesType, value || `${clothesType}0`);
+    localStorage.setItem("interview-dialog", getInterviewValue());
   }
 
   static clearAll() {
@@ -183,10 +184,7 @@ class EventHandlers {
     );
 
     // 모달 확인 버튼 이벤트 추가
-    elements.modalConfirm.addEventListener("click", () => {
-      localStorage.setItem("interview-dialog", getInterviewValue());
-      this.handleComplete();
-    });
+    elements.modalConfirm.addEventListener("click", this.handleComplete.bind(this));
 
     elements.modalCancel.addEventListener(
       "click",
