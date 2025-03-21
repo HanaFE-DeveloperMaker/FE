@@ -257,6 +257,12 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "text",
       text: "야호 최종 합격이다!!!!!!!!!!!!!!!",
       background: "url('../assets/img_happy.png')",
+      next: "success3"
+    },
+    success3: {
+      type: "text",
+      text: "",
+      background: "url('../assets/img_happy.png')",
       next: null
     },
     fail1: {
@@ -274,6 +280,12 @@ document.addEventListener("DOMContentLoaded", function () {
     fail3: {
       type: "text",
       text: "또 떨어졌잖아 .... ....",
+      background: "url('../assets/img_sad.png')",
+      next: "fail4"
+    },
+    fail4: {
+      type: "text",
+      text: "",
       background: "url('../assets/img_sad.png')",
       next: null
     },
@@ -293,6 +305,12 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "text",
       text: "옷차림 때문에 지각해서 면접 응시를 못하다니....",
       background: "url('../assets/img_sad.png')",
+      next: "fail_nude4"
+    },
+    fail_nude4: {
+      type: "text",
+      text: "",
+      background: "url('../assets/img_sad.png')",
       next: null
     },
   };
@@ -301,10 +319,11 @@ document.addEventListener("DOMContentLoaded", function () {
   let isTyping = false; 
   let typingIndex = 0; 
   let typingInterval; 
-  let scores = { 열정: 0, 열린마음: 0, 손님우선: 0, 전문성: 0, 존중과배려: 0 }; 
+  let scores = JSON.parse(localStorage.getItem("scores")) || { 열정: 0, 열린마음: 0, 손님우선: 0, 전문성: 0, 존중과배려: 0 };
 
   let currentAudio = null;
 
+  console.log(scores);
   const dialog = document.getElementById("dialog");
   const textElement = document.getElementById("text");
   const next = document.getElementById("next");
@@ -335,6 +354,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function showScene(sceneKey) {
     if (sceneKey === "mail3") {
       let totalScore = Object.values(scores).reduce((acc, val) => acc + val, 0);
+      localStorage.setItem("scores", JSON.stringify(scores));
+      console.log(scores)
       sceneKey = totalScore >= 100 ? "success1" : "fail1";
     }
 
@@ -367,10 +388,10 @@ document.addEventListener("DOMContentLoaded", function () {
             showScene(scene.next); 
             dialog.style.display = "block";
         }, 3000);
-      } else if (sceneKey === "success2" || sceneKey === "fail3" || sceneKey === "fail_nude3") {
+      } else if (sceneKey === "success3" || sceneKey === "fail4" || sceneKey === "fail_nude3") {
         setTimeout(() => {
             window.location.href = "FinalStats.html"; 
-        }, 2000);
+        }, 1000);
       } else if (sceneKey === "subway" || sceneKey === "bus" || sceneKey === "bus_good" || sceneKey === "bus_bad" || sceneKey === "interview_good" || sceneKey === "interview_bad" ||  sceneKey === "bus_good2" ||  sceneKey === "bus_bad2") {
         dialog.style.display = "none"; 
         setTimeout(() => {
