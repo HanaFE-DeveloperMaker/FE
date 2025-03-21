@@ -1,13 +1,17 @@
 html,
 body {
-  width: 1280px;
-  height: 780px;
+  width: 100vw;
+  height: 100vh;
   margin: 0;
   background-image: url(../assets/img_background.png);
   background-repeat: no-repeat;
-  background-size: cover; /* 화면에 맞게 조절 */
+  background-size: contain; /* 화면에 맞게 조절 */
+  background-position: center;
   overflow: hidden; /* 스크롤 방지 */
   transition: background 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 body {
@@ -15,23 +19,22 @@ body {
 }
 
 .dialog {
-  position: relative; /* 👈 부모 기준으로 배치하기 위해 필요 */
-  width: 1163px;
-  height: 240px;
+  position: absolute; /* 👈 부모 기준으로 배치하기 위해 필요 */
+  width: 70%;
+  height: 30%;
   flex-shrink: 0;
   background-color: rgba(128, 128, 128, 0.9);
   border: 5px solid #000;
   color: #fff;
   font-family: "Kantumruy Pro", sans-serif;
   font-size: 30px;
-  font-style: normal;
+  /* font-style: normal; */
   font-weight: 700;
   line-height: normal;
-
-  position: absolute;
-  left: 50%;
+  bottom: 10%;
+  /* left: 50%;
   bottom: 40px;
-  transform: translateX(-50%);
+  transform: translateX(-50%); */
 
   padding: 30px;
   box-sizing: border-box; /* 👈 div 크기를 유지하면서 padding 적용 */
@@ -73,7 +76,7 @@ body {
   display: none; /* 기본적으로 숨김 */
   flex-direction: column; /* 세로 정렬 */
   position: absolute;
-  bottom: 100px;
+  /* bottom: 100px; */
   color: #fff;
   font-family: "Kantumruy Pro", sans-serif;
   font-size: 30px;
@@ -86,7 +89,6 @@ body {
   position: relative;
   padding-left: 30px; /* 삼각형 위치 확보 */
   margin: 10px 0;
-  cursor: pointer;
   border-radius: 5px;
   transition: 0.3s;
 }

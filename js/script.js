@@ -15,7 +15,7 @@ export function initializeScene(texts, endings, nextPage) {
     isTyping = true; // 현재 문장 출력 중
 
     if (i < texts[index].length) {
-      textElement.innerHTML += texts[index].charAt(i);
+      textElement.innerHTML += texts[index].charAt(i).replace(/\n/g, "<br>");
       i++;
       typingInterval = setTimeout(typeWriter, 50); // 0.05초마다 한 글자씩 출력
     } else {
