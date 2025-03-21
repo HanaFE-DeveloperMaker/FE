@@ -3,7 +3,3 @@
 body {
   background-image: url(../assets/wake_up.png);
 }
-
-.choices {
-  bottom: 90px; /* 선택지 위치 */
-}

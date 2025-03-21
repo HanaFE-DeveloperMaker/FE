@@ -2,21 +2,24 @@
 
 html,
 body {
-  width: 1280px;
-  height: 780px;
+  width: 100vw;
+  height: 100vh;
   margin: 0;
   background-repeat: no-repeat;
-  background-size: cover; /* 화면에 맞게 조절 */
+  background-size: contain; /* 화면에 맞게 조절 */
   overflow: hidden; /* 스크롤 방지 */
+  background-position: center;
   transition: background 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 body {
   position: relative;
 }
 .dialog {
-  position: relative;
-  width: 1163px;
-  height: 240px;
+  width: 70%;
+  height: 30%;
   flex-shrink: 0;
   background-color: rgba(128, 128, 128, 0.9);
   border: 5px solid #000;
@@ -24,11 +27,11 @@ body {
   font-family: "Kantumruy Pro", sans-serif;
   font-size: 30px;
   font-weight: 700;
-
   position: absolute;
-  left: 54%;
-  bottom: 40px;
-  transform: translateX(-50%);
+  bottom: 10%;
+  /* left: 54%;
+  bottom: 40px; */
+  /* transform: translateX(-50%); */
 
   padding: 30px;
   box-sizing: border-box; /* div 크기를 유지하면서 padding 적용 */
