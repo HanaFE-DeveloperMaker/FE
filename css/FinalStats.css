@@ -241,6 +241,20 @@ header {
   z-index: 200;
 }
 
+#username {
+  width: 120px;
+  height: 40px;
+  background-color: #e4c5997c;
+  border: 1px solid #e4c599;
+  color: #ffffff;
+  border-radius: 4px;
+  font-size: 18px;
+  margin: 20px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .carousel-track {
   display: flex;
   flex-direction: column;

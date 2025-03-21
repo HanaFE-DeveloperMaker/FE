@@ -1,3 +1,8 @@
+const scores = JSON.parse(localStorage.getItem("scores"));
+const usernameDiv = document.getElementById("username");
+
+const username = localStorage.getItem("nickname");
+usernameDiv.innerText = `${username}님`;
 document.querySelectorAll(".donut-chart").forEach((chart) => {
   let percent = chart.getAttribute("data-percent");
   let circle = chart.querySelector(".circle");
@@ -38,14 +43,20 @@ document.querySelectorAll(".donut-chart").forEach((chart) => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const scoreItems = document.querySelectorAll('[id^="scoreitem"]');
-
-  scoreItems.forEach((item) => {
-    const score = item.getAttribute("data-score");
+  const scoreItems = document.getElementById("score-list");
+  const divElements = Array.from(scoreItems.children).filter(
+    (el) => el.tagName === "DIV"
+  );
+  divElements.forEach((item, index) => {
+    const label = item.querySelector("label");
+    console.log(label);
+    const chart = document.getElementById(`scoreitem-${index + 1}`);
     setTimeout(() => {
-      item.style.width = `${score}%`;
+      chart.style.width = `${scores[label.textContent]}%`;
     }, 100);
   });
+
+  console.log(scores);
 });
 
 const remindBtn = document.querySelector("#remind-btn");
