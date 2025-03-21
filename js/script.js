@@ -75,6 +75,23 @@ export function initializeScene(texts, endings, nextPage) {
       textElement.style.display = "block"; // 다시 텍스트를 보이게
       textElement.innerHTML = endings[selectedEnding].text; // 엔딩 텍스트 표시
 
+      // 기존 점수를 가져오거나 초기화
+      let scores = JSON.parse(localStorage.getItem("scores")) || {
+        열정: 0,
+        열린마음: 0,
+        손님우선: 0,
+        전문성: 0,
+        존중과배려: 0,
+      };
+
+      const selectedScore = endings[selectedEnding].score;
+      Object.keys(selectedScore).forEach((key) => {
+        scores[key] += selectedScore[key];
+      });
+
+      // 업데이트된 점수를 localStorage에 저장
+      localStorage.setItem("scores", JSON.stringify(scores));
+
       // 🔹 0.5초(500ms) 후에 삼각형 보이기
       setTimeout(() => {
         next.style.display = "block";

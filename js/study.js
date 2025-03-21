@@ -12,14 +12,17 @@ const endings = {
   study: {
     text: "좀 정리가 되는 것 같아",
     background: "url('../assets/study_more.png')",
+    score: { 열정: 10, 존중과배려: -5 },
   },
   friend: {
     text: "친구: 아니 글쎄 여자친구가 .... ....",
     background: "url('../assets/friend.png')",
+    score: { 존중과배려: 5, 열린마음: 10, 손님우선: 5 },
   },
   rest: {
     text: "잠도 안오는데 유튜브나 봐야겠다 ~",
     background: "url('../assets/rest.png')",
+    score: { 열정: -5, 존중과배려: -5 },
   },
 };
 
