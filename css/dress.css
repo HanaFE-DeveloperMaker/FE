@@ -1,0 +1,9 @@
+@import url("script.css");
+
+body {
+  background-image: url(../assets/dress.png);
+}
+
+.choices {
+  bottom: 150px; /* 선택지 위치 */
+}
