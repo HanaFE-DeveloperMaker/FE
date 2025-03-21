@@ -75,7 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "text",
       text: "???: 예끼 이놈아! 공공장소에 누가 그런 차림으로 다녀?! 당장 나가!!",
       background: "url('../assets/img_nude.png')",
-      next: "fail_nude"
+      next: "fail_nude",
+      sound:null
     },
     bus2: {
       type: "text",
@@ -321,9 +322,10 @@ document.addEventListener("DOMContentLoaded", function () {
   let typingInterval; 
   let scores = JSON.parse(localStorage.getItem("scores")) || { 열정: 0, 열린마음: 0, 손님우선: 0, 전문성: 0, 존중과배려: 0 };
 
-  let currentAudio = null;
+  let currentAudio = "fail";
 
-  console.log(scores);
+  const interviewResult = localStorage.getItem("interview-dialog");
+
   const dialog = document.getElementById("dialog");
   const textElement = document.getElementById("text");
   const next = document.getElementById("next");
@@ -332,30 +334,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function playSound(soundSrc) {
     if (soundSrc === null) {
-
-      if (currentAudio) {
+      if (currentAudio instanceof Audio) {
         currentAudio.pause();
         currentAudio.currentTime = 0;
         currentAudio = null;
       }
       return;
     }
-
-    if (soundSrc && (!currentAudio || currentAudio.src !== soundSrc)) {
-      if (currentAudio) {
+  
+    if (soundSrc && (!(currentAudio instanceof Audio) || currentAudio.src !== soundSrc)) {
+      if (currentAudio instanceof Audio) {
         currentAudio.pause();
       }
       currentAudio = new Audio(soundSrc);
-      currentAudio.loop = false; 
+      currentAudio.loop = false;
       currentAudio.play();
     }
   }
+  
 
   function showScene(sceneKey) {
     if (sceneKey === "mail3") {
       let totalScore = Object.values(scores).reduce((acc, val) => acc + val, 0);
       localStorage.setItem("scores", JSON.stringify(scores));
-      console.log(scores)
+      localStorage.getItem("totalscores"+totalScore)
+      localStorage.getItem("scores"+scores)
       sceneKey = totalScore >= 100 ? "success1" : "fail1";
     }
 
@@ -388,7 +391,7 @@ document.addEventListener("DOMContentLoaded", function () {
             showScene(scene.next); 
             dialog.style.display = "block";
         }, 3000);
-      } else if (sceneKey === "success3" || sceneKey === "fail4" || sceneKey === "fail_nude3") {
+      } else if (sceneKey === "success3" || sceneKey === "fail4" || sceneKey === "fail_nude4") {
         setTimeout(() => {
             window.location.href = "FinalStats.html"; 
         }, 1000);
@@ -422,7 +425,13 @@ document.addEventListener("DOMContentLoaded", function () {
           Object.keys(choice.score).forEach(key => {
             scores[key] += choice.score[key];
           });
-          showScene(choice.next);
+          if (currentScene === "choice1" && interviewResult === "fail") {
+            console.log("🚨 복장 실패! nude로 이동");
+            showScene("nude");
+          return;
+          } else {
+            showScene(choice.next);
+          }
         });
         choices.appendChild(button);
       });
