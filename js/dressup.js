@@ -206,6 +206,11 @@ class EventHandlers {
     elements.modal.addEventListener("click", (e) => {
       if (e.target === elements.modal) elements.modal.style.display = "none";
     });
+
+    // 잘라내기 버튼 이벤트 추가
+    document
+      .getElementById("cropButton")
+      .addEventListener("click", this.handleCrop.bind(this));
   }
 
   async handlePageLoad() {
@@ -362,6 +367,47 @@ class EventHandlers {
 
     elements.modal.style.display = "none";
     location.href = "transport.html";
+  }
+
+  handleCrop() {
+    const characterImage = document.querySelector(".character");
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    // 고정된 잘라내기 영역 설정
+    const cropX = 145; // 고정된 X 위치
+    const cropY = 10; // 고정된 Y 위치
+    const cropWidth = 170; // 고정된 너비
+    const cropHeight = 160; // 고정된 높이
+
+    // 캔버스 크기 설정
+    canvas.width = cropWidth;
+    canvas.height = cropHeight;
+
+    // 이미지 로드
+    const img = new Image();
+    img.src = characterImage.src;
+    img.onload = () => {
+      // 이미지의 일부를 캔버스에 그리기 (고정된 값 사용)
+      ctx.drawImage(
+        img,
+        cropX,
+        cropY,
+        cropWidth,
+        cropHeight,
+        0,
+        0,
+        cropWidth,
+        cropHeight
+      );
+
+      // 잘라낸 이미지를 데이터 URL로 변환
+      const croppedImageDataUrl = canvas.toDataURL();
+
+      // 다음 페이지로 이동하면서 데이터 URL 전달
+      localStorage.setItem("croppedImage", croppedImageDataUrl);
+      location.href = "./nextPage.html"; // 다음 페이지로 이동
+    };
   }
 }
 
