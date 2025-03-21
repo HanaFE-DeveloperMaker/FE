@@ -1,0 +1,10 @@
+body {
+  cursor: url("../assets/global/cursor.png") 50 5, auto;
+}
+
+a,
+button,
+input,
+textarea {
+  cursor: url("../assets/global/cursor.png") 50 5, auto;
+}

@@ -24,6 +24,7 @@ const elements = {
   modal: document.getElementById("confirmModal"),
   modalConfirm: document.getElementById("modalConfirm"),
   modalCancel: document.getElementById("modalCancel"),
+  loadingContainer: document.querySelector(".loading-container"),
 };
 
 // 의상 관리 클래스
@@ -62,18 +63,35 @@ class ClothesManager {
   }
 
   // 저장된 의상 불러오기
-  loadSavedClothes() {
+  async loadSavedClothes() {
+    const loadPromises = [];
+
     Object.entries(STORAGE_KEYS).forEach(([key, storageKey]) => {
       const savedValue = localStorage.getItem(storageKey);
       if (savedValue && savedValue !== `${key.toLowerCase()}0`) {
-        if (key === "SHOES") {
-          const shoesNumber = savedValue.match(/shoes(\d)/)[1];
-          this.addShoesPair(shoesNumber);
-        } else {
-          this.addClothes(`../assets/cloth/${savedValue}.png`, [savedValue]);
-        }
+        const loadPromise = new Promise((resolve) => {
+          if (key === "SHOES") {
+            const shoesNumber = savedValue.match(/shoes(\d)/)[1];
+            this.addShoesPair(shoesNumber);
+            resolve();
+          } else {
+            const img = new Image();
+            img.onload = () => {
+              this.addClothes(`../assets/cloth/${savedValue}.png`, [
+                savedValue,
+              ]);
+              resolve();
+            };
+            img.onerror = resolve; // 에러가 발생해도 다음 단계로 진행
+            img.src = `../assets/cloth/${savedValue}.png`;
+          }
+        });
+        loadPromises.push(loadPromise);
       }
     });
+
+    // 모든 의상이 로드될 때까지 대기
+    await Promise.all(loadPromises);
   }
 }
 
@@ -93,22 +111,35 @@ class EventHandlers {
   constructor(clothesManager) {
     this.clothesManager = clothesManager;
     this.setupEventListeners();
+    this.handlePageLoad();
   }
 
   setupEventListeners() {
     // 드래그 이벤트
     elements.clothesItems.forEach((clothes) => {
-      clothes.addEventListener("dragstart", () =>
-        clothes.classList.add("dragging")
-      );
-      clothes.addEventListener("dragend", () =>
-        clothes.classList.remove("dragging")
-      );
+      clothes.addEventListener("dragstart", () => {
+        clothes.classList.add("dragging");
+      });
+      clothes.addEventListener("dragend", () => {
+        clothes.classList.remove("dragging");
+        document.body.style.cursor =
+          "url('../assets/global/cursor.png') 50 5, auto";
+      });
     });
 
     // 드롭 이벤트
-    elements.container.addEventListener("dragover", (e) => e.preventDefault());
-    elements.container.addEventListener("drop", this.handleDrop.bind(this));
+    elements.container.addEventListener("dragover", (e) => {
+      e.preventDefault();
+    });
+    elements.container.addEventListener("dragleave", () => {
+      document.body.style.cursor =
+        "url('../assets/global/cursor.png') 50 5, auto";
+    });
+    elements.container.addEventListener("drop", (e) => {
+      document.body.style.cursor =
+        "url('../assets/global/cursor.png') 50 5, auto";
+      this.handleDrop(e);
+    });
 
     // 버튼 이벤트
     elements.resetButton.addEventListener("click", this.handleReset.bind(this));
@@ -127,11 +158,57 @@ class EventHandlers {
     elements.modal.addEventListener("click", (e) => {
       if (e.target === elements.modal) elements.modal.style.display = "none";
     });
+  }
 
-    // 페이지 로드 시 저장된 의상 불러오기
-    window.addEventListener("load", () =>
-      this.clothesManager.loadSavedClothes()
-    );
+  async handlePageLoad() {
+    try {
+      // 모든 이미지가 로드될 때까지 대기
+      await this.waitForImages();
+
+      // 저장된 의상 불러오기
+      await this.clothesManager.loadSavedClothes();
+
+      // 5초 대기 (로딩 스피너 확인용)
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      // 로딩 스피너 페이드 아웃
+      elements.loadingContainer.classList.add("fade-out");
+
+      // 로딩 스피너 제거
+      setTimeout(() => {
+        elements.loadingContainer.style.display = "none";
+      }, 500);
+    } catch (error) {
+      console.error("페이지 로드 중 오류 발생:", error);
+      // 오류 발생 시에도 로딩 스피너 제거
+      elements.loadingContainer.style.display = "none";
+    }
+  }
+
+  waitForImages() {
+    return new Promise((resolve) => {
+      const images = document.querySelectorAll("img");
+      let loadedImages = 0;
+
+      const imageLoadPromises = Array.from(images).map((img) => {
+        if (img.complete) {
+          loadedImages++;
+          return Promise.resolve();
+        }
+        return new Promise((resolve) => {
+          img.onload = () => {
+            loadedImages++;
+            resolve();
+          };
+          img.onerror = () => {
+            loadedImages++;
+            resolve();
+          };
+        });
+      });
+
+      Promise.all(imageLoadPromises).then(resolve);
+    });
   }
 
   handleDrop(e) {
