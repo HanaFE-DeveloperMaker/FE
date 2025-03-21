@@ -2,9 +2,22 @@ document.addEventListener("DOMContentLoaded", function () {
   const scenes = {
     start: {
       type: "text",
+      text: "",
+      background: "url('../assets/img_transport.png')",
+      next: "start0"
+    },
+    start0: {
+      type: "text",
+      text: "",
+      background: "url('../assets/img_transport.png')",
+      next: "start1"
+    },
+    start1: {
+      type: "text",
       text: "면접장까지 1시간 반... 이번에 새로 생긴 버스가 빠르다고 한다.<br>새롭게 도전해볼까?",
       background: "url('../assets/img_transport.png')",
-      next: "choice1"
+      next: "choice1",
+      sound: "../assets/sound/transport.wav"
     },
     choice1: {
       type: "choice",
@@ -23,7 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "text",
       text: "",
       background: "url('../assets/img_subway.png')",
-      next: "subway1"
+      next: "subway1",
+      sound: "../assets/sound/subway.mp3"
     },
     subway1: {
       type: "text",
@@ -47,7 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "text",
       text: "",
       background: "url('../assets/img_bus.png')",
-      next: "bus1"
+      next: "bus1",
+      sound: "null"
     },
     bus1: {
       type: "text",
@@ -255,13 +270,38 @@ document.addEventListener("DOMContentLoaded", function () {
   let isTyping = false; 
   let typingIndex = 0; 
   let typingInterval; 
-  let scores = { 열정: 30, 열린마음: 0, 손님우선: 0, 전문성: 0, 존중과배려: 0 }; 
+  let scores = { 열정: 0, 열린마음: 0, 손님우선: 0, 전문성: 0, 존중과배려: 0 }; 
+
+  let currentAudio = null; // 현재 재생 중인 오디오 저장
 
   const dialog = document.getElementById("dialog");
   const textElement = document.getElementById("text");
   const next = document.getElementById("next");
   const choices = document.getElementById("choices");
   const body = document.body;
+
+  // 효과음 재생 함수
+  function playSound(soundSrc) {
+    if (soundSrc === null) {
+      // 사운드 종료 요청이 있는 경우
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio = null;
+      }
+      return;
+    }
+
+    if (soundSrc && (!currentAudio || currentAudio.src !== soundSrc)) {
+      // 기존 오디오를 중단하지 않고 새로운 오디오만 변경
+      if (currentAudio) {
+        currentAudio.pause();
+      }
+      currentAudio = new Audio(soundSrc);
+      currentAudio.loop = true; // 배경음 지속
+      currentAudio.play();
+    }
+  }
 
   function showScene(sceneKey) {
     if (sceneKey === "mail2") {
@@ -282,7 +322,9 @@ document.addEventListener("DOMContentLoaded", function () {
           body.style.backgroundImage = scene.background;
       };
   }
-  
+
+// 효과음 재생
+playSound(scene.sound);
 
     if (scene.type === "text") {
 
@@ -297,18 +339,23 @@ document.addEventListener("DOMContentLoaded", function () {
             showScene(scene.next); 
             dialog.style.display = "block";
         }, 3000);
-      } else if (sceneKey === "subway" || sceneKey === "bus" || sceneKey === "bus_good" || sceneKey === "bus_bad"|| sceneKey === "interview_good" || sceneKey === "interview_bad") {
+      } else if (sceneKey === "success2" || sceneKey === "fail3" || sceneKey === "fail_nude3") {
+        setTimeout(() => {
+            window.location.href = "FinalStats.html"; 
+        }, 2000);
+      } else if (sceneKey === "subway" || sceneKey === "bus" || sceneKey === "bus_good" || sceneKey === "bus_bad" || sceneKey === "interview_good" || sceneKey === "interview_bad" || sceneKey === "start"|| sceneKey === "start0") {
         dialog.style.display = "none"; 
         setTimeout(() => {
             showScene(scene.next); 
             dialog.style.display = "block";
         }, 1000);
-    } else {
-          dialog.style.display = "block"; 
-          startTypingEffect(scene.text, () => {
-            next.style.display = scene.next ? "block" : "none";
-          });
-        }
+      } else {
+        dialog.style.display = "block"; 
+        startTypingEffect(scene.text, () => {
+          next.style.display = scene.next ? "block" : "none";
+        });
+      }
+      
 
     } else if (scene.type === "choice") {
 
