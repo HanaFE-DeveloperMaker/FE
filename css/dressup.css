@@ -210,11 +210,6 @@ h1 {
   max-width: 85px;
 }
 
-/* 드래그 가능한 의상 아이템에만 grab 커서 적용 */
-.clothes-panel img:not(.dropped) {
-  cursor: grab;
-}
-
 /* 섹션 스타일 */
 .hair-section {
   position: absolute;
@@ -308,12 +303,6 @@ h1 {
 }
 
 .reset-button,
-.complete-button,
-.modal-button {
-  cursor: pointer;
-}
-
-.reset-button,
 .complete-button {
   margin-top: 20px;
   padding: 12px 25px;
@@ -389,7 +378,6 @@ h1 {
   font-size: 16px;
   border: none;
   border-radius: 25px;
-  cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 

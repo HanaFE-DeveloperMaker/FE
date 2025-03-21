@@ -119,24 +119,25 @@ class EventHandlers {
     elements.clothesItems.forEach((clothes) => {
       clothes.addEventListener("dragstart", () => {
         clothes.classList.add("dragging");
-        document.body.style.cursor = "grabbing";
       });
       clothes.addEventListener("dragend", () => {
         clothes.classList.remove("dragging");
-        document.body.style.cursor = "url('../assets/pointer.png') 50 5, auto";
+        document.body.style.cursor =
+          "url('../assets/global/cursor.png') 50 5, auto";
       });
     });
 
     // 드롭 이벤트
     elements.container.addEventListener("dragover", (e) => {
       e.preventDefault();
-      document.body.style.cursor = "grabbing";
     });
     elements.container.addEventListener("dragleave", () => {
-      document.body.style.cursor = "url('../assets/pointer.png') 50 5, auto";
+      document.body.style.cursor =
+        "url('../assets/global/cursor.png') 50 5, auto";
     });
     elements.container.addEventListener("drop", (e) => {
-      document.body.style.cursor = "url('../assets/pointer.png') 50 5, auto";
+      document.body.style.cursor =
+        "url('../assets/global/cursor.png') 50 5, auto";
       this.handleDrop(e);
     });
 
