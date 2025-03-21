@@ -11,12 +11,29 @@ export function initializeScene(texts, endings, nextPage) {
   const choiceButtons = document.querySelectorAll(".choice");
   const body = document.body; // 배경 변경을 위해 body 가져오기
 
+  const bellSound = new Audio("../assets/sound/bell.mp3"); // 벨소리
+  const alarmSound = new Audio("../assets/sound/alarm.mp3"); // 알람소리
+
+  function playSoundForText(index) {
+    if (texts[index] === "(따르르릉)") {
+      bellSound.play();
+      setTimeout(() => {
+        bellSound.pause(); // 4초 후 정지
+        bellSound.currentTime = 0; // 다시 처음부터 재생 가능하도록 초기화
+      }, 2000);
+    } 
+    else if (texts[index] === "하아아아아암...") {
+      alarmSound.play();
+    }
+  }
+
   function typeWriter() {
     isTyping = true; // 현재 문장 출력 중
 
     if (i < texts[index].length) {
       textElement.innerHTML += texts[index].charAt(i).replace(/\n/g, "<br>");
       i++;
+      playSoundForText(index);
       typingInterval = setTimeout(typeWriter, 50); // 0.05초마다 한 글자씩 출력
     } else {
       isTyping = false; // 출력 완료
