@@ -15,6 +15,40 @@ const STORAGE_KEYS = {
   SHOES: "shoes",
 };
 
+// 로컬 스토리지에서 면접 대사 값 가져오기
+const getInterviewValue = () => {
+  const hair = localStorage.getItem("hair");
+  const shirt = localStorage.getItem("shirt");
+  const pants = localStorage.getItem("pants");
+  const shoes = localStorage.getItem("shoes");
+
+  // 카테고리별 그룹화
+  const hairGroup1 = ["hair2", "hair3"]; // 장발/단발
+  const hairGroup2 = ["hair0", "hair1"]; // 탈모/대머리
+  const shirtGroup1 = ["shirt3", "shirt4"]; // 목폴라/와이셔츠
+  const shirtGroup2 = ["shirt1", "shirt2"]; // 반팔/후드티
+  const pantsGroup1 = ["pants3", "pants4"]; // 청바지/슬랙스
+  const pantsGroup2 = ["pants1", "pants2"]; // 반바지/추리닝
+  const shoesGroup1 = ["shoes3-1", "shoes4-1"]; // 운동화/구두
+  const shoesGroup2 = ["shoes1-1", "shoes2-1"]; // 양말/슬리퍼
+
+  // 이스터에그 체크 (옷을 안 입거나 양말만 신은 경우)
+  if (shirt === "shirt0" || pants === "pants0" || shoes === "shoes1-1") {
+    return "fail"; // 대중교통에서 쫓겨남
+  } else {
+    let value = 0;
+    if (hairGroup1.includes(hair)) value += 0;
+    if (hairGroup2.includes(hair)) value += 8;
+    if (shirtGroup1.includes(shirt)) value += 0;
+    if (shirtGroup2.includes(shirt)) value += 4;
+    if (pantsGroup1.includes(pants)) value += 0;
+    if (pantsGroup2.includes(pants)) value += 2;
+    if (shoesGroup1.includes(shoes)) value += 0;
+    if (shoesGroup2.includes(shoes)) value += 1;
+    return value + 1;
+  }
+};
+
 // DOM 요소
 const elements = {
   clothesItems: document.querySelectorAll(".clothes"),
@@ -116,10 +150,13 @@ class EventHandlers {
       "click",
       () => (elements.modal.style.display = "flex")
     );
-    elements.modalConfirm.addEventListener(
-      "click",
-      this.handleComplete.bind(this)
-    );
+
+    // 모달 확인 버튼 이벤트 추가
+    elements.modalConfirm.addEventListener("click", () => {
+      localStorage.setItem("interview-dialog", getInterviewValue());
+      this.handleComplete();
+    });
+
     elements.modalCancel.addEventListener(
       "click",
       () => (elements.modal.style.display = "none")
