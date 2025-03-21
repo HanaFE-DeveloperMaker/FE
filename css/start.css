@@ -22,7 +22,7 @@ body {
 .title-image {
   display: block;
   width: 100%; /* 원하는 크기에 맞게 조절 */
-  height: auto;
+  height: 450px;
 }
 
 .overlay {
@@ -33,21 +33,25 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   text-align: center;
   font-family: "Press Start 2P", cursive;
   font-size: 40pt;
   color: rgb(0, 0, 0);
+  margin-top: 10px;
 }
 
 .overlay p {
-  font-size: 40px;
+  font-size: 45px;
 }
 
 input {
+  margin-top: -5px;
+  margin-bottom: 10px;
   padding: 5px;
-  font-size: 14px;
+  font-size: 18px;
   text-align: center;
+  width: 200px;
 }
 
 .start-btn {
@@ -60,6 +64,7 @@ input {
   cursor: pointer;
   box-shadow: inset 0 4px 0 #dd6666, 3px 8px 0 #772222;
   transition: all 0.1s ease-in-out;
+  margin-top: 10px;
 }
 
 /* 눌렸을 때 효과 */
