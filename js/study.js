@@ -37,4 +37,4 @@ window.onload = function () {
   }, 100);
 };
 
-initializeScene(texts, endings, "wake-up.html");
+initializeScene(texts, endings, "WakeUp.html");
