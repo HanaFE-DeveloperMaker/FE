@@ -13,7 +13,7 @@
       <header><h1>최종 결과</h1></header>
       <div id="profile">
         <div id="username"></div>
-        <div class="donut-chart" data-percent="75">
+        <div class="donut-chart">
           <svg viewBox="0 0 36 36" class="circular-chart">
             <path
               class="circle-bg"
@@ -37,7 +37,7 @@
               class="overlay"
               fill="rgba(0, 0, 0, 0.5)"
             ></circle>
-            <text x="18" y="20" class="percentage">75%</text>
+            <text x="18" y="20" class="percentage"></text>
           </svg>
         </div>
         <button>SUCCESS</button>
@@ -47,35 +47,40 @@
           <label for="score-1">열정</label>
           <div class="chart-container">
             <hr class="base-chart" />
-            <hr id="scoreitem-1" data-score="75" />
+            <hr id="scoreitem-1" />
+            <p class="display-none"></p>
           </div>
         </div>
         <div>
           <label for="score-2">열린마음</label>
           <div class="chart-container">
             <hr class="base-chart" />
-            <hr id="scoreitem-2" data-score="75" />
+            <hr id="scoreitem-2" />
+            <p class="display-none"></p>
           </div>
         </div>
         <div>
           <label for="score-3">손님우선</label>
           <div class="chart-container">
             <hr class="base-chart" />
-            <hr id="scoreitem-3" data-score="60" />
+            <hr id="scoreitem-3" />
+            <p class="display-none"></p>
           </div>
         </div>
         <div>
           <label for="score-4">전문성</label>
           <div class="chart-container">
             <hr class="base-chart" />
-            <hr id="scoreitem-4" data-score="80" />
+            <hr id="scoreitem-4" />
+            <p class="display-none"></p>
           </div>
         </div>
         <div>
           <label for="score-5">존중과배려</label>
           <div class="chart-container">
             <hr class="base-chart" />
-            <hr id="scoreitem-5" data-score="40" />
+            <hr id="scoreitem-5" />
+            <p class="display-none"></p>
           </div>
         </div>
         <button id="remind-btn">나의 오늘 하루 되짚어보기🔍</button>
@@ -83,10 +88,10 @@
     </section>
     <div class="modal-overlay display-none"></div>
     <div id="reminder" class="display-none">
-      <div class="carousel-track">
+      <div id="carousel-track">
         <div class="carousel-slide">
           <img src="../assets/profile_fail.png" alt="Slide 1" />
-          <div class="movie-film"></div>
+          <!-- <div class="movie-film"></div>/ -->
         </div>
         <div class="carousel-slide">
           <img src="../assets/profile_success.png" alt="Slide 2" />
@@ -95,11 +100,13 @@
           <img src="../assets/window.png" alt="Slide 3" />
         </div>
         <div class="carousel-slide">
-          <h1>Special Thanks</h1>
-          <p><span>팀장</span>허동민</p>
-          <p><span>팀원</span>박지민</p>
-          <p><span>팀원</span>임하늘</p>
-          <p><span>팀원</span>주소영</p>
+          <div id="thanksto">
+            <h1>Special Thanks</h1>
+            <p><span>팀장</span> 허동민</p>
+            <p><span>팀원</span> 박지민</p>
+            <p><span>팀원</span> 임하늘</p>
+            <p><span>팀원</span> 주소영</p>
+          </div>
         </div>
       </div>
     </div>
