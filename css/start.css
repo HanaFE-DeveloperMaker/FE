@@ -1,17 +1,20 @@
 html,
 body {
-  width: 1280px;
-  height: 780px;
+  width: 100vw;
+  height: 100vh;
   margin: 0;
   background-image: url(../assets/start.gif);
   background-repeat: no-repeat;
-  background-size: cover; /* 화면에 맞게 조절 */
+  background-size: contain; /* 화면에 맞게 조절 */
   overflow: hidden; /* 스크롤 방지 */
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .title-container {
   position: relative;
-  left: 320px;
-  top: 20px;
+  bottom: 4rem;
   display: flex; /* 🚀 블록 대신 flex 사용 */
   justify-content: center; /* 이미지와 오버레이를 중앙 정렬 */
   align-items: center;
@@ -27,18 +30,14 @@ body {
 
 .overlay {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  text-align: center;
   font-family: "Press Start 2P", cursive;
   font-size: 40pt;
   color: rgb(0, 0, 0);
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .overlay p {
@@ -48,10 +47,17 @@ body {
 input {
   margin-top: -5px;
   margin-bottom: 10px;
-  padding: 5px;
+  padding: 6px;
   font-size: 18px;
   text-align: center;
   width: 200px;
+  border: 2px solid #8d8d8d;
+  border-radius: 4px;
+}
+input:focus {
+  outline: none;
+  border: 2px solid #bb3322;
+  box-shadow: 0 0 2px 2px #c58e8e;
 }
 
 .start-btn {
@@ -63,8 +69,12 @@ input {
   padding: 20px 30px;
   cursor: pointer;
   box-shadow: inset 0 4px 0 #dd6666, 3px 8px 0 #772222;
-  transition: all 0.1s ease-in-out;
+  transition: box-shadow, transform 0.1s ease-in-out;
   margin-top: 10px;
+}
+
+.start-btn:hover {
+  background: #bb3322;
 }
 
 /* 눌렸을 때 효과 */
