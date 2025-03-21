@@ -32,8 +32,8 @@ const getInterviewValue = () => {
   const shoesGroup1 = ["shoes3-1", "shoes4-1"]; // 운동화/구두
   const shoesGroup2 = ["shoes1-1", "shoes2-1"]; // 양말/슬리퍼
 
-  // 이스터에그 체크 (옷을 안 입거나 양말만 신은 경우)
-  if (shirt === "shirt0" || pants === "pants0" || shoes === "shoes1-1") {
+  // 이스터에그 체크
+  if (shirt === "shirt0" || pants === "pants0" || shoes === "shoes0") {
     return 0; // 대중교통에서 쫓겨남
   } else {
     let value = 0;
