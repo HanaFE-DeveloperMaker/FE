@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "choice",
       choices: [
         { text: "마음이 안좋아.. 자리를 양보한다.", next: "bus_good0", score: { 열린마음:5, 존중과배려: 15, 손님우선: 15 } },
-        { text: "좋은 컨디션으로 면접 봐야지.. 모르는 척 한다.", next: "bus_bad0", score: { 존중과배려: 0 } }
+        { text: "좋은 컨디션으로 면접 봐야지.. 모르는 척 한다.", next: "bus_bad0", score: { 존중과배려: 1 } }
       ]
     },
     bus_good0: {
@@ -273,12 +273,16 @@ document.addEventListener("DOMContentLoaded", function () {
     currentScene = sceneKey;
 
     if (scene.background) {
-      body.style.backgroundImage = scene.background;
-    }
-
-    if (scene.background) {
-      body.style.backgroundImage = scene.background;
-    }
+      const img = new Image(); 
+      const imageUrl = scene.background.match(/url\(['"]?(.*?)['"]?\)/)[1]; 
+  
+      img.src = imageUrl;
+  
+      img.onload = function () {
+          body.style.backgroundImage = scene.background;
+      };
+  }
+  
 
     if (scene.type === "text") {
 
