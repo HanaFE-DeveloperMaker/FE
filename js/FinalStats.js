@@ -52,7 +52,8 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(label);
     const chart = document.getElementById(`scoreitem-${index + 1}`);
     setTimeout(() => {
-      chart.style.width = `${scores[label.textContent]}%`;
+      chart.style.width = `${(Number(scores[label.textContent]))*100/30}%`;
+      console.log(scores[label.textContent])
     }, 100);
   });
 

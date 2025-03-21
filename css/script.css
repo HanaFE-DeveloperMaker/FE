@@ -19,7 +19,7 @@ body {
 }
 .dialog {
   width: 70%;
-  height: 30%;
+  height: 35%;
   flex-shrink: 0;
   background-color: rgba(128, 128, 128, 0.9);
   border: 5px solid #000;
@@ -28,7 +28,7 @@ body {
   font-size: 30px;
   font-weight: 700;
   position: absolute;
-  bottom: 10%;
+  bottom: 8%;
   /* left: 54%;
   bottom: 40px; */
   /* transform: translateX(-50%); */

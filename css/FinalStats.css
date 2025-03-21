@@ -78,7 +78,7 @@ header {
   font-size: 20px;
 }
 #score-list label:hover {
-  box-shadow: 0px 0px 10px #ffffff;
+  text-shadow: 0px 0px 14px #ffffff;
 }
 [for="score-1"],
 #scoreitem-1 {
@@ -114,6 +114,9 @@ header {
   z-index: 1;
   transition: width 2s ease-out;
   box-sizing: border-box;
+}
+[id^="scoreitem"]:hover {
+  box-shadow: 0 0 10px 2px #ffffff;
 }
 #score-list > button {
   width: 100%;
