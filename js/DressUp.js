@@ -358,6 +358,7 @@ class EventHandlers {
   }
 
   handleComplete() {
+    // 저장된 의상 정보를 로컬 스토리지에 저장하는 로직
     const currentClothes = {
       hair: elements.container.querySelector('.dropped[class*="hair"]'),
       shirt: elements.container.querySelector('.dropped[class*="shirt"]'),
@@ -379,10 +380,17 @@ class EventHandlers {
       }
     });
 
+    // 모달 숨기기
     elements.modal.style.display = "none";
 
-    // 완료 후 Transport.html로 이동
-    location.href = "Base.html"; // 페이지 이동
+    // 로딩 스피너 재활성화: display 속성을 "flex"로 설정하고 fade-out 클래스를 제거
+    elements.loadingContainer.style.display = "flex";
+    elements.loadingContainer.classList.remove("fade-out");
+
+    // 약간의 딜레이 후에 페이지 이동 (예: 500ms)
+    setTimeout(() => {
+      location.href = "Base.html";
+    }, 500);
   }
 
   handleCrop() {
