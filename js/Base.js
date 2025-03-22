@@ -186,7 +186,8 @@ document.addEventListener("DOMContentLoaded", function () {
           Object.keys(choice.score).forEach((key) => {
             scores[key] += choice.score[key];
           });
-          if (currentScene === "choice1" && interviewResult === "0") {
+          console.log(currentScene, interviewResult);
+          if (currentScene === "start_choice" && interviewResult === "0") {
             showScene("nude");
             return;
           } else {

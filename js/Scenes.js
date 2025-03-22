@@ -354,7 +354,7 @@ export const scenes = {
   },
   interview_good1: {
     type: "text",
-    text: "아까 제가 했던 답변을 추가 보완해도 괜찮을 까요?<br>... ... ...",
+    text: "아까 제가 했던 답변을 추가 보완해도 괜찮을 까요?\n... ... ...",
     background: "url('../assets/img_interview.webp')",
     next: "mail1",
   },
