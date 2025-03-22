@@ -14,6 +14,17 @@ export function initializeScene(texts, endings, nextPage) {
   const bellSound = new Audio("../assets/sound/bell.mp3"); // 벨소리
   const alarmSound = new Audio("../assets/sound/alarm.mp3"); // 알람소리
 
+  const fadeInOverlay = document.querySelector(".fade-in-overlay");
+  const fadeOutOverlay = document.querySelector(".fade-out-overlay");
+
+  window.onload = function () {
+    // 검정 오버레이를 서서히 사라지게 함
+    setTimeout(() => {
+      fadeInOverlay.style.opacity = "0"; // 오버레이 점점 투명해짐
+      setTimeout(() => fadeInOverlay.style.display = "none", 1000); // 애니메이션 후 요소 삭제
+    }, 100);
+  };
+
   function playSoundForText(index) {
     if (texts[index] === "(따르르릉)") {
       bellSound.play();
@@ -115,7 +126,13 @@ export function initializeScene(texts, endings, nextPage) {
         next.classList.add("blink");
 
         function goToNextPage() {
-          window.location.href = nextPage;
+          fadeOutOverlay.style.display = "block";
+          setTimeout(() => {
+            fadeOutOverlay.style.opacity = "1";
+          }, 50);
+          setTimeout(() => {
+            window.location.href = nextPage;
+          }, 1050);
         }
 
         next.addEventListener("click", goToNextPage, { once: true });

@@ -1,4 +1,4 @@
-import { initializeScene } from "./script.js";
+import { initializeScene } from "./Script.js";
 
 const texts = [
   "내일 드디어 하나금융TI 최종 면접이다! 면접 준비를 더 할까, 쉴까?",
@@ -24,17 +24,6 @@ const endings = {
     background: "url('../assets/rest.png')",
     score: { 열정: -5, 존중과배려: -5 },
   },
-};
-
-window.onload = function () {
-  document.body.style.opacity = "1"; // 🔥 페이드인 효과 시작
-
-  // 검정 오버레이를 서서히 사라지게 함
-  const fadeOverlay = document.querySelector(".fade-in-overlay");
-  setTimeout(() => {
-    fadeOverlay.style.opacity = "0"; // 오버레이 점점 투명해짐
-    setTimeout(() => fadeOverlay.remove(), 1000); // 애니메이션 후 요소 삭제
-  }, 100);
 };
 
 initializeScene(texts, endings, "WakeUp.html");
