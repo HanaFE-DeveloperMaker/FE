@@ -62,6 +62,9 @@ h1 {
 
 .character {
   position: absolute;
+  top: 56%;
+  left: 52%;
+  transform: translate(-50%, -50%);
   z-index: 0;
 }
 
@@ -83,124 +86,104 @@ h1 {
 
 /* 의상 위치 스타일 */
 .clothes.dropped.hair1 {
-  top: -2%;
-  left: 51%;
+  top: 3%;
+  left: 52%;
   z-index: 3;
 }
 .clothes.dropped.hair2 {
-  top: -1%;
-  left: 52%;
+  top: -6%;
+  left: 53%;
   z-index: 3;
 }
 .clothes.dropped.hair3 {
-  top: -1%;
-  left: 51%;
+  top: 3.2%;
+  left: 52%;
   z-index: 3;
 }
 .clothes.dropped.shirt1 {
-  top: 31%;
-  left: 51%;
-  z-index: 2;
-}
-.clothes.dropped.shirt2 {
-  top: 28%;
-  left: 53%;
-  z-index: 2;
-}
-.clothes.dropped.shirt3 {
-  top: 26%;
+  top: 36%;
   left: 52%;
   z-index: 2;
 }
+.clothes.dropped.shirt2 {
+  top: 34%;
+  left: 52%;
+  z-index: 2;
+}
+.clothes.dropped.shirt3 {
+  top: 36%;
+  left: 51%;
+  z-index: 2;
+}
 .clothes.dropped.shirt4 {
-  top: 26%;
+  top: 37%;
   left: 51%;
   z-index: 2;
 }
 .clothes.dropped.pants1 {
-  top: 33%;
+  top: 58%;
   left: 50%;
   z-index: 1;
 }
 .clothes.dropped.pants2 {
-  top: 58%;
+  top: 47%;
   left: 51%;
   z-index: 1;
 }
 .clothes.dropped.pants3 {
-  top: 54%;
-  left: 50%;
+  top: 59%;
+  left: 52%;
   z-index: 1;
 }
 .clothes.dropped.pants4 {
-  top: 55%;
+  top: 50%;
   left: 52%;
   z-index: 1;
 }
 .clothes.dropped.accessary1 {
-  top: 12%;
-  left: 52%;
+  top: 21%;
+  left: 50%;
   z-index: 4;
 }
 .clothes.dropped.accessary2 {
-  top: 8%;
-  left: 52%;
+  top: 17%;
+  left: 49%;
   z-index: 4;
 }
 .clothes.dropped.accessary3 {
-  top: 61%;
-  left: 66%;
+  top: 48%;
+  left: 35%;
   z-index: 4;
 }
 .clothes.dropped.accessary4 {
-  top: 28%;
+  top: 37%;
   left: 52%;
   z-index: 4;
 }
 .clothes.dropped.accessary5 {
-  top: 33%;
-  left: 52%;
+  top: 40%;
+  left: 51%;
   z-index: 4;
 }
-.clothes.dropped.shoes1-1 {
-  top: 81%;
-  left: 42%;
-  z-index: 0;
+.clothes.dropped.shoes1 {
+  top: 90%;
+  left: 51%;
+  z-index: 4;
 }
-.clothes.dropped.shoes1-2 {
-  top: 81%;
-  left: 62%;
-  z-index: 0;
+.clothes.dropped.shoes2 {
+  top: 95%;
+  left: 50.7%;
+  z-index: 4;
 }
-.clothes.dropped.shoes2-1 {
-  top: 86%;
-  left: 40%;
-  z-index: 0;
+.clothes.dropped.shoes3 {
+  top: 78%;
+  left: 51%;
+  z-index: 4;
 }
-.clothes.dropped.shoes2-2 {
-  top: 86%;
-  left: 64%;
-  z-index: 0;
-}
-.clothes.dropped.shoes3-1 {
-  top: 83%;
-  left: 40%;
-  z-index: 0;
-}
-.clothes.dropped.shoes3-2 {
-  top: 83%;
-  left: 64%;
-  z-index: 0;
-}
-.clothes.dropped.shoes4-1 {
-  top: 86%;
-  left: 39%;
-  z-index: 0;
-}
-.clothes.dropped.shoes4-2 {
-  top: 86%;
-  left: 65%;
-  z-index: 0;
+.clothes.dropped.shoes4 {
+  top: 90%;
+  left: 52%;
+  z-index: 4;
 }
 
 .clothes-panel {
@@ -230,8 +213,8 @@ h1 {
   gap: 93px;
   justify-content: center;
   align-items: center;
-  top: 24%;
-  left: 18%;
+  top: 29%;
+  left: 22%;
   z-index: 1;
 }
 
@@ -244,8 +227,8 @@ h1 {
   gap: 71px;
   justify-content: center;
   align-items: center;
-  top: 35%;
-  left: 8%;
+  top: 37%;
+  left: 12%;
   z-index: 1;
 }
 
@@ -258,8 +241,8 @@ h1 {
   gap: 75px;
   justify-content: center;
   align-items: center;
-  top: 46%;
-  left: 9%;
+  top: 45%;
+  left: 12%;
   z-index: 1;
 }
 
@@ -272,36 +255,23 @@ h1 {
   gap: 39px;
   justify-content: center;
   align-items: center;
-  top: 58%;
-  left: 12%;
+  top: 55%;
+  left: 17%;
   z-index: 1;
 }
 
 .shoes-section {
   position: absolute;
-  width: 59%;
-  height: 5%;
-  top: 72%;
-  left: 7%;
+  width: 78%;
+  height: 0%;
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 71px;
   justify-content: center;
   align-items: center;
+  top: 65%;
+  left: 7%;
   z-index: 1;
-}
-
-.shoes-pair {
-  position: relative;
-  display: inline-flex;
-  gap: 5px;
-  background-color: transparent;
-  border-radius: 8px;
-}
-
-.shoes-pair img {
-  position: relative;
-  max-width: 60px;
 }
 
 /* 버튼 스타일 */
@@ -309,7 +279,7 @@ h1 {
   display: flex;
   gap: 10px;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .reset-button,

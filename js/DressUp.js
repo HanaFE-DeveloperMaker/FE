@@ -29,8 +29,8 @@ const getInterviewValue = () => {
   const shirtGroup2 = ["shirt1", "shirt2"]; // 반팔/후드티
   const pantsGroup1 = ["pants3", "pants4"]; // 청바지/슬랙스
   const pantsGroup2 = ["pants1", "pants2"]; // 반바지/추리닝
-  const shoesGroup1 = ["shoes3-1", "shoes4-1"]; // 운동화/구두
-  const shoesGroup2 = ["shoes1-1", "shoes2-1"]; // 양말/슬리퍼
+  const shoesGroup1 = ["shoes3", "shoes4"]; // 운동화/구두
+  const shoesGroup2 = ["shoes1", "shoes2"]; // 양말/슬리퍼
 
   // 이스터에그 체크
   if (shirt === "shirt0" || pants === "pants0" || shoes === "shoes0") {
@@ -82,17 +82,10 @@ class ClothesManager {
   }
 
   // 신발 쌍 추가
-  addShoesPair(shoesNumber) {
+  addShoes(shoesNumber) {
     this.removeClothes('[class*="shoes"]');
-
-    // 왼쪽 신발
-    this.addClothes(`../assets/cloth/shoes${shoesNumber}-1.png`, [
-      `shoes${shoesNumber}-1`,
-    ]);
-
-    // 오른쪽 신발
-    this.addClothes(`../assets/cloth/shoes${shoesNumber}-2.png`, [
-      `shoes${shoesNumber}-2`,
+    this.addClothes(`../assets/cloth/shoes${shoesNumber}.png`, [
+      `shoes${shoesNumber}`,
     ]);
   }
 
@@ -106,7 +99,7 @@ class ClothesManager {
         const loadPromise = new Promise((resolve) => {
           if (key === "SHOES") {
             const shoesNumber = savedValue.match(/shoes(\d)/)[1];
-            this.addShoesPair(shoesNumber);
+            this.addShoes(shoesNumber);
             resolve();
           } else {
             const img = new Image();
@@ -349,7 +342,7 @@ class EventHandlers {
 
   handleShoesDrop(draggedClothes) {
     const shoesNumber = draggedClothes.src.match(/shoes(\d)/)[1];
-    this.clothesManager.addShoesPair(shoesNumber);
+    this.clothesManager.addShoes(shoesNumber);
   }
 
   handleReset() {
