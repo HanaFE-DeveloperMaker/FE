@@ -61,6 +61,14 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("result", totalScore >= 100 ? "SUCCESS" : "FAIL");
     }
 
+    if (sceneKey === "nude") {
+      let totalScore = Object.values(scores).reduce((acc, val) => acc + val, 0);
+      localStorage.setItem("scores", JSON.stringify(scores));
+      localStorage.getItem("totalscores" + totalScore);
+      localStorage.getItem("scores" + scores);
+      localStorage.setItem("result", totalScore >= 100 ? "SUCCESS" : "FAIL");
+    }
+
     const scene = scenes[sceneKey];
     currentScene = sceneKey;
 
@@ -143,6 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
         sceneKey === "fail4" ||
         sceneKey === "fail_nude4"
       ) {
+        dialog.style.display = "none";
         setTimeout(() => {
           window.location.href = "FinalStats.html";
         }, 1000);
@@ -186,7 +195,8 @@ document.addEventListener("DOMContentLoaded", function () {
           Object.keys(choice.score).forEach((key) => {
             scores[key] += choice.score[key];
           });
-          if (currentScene === "choice1" && interviewResult === "0") {
+          console.log(currentScene, interviewResult);
+          if (currentScene === "start_choice" && interviewResult === "0") {
             showScene("nude");
             return;
           } else {

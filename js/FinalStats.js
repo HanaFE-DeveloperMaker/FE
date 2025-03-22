@@ -1,5 +1,7 @@
 const scores = JSON.parse(localStorage.getItem("scores"));
 const usernameDiv = document.getElementById("username");
+// const imgCreator = document.createElement("img");
+
 let totalScore = 0;
 for (let key in scores) {
   totalScore += Number(scores[key]);
@@ -105,6 +107,22 @@ const remindBtn = document.querySelector("#remind-btn");
 const modalOverlay = document.querySelector(".modal-overlay");
 const reminder = document.querySelector("#reminder");
 const track = document.querySelector("#carousel-track");
+const scenes = JSON.parse(localStorage.getItem("scenes")) || [];
+scenes.forEach((scene) => {
+  const slide = document.createElement("div");
+  slide.classList.add("carousel-slide");
+
+  const innerDiv = document.createElement("div");
+  innerDiv.style.backgroundImage = scene;
+  // innerDiv.style.backgroundSize = "contain";
+  // innerDiv.style.backgroundRepeat = "no-repeat";
+  // innerDiv.style.backgroundPosition = "center";
+  // innerDiv.style.width = "100%";
+  // innerDiv.style.height = "100%";
+
+  slide.appendChild(innerDiv);
+  track.insertBefore(slide, track.lastElementChild);
+});
 remindBtn.addEventListener("click", () => {
   modalOverlay.classList.remove("display-none");
   reminder.classList.remove("display-none");
