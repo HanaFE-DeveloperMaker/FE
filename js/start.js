@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fadeOverlay.style.opacity = "1";
 
     setTimeout(() => {
-      window.location.href = "Study.html";
+      window.location.href = "Base.html";
     }, 1400);
   });
 

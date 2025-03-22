@@ -11,7 +11,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-} 
+}
 .title-container {
   position: relative;
   bottom: 4rem;
@@ -111,7 +111,7 @@ input:focus {
 
 .walk-left {
   left: 100vw;
-  transform: scaleX(-1); 
+  transform: scaleX(-1);
   animation: walkLeft 5s linear forwards;
 }
 
@@ -120,7 +120,7 @@ input:focus {
     left: -200px;
   }
   100% {
-    left: calc(100vw + 200px); 
+    left: calc(100vw + 200px);
   }
 }
 

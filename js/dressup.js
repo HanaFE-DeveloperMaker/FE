@@ -382,7 +382,7 @@ class EventHandlers {
     elements.modal.style.display = "none";
 
     // 완료 후 Transport.html로 이동
-    location.href = "Transport.html"; // 페이지 이동
+    location.href = "Base.html"; // 페이지 이동
   }
 
   handleCrop() {
