@@ -143,6 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
         sceneKey === "fail4" ||
         sceneKey === "fail_nude4"
       ) {
+        dialog.style.display = "none";
         setTimeout(() => {
           window.location.href = "FinalStats.html";
         }, 1000);
