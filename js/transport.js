@@ -3,20 +3,20 @@ document.addEventListener("DOMContentLoaded", function () {
     start: {
       type: "text",
       text: "... ... ... ... ...",
-      background: "url('../assets/img_transport.png')",
+      background: "url('../assets/img_transport.webp)",
       next: "start1"
     },
     start0: {
       type: "text",
       text: "",
-      background: "url('../assets/img_transport.png')",
+      background: "url('../assets/img_transport.webp')",
       next: "start1",
       sound: "../assets/sound/transport.wav"
     },
     start1: {
       type: "text",
       text: "면접장까지 1시간 반... 이번에 새로 생긴 버스가 빠르다고 한다.<br>새롭게 도전해볼까?",
-      background: "url('../assets/img_transport.png')",
+      background: "url('../assets/img_transport.webp')",
       next: "choice1",
       sound: "../assets/sound/transport.wav"
     },
@@ -30,45 +30,45 @@ document.addEventListener("DOMContentLoaded", function () {
     subway0: {
       type: "text",
       text: "",
-      background: "url('../assets/img_subway.png')",
+      background: "url('../assets/img_subway.webp')",
       next: "subway"
     },
     subway: {
       type: "text",
       text: "",
-      background: "url('../assets/img_subway.png')",
+      background: "url('../assets/img_subway.webp')",
       next: "subway1",
       sound: "../assets/sound/subway.mp3"
     },
     subway1: {
       type: "text",
       text: "안내 방송 : 아- 아.... 현재 차량 고장으로 인해.. 열차가 지연 운행 되고 있습니다....",
-      background: "url('../assets/img_subway.png')",
+      background: "url('../assets/img_subway.webp')",
       next: "subway2"
     },
     subway2: {
       type: "text",
       text: "뭐라고?! 큰일 났다.... 빨리 버스를 타러 가야해 !!",
-      background: "url('../assets/img_subway.png')",
+      background: "url('../assets/img_subway.webp')",
       next: "bus"
     },
     bus0: {
       type: "text",
       text: "",
-      background: "url('../assets/img_bus.png')",
+      background: "url('../assets/img_bus.webp')",
       next: "bus"
     },
     bus: {
       type: "text",
       text: "",
-      background: "url('../assets/img_bus.png')",
+      background: "url('../assets/img_bus.webp')",
       next: "bus1",
       sound: null
     },
     bus1: {
       type: "text",
       text: "새로 생겼다더니 좌석도 너무 편안하고 빨라서 좋다 ~~",
-      background: "url('../assets/img_bus.png')",
+      background: "url('../assets/img_bus.webp')",
       next: "bus2"
     },
     nude: {
@@ -237,21 +237,21 @@ document.addEventListener("DOMContentLoaded", function () {
     mail1: {
       type: "text",
       text: "띠리링 -",
-      background: "url('../assets/img_mail.png')",
+      background: "url('../assets/img_mail.webp')",
       next: "mail2",
       sound:"../assets/sound/mail.mp3"
     },
     mail2: {
       type: "text",
       text: "헉 결과 메일이잖아? 얼른 확인해야지",
-      background: "url('../assets/img_mail.png')",
+      background: "url('../assets/img_mail.webp')",
       next: "mail3",
       sound: null
     },
     mail3: {
       type: "text",
       text: "헉 결과 메일이잖아? 얼른 확인해야지",
-      background: "url('../assets/img_mail.png')",
+      background: "url('../assets/img_mail.webp')",
       next: null
     },
     success1: {
