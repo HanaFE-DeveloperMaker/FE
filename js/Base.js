@@ -205,7 +205,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function type() {
       if (typingIndex < text.length) {
-        textElement.innerHTML = text.substring(0, typingIndex + 1);
+        textElement.innerHTML = text
+          .substring(0, typingIndex + 1)
+          .replace(/\n/g, "<br>");
         typingIndex++;
         typingInterval = setTimeout(type, 100);
       } else {
@@ -220,7 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function skipTyping() {
     clearTimeout(typingInterval);
     const scene = scenes[currentScene];
-    textElement.innerHTML = scene.text;
+    textElement.innerHTML = scene.text.replace(/\n/g, "<br>");
     isTyping = false;
     next.style.display = scene.next ? "block" : "none";
     next.classList.add("blink");
