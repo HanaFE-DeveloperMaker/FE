@@ -1,4 +1,4 @@
-import { initializeScene } from "./script.js";
+import { initializeScene } from "./Script.js";
 
 const texts = ["음 면접에는 어떤 옷을 입고 가야 될까?"];
 
