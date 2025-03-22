@@ -53,4 +53,33 @@ document.addEventListener("DOMContentLoaded", function () {
       window.location.href = "Study.html";
     }, 1200);
   });
+
+  const walkerContainer = document.getElementById("walker-container");
+  const gifSrc = "../assets/walking.gif"; 
+
+  function spawnWalker(direction) {
+    const walker = document.createElement("img");
+    walker.src = gifSrc;
+    walker.alt = "걷는 캐릭터";
+    walker.classList.add("walker");
+
+    if (direction === "right") {
+      walker.classList.add("walk-right");
+    } else {
+      walker.classList.add("walk-left");
+    }
+
+    walkerContainer.appendChild(walker);
+
+    walker.addEventListener("animationend", () => {
+      walker.remove();
+      setTimeout(() => {
+        spawnWalker(direction === "right" ? "left" : "right");
+      }, 300); 
+    });
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    spawnWalker("right");
+  });
 });

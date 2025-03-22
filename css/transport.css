@@ -3,7 +3,7 @@ body {
   width: 100vw;
   height: 100vh;
   margin: 0;
-  background-image: url(../assets/img_background.png);
+  background-image: url(../assets/img_transport.webp);
   background-repeat: no-repeat;
   background-size: contain; /* 화면에 맞게 조절 */
   background-position: center;
