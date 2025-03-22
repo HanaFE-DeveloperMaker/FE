@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "DOSGothic";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/DOSGothic.woff")
+    format("woff");
+}
+
 html,
 body {
   width: 100vw;
@@ -22,14 +28,12 @@ body {
   background-color: rgba(128, 128, 128, 0.9);
   border: 5px solid #000;
   color: #fff;
-  font-family: "Kantumruy Pro", sans-serif;
-  font-size: 30px;
+  font-family: "DOSGothic";
+  font-size: 33px;
   font-weight: 700;
+  line-height: 1.5;
   position: absolute;
   bottom: 8%;
-  /* left: 54%;
-  bottom: 40px; */
-  /* transform: translateX(-50%); */
 
   padding: 30px;
   box-sizing: border-box; /* div 크기를 유지하면서 padding 적용 */
@@ -66,8 +70,9 @@ body {
   flex-direction: column; /* 세로 정렬 */
   position: absolute;
   color: #fff;
-  font-family: "Kantumruy Pro", sans-serif;
-  font-size: 30px;
+  font-family: "DOSGothic";
+  line-height: 1.5;
+  font-size: 33px;
   font-weight: 700;
 }
 .choice {
