@@ -3,7 +3,7 @@ body {
   width: 100vw;
   height: 100vh;
   margin: 0;
-  background-image: url(../assets/start.gif);
+  background-image: url(../assets/img_start.webp);
   background-repeat: no-repeat;
   background-size: contain; /* 화면에 맞게 조절 */
   overflow: hidden; /* 스크롤 방지 */
@@ -11,7 +11,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} 
 .title-container {
   position: relative;
   bottom: 4rem;
@@ -93,4 +93,42 @@ input:focus {
   transition: opacity 1s ease-in-out; /* 서서히 변하도록 설정 */
   pointer-events: none; /* 클릭 방해 방지 */
   z-index: 9999; /* 모든 요소 위에 표시 */
+}
+
+.walker {
+  position: fixed;
+  bottom: 0;
+  height: 300px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.walk-right {
+  left: -200px;
+  transform: scaleX(1);
+  animation: walkRight 5s linear forwards;
+}
+
+.walk-left {
+  left: 100vw;
+  transform: scaleX(-1); 
+  animation: walkLeft 5s linear forwards;
+}
+
+@keyframes walkRight {
+  0% {
+    left: -200px;
+  }
+  100% {
+    left: calc(100vw + 200px); 
+  }
+}
+
+@keyframes walkLeft {
+  0% {
+    left: 100vw;
+  }
+  100% {
+    left: -200px;
+  }
 }

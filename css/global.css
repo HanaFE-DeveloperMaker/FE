@@ -7,6 +7,7 @@ body {
 a,
 button,
 input,
-textarea {
+textarea, 
+label {
   cursor: url("../assets/global/cursor.png") 50 5, auto;
 }
