@@ -1,12 +1,16 @@
 function isFullScreen() {
   return (
-    window.innerHeight === screen.height && window.innerWidth === screen.width
+    (window.innerHeight === screen.height &&
+      window.innerWidth === screen.width) ||
+    document.fullscreenElement !== null
   );
 }
 
 document.addEventListener("DOMContentLoaded", function () {
   const startButton = document.getElementById("startButton");
   const nickname = document.querySelector("input");
+
+  localStorage.clear();
 
   const startSound = new Audio("../assets/sound/start.wav"); // 시작 버튼 효과음
 
@@ -55,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   const walkerContainer = document.getElementById("walker-container");
-  const gifSrc = "../assets/walking.gif"; 
+  const gifSrc = "../assets/walking.gif";
 
   function spawnWalker(direction) {
     const walker = document.createElement("img");
@@ -75,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
       walker.remove();
       setTimeout(() => {
         spawnWalker(direction === "right" ? "left" : "right");
-      }, 300); 
+      }, 300);
     });
   }
 
