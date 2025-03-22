@@ -313,8 +313,7 @@ h1 {
 }
 
 .reset-button,
-.complete-button,
-.crop-button {
+.complete-button {
   margin-top: 20px;
   padding: 12px 25px;
   font-size: 16px;
@@ -325,14 +324,12 @@ h1 {
   align-self: center;
 }
 
-.reset-button,
-.crop-button {
+.reset-button {
   background: linear-gradient(to right, #ff6b6b, #ff5252);
   box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
 }
 
-.reset-button:hover,
-.crop-button:hover {
+.reset-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
   background: linear-gradient(to right, #ff5252, #ff4242);
