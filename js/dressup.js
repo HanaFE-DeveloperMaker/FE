@@ -370,44 +370,21 @@ class EventHandlers {
   }
 
   handleCrop() {
-    const characterImage = document.querySelector(".character");
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
+    const container = document.querySelector(".container");
 
-    // 고정된 잘라내기 영역 설정
-    const cropX = 145; // 고정된 X 위치
-    const cropY = 10; // 고정된 Y 위치
-    const cropWidth = 170; // 고정된 너비
-    const cropHeight = 160; // 고정된 높이
+    // html2canvas를 사용하여 .container를 캡처
+    html2canvas(container)
+      .then((canvas) => {
+        // 캡처된 이미지를 데이터 URL로 변환
+        const croppedImageDataUrl = canvas.toDataURL();
 
-    // 캔버스 크기 설정
-    canvas.width = cropWidth;
-    canvas.height = cropHeight;
-
-    // 이미지 로드
-    const img = new Image();
-    img.src = characterImage.src;
-    img.onload = () => {
-      // 이미지의 일부를 캔버스에 그리기 (고정된 값 사용)
-      ctx.drawImage(
-        img,
-        cropX,
-        cropY,
-        cropWidth,
-        cropHeight,
-        0,
-        0,
-        cropWidth,
-        cropHeight
-      );
-
-      // 잘라낸 이미지를 데이터 URL로 변환
-      const croppedImageDataUrl = canvas.toDataURL();
-
-      // 다음 페이지로 이동하면서 데이터 URL 전달
-      localStorage.setItem("croppedImage", croppedImageDataUrl);
-      location.href = "./nextPage.html"; // 다음 페이지로 이동
-    };
+        // 다음 페이지로 이동하면서 데이터 URL 전달
+        localStorage.setItem("croppedImage", croppedImageDataUrl);
+        location.href = "./nextPage.html"; // 다음 페이지로 이동
+      })
+      .catch((error) => {
+        console.error("캡처 중 오류 발생:", error);
+      });
   }
 }
 
