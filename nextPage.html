@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>다음 페이지</title>
+</head>
+
+<body>
+    <h1>캡처된 이미지</h1>
+    <img id="capturedImage" alt="캡처된 이미지" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script>
+        // localStorage에서 캡처된 이미지 데이터 URL 가져오기
+        const croppedImage = localStorage.getItem("croppedImage");
+        if (croppedImage) {
+            document.getElementById("capturedImage").src = croppedImage;
+        } else {
+            document.getElementById("capturedImage").alt = "이미지가 없습니다.";
+        }
+    </script>
+</body>
+
+</html>
