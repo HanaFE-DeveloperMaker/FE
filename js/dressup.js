@@ -372,8 +372,20 @@ class EventHandlers {
   handleCrop() {
     const container = document.querySelector(".container");
 
-    // html2canvas를 사용하여 .container를 캡처
-    html2canvas(container)
+    // 캡처할 영역의 크기와 위치를 설정
+    const cropX = 145; // 캡처할 영역의 X 위치
+    const cropY = 10; // 캡처할 영역의 Y 위치
+    const cropWidth = 170; // 캡처할 영역의 너비
+    const cropHeight = 160; // 캡처할 영역의 높이
+
+    // html2canvas를 사용하여 .container의 특정 영역을 캡처
+    html2canvas(container, {
+      x: cropX,
+      y: cropY,
+      width: cropWidth,
+      height: cropHeight,
+      useCORS: true, // CORS 문제를 피하기 위해 설정
+    })
       .then((canvas) => {
         // 캡처된 이미지를 데이터 URL로 변환
         const croppedImageDataUrl = canvas.toDataURL();
