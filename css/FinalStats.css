@@ -56,16 +56,26 @@ header {
 #profile > button {
   width: 160px;
   height: 60px;
-  background-color: #40c2b97c;
-  border: 1px solid #40c2ba;
   color: #ffffff;
   border-radius: 4px;
   font-size: 20px;
   margin: 20px 0px;
 }
-#profile > button:hover {
+.success-btn {
+  background-color: #40c2b97c;
+  border: 1px solid #40c2ba;
+}
+.fail-btn {
+  background-color: #ff00008f;
+  border: 1px solid #d55a5a;
+}
+.success-btn-hover {
   background-color: #13f0e17c;
   box-shadow: 0px 0px 10px #40c2ba;
+}
+.fail-btn-hover {
+  background-color: #ff3939b1;
+  box-shadow: 0px 0px 10px #d55a5a;
 }
 #score-list > div {
   display: flex;
