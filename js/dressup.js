@@ -188,10 +188,10 @@ class EventHandlers {
 
     // 버튼 이벤트
     elements.resetButton.addEventListener("click", this.handleReset.bind(this));
-    elements.completeButton.addEventListener(
-      "click",
-      () => (elements.modal.style.display = "flex")
-    );
+    elements.completeButton.addEventListener("click", () => {
+      elements.modal.style.display = "flex"; // 모달 표시
+      this.handleCrop(); // handleCrop 호출 추가
+    });
 
     // 모달 확인 버튼 이벤트 추가
     elements.modalConfirm.addEventListener(
@@ -206,11 +206,6 @@ class EventHandlers {
     elements.modal.addEventListener("click", (e) => {
       if (e.target === elements.modal) elements.modal.style.display = "none";
     });
-
-    // 잘라내기 버튼 이벤트 추가
-    document
-      .getElementById("cropButton")
-      .addEventListener("click", this.handleCrop.bind(this));
   }
 
   async handlePageLoad() {
@@ -366,7 +361,9 @@ class EventHandlers {
     });
 
     elements.modal.style.display = "none";
-    location.href = "Transport.html";
+
+    // 완료 후 Transport.html로 이동
+    location.href = "Transport.html"; // 페이지 이동
   }
 
   handleCrop() {
@@ -390,9 +387,8 @@ class EventHandlers {
         // 캡처된 이미지를 데이터 URL로 변환
         const croppedImageDataUrl = canvas.toDataURL();
 
-        // 다음 페이지로 이동하면서 데이터 URL 전달
+        // 데이터 URL을 로컬 스토리지에 저장
         localStorage.setItem("croppedImage", croppedImageDataUrl);
-        location.href = "./nextPage.html"; // 다음 페이지로 이동
       })
       .catch((error) => {
         console.error("캡처 중 오류 발생:", error);
