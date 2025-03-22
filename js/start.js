@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   localStorage.clear();
 
-  const startSound = new Audio("../assets/sound/start.wav"); // 시작 버튼 효과음
+  const startSound = new Audio("./assets/sound/start.wav"); // 시작 버튼 효과음
 
   const fadeOverlay = document.createElement("div");
   fadeOverlay.classList.add("fade-overlay");
@@ -56,12 +56,12 @@ document.addEventListener("DOMContentLoaded", function () {
     fadeOverlay.style.opacity = "1";
 
     setTimeout(() => {
-      window.location.href = "Study.html";
+      window.location.href = "./html/Study.html";
     }, 1400);
   });
 
   const walkerContainer = document.getElementById("walker-container");
-  const gifSrc = "../assets/walking.gif";
+  const gifSrc = "./assets/walking.gif";
 
   function spawnWalker(direction) {
     const walker = document.createElement("img");
