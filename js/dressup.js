@@ -184,7 +184,26 @@ class EventHandlers {
     );
 
     // 모달 확인 버튼 이벤트 추가
-    elements.modalConfirm.addEventListener("click", this.handleComplete.bind(this));
+    elements.modalConfirm.addEventListener("click", function () {
+      this.handleComplete();
+
+      let scores = JSON.parse(localStorage.getItem("scores")) || {
+        열정: 0,
+        열린마음: 0,
+        손님우선: 0,
+        전문성: 0,
+        존중과배려: 0,
+      };
+      const interviewValue = parseInt(localStorage.getItem("interview-dialog"), 10) || 0;
+      if (interviewValue % 2 === 0) {
+        scores["전문성"] += 15;
+        scores["손님우선"] -= 5;
+      } 
+      else {
+        scores["손님우선"] += 10;
+      }
+      localStorage.setItem("scores", JSON.stringify(scores));
+    }.bind(this));
 
     elements.modalCancel.addEventListener(
       "click",

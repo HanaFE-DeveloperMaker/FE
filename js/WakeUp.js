@@ -1,4 +1,4 @@
-import { initializeScene } from "./script.js";
+import { initializeScene } from "./Script.js";
 
 const texts = [
   "하아아아아암...",

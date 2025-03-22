@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     start: {
       type: "text",
       text: "... ... ... ... ...",
-      background: "url('../assets/img_transport.webp)",
+      background: "url('../assets/img_transport.webp')",
       next: "start1"
     },
     start0: {
@@ -392,8 +392,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (sceneKey === "interview0") {
       const result = parseInt(localStorage.getItem("interview-dialog") || "0");
+      const nickname = localStorage.getItem("nickname");
       const question = interviewQuestions[result] || "회사에서도 자유로운 분위기를 선호하시나요?";
-      scene.text = result + "님 들어와주세요 !";
+      scene.text = nickname + "님 들어와주세요 !";
     }
 
     if (sceneKey === "interview2") {
