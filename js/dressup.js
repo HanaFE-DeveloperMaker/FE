@@ -176,34 +176,47 @@ class EventHandlers {
       this.handleDrop(e);
     });
 
+    // 드롭된 옷 클릭 이벤트 추가
+    elements.container.addEventListener("click", (e) => {
+      if (
+        e.target.classList.contains("clothes") &&
+        e.target.classList.contains("dropped")
+      ) {
+        e.target.remove(); // 클릭한 옷 제거
+      }
+    });
+
     // 버튼 이벤트
     elements.resetButton.addEventListener("click", this.handleReset.bind(this));
-    elements.completeButton.addEventListener(
-      "click",
-      () => (elements.modal.style.display = "flex")
-    );
+    elements.completeButton.addEventListener("click", () => {
+      elements.modal.style.display = "flex"; // 모달 표시
+      this.handleCrop(); // handleCrop 호출 추가
+    });
 
     // 모달 확인 버튼 이벤트 추가
-    elements.modalConfirm.addEventListener("click", function () {
-      this.handleComplete();
+    elements.modalConfirm.addEventListener(
+      "click",
+      function () {
+        this.handleComplete();
 
-      let scores = JSON.parse(localStorage.getItem("scores")) || {
-        열정: 0,
-        열린마음: 0,
-        손님우선: 0,
-        전문성: 0,
-        존중과배려: 0,
-      };
-      const interviewValue = parseInt(localStorage.getItem("interview-dialog"), 10) || 0;
-      if (interviewValue % 2 === 0) {
-        scores["전문성"] += 15;
-        scores["손님우선"] -= 5;
-      } 
-      else {
-        scores["손님우선"] += 10;
-      }
-      localStorage.setItem("scores", JSON.stringify(scores));
-    }.bind(this));
+        let scores = JSON.parse(localStorage.getItem("scores")) || {
+          열정: 0,
+          열린마음: 0,
+          손님우선: 0,
+          전문성: 0,
+          존중과배려: 0,
+        };
+        const interviewValue =
+          parseInt(localStorage.getItem("interview-dialog"), 10) || 0;
+        if (interviewValue % 2 === 0) {
+          scores["전문성"] += 15;
+          scores["손님우선"] -= 5;
+        } else {
+          scores["손님우선"] += 10;
+        }
+        localStorage.setItem("scores", JSON.stringify(scores));
+      }.bind(this)
+    );
 
     elements.modalCancel.addEventListener(
       "click",
@@ -367,7 +380,38 @@ class EventHandlers {
     });
 
     elements.modal.style.display = "none";
-    location.href = "Transport.html";
+
+    // 완료 후 Transport.html로 이동
+    location.href = "Transport.html"; // 페이지 이동
+  }
+
+  handleCrop() {
+    const container = document.querySelector(".container");
+
+    // 캡처할 영역의 크기와 위치를 설정
+    const cropX = 145; // 캡처할 영역의 X 위치
+    const cropY = 10; // 캡처할 영역의 Y 위치
+    const cropWidth = 170; // 캡처할 영역의 너비
+    const cropHeight = 160; // 캡처할 영역의 높이
+
+    // html2canvas를 사용하여 .container의 특정 영역을 캡처
+    html2canvas(container, {
+      x: cropX,
+      y: cropY,
+      width: cropWidth,
+      height: cropHeight,
+      useCORS: true, // CORS 문제를 피하기 위해 설정
+    })
+      .then((canvas) => {
+        // 캡처된 이미지를 데이터 URL로 변환
+        const croppedImageDataUrl = canvas.toDataURL();
+
+        // 데이터 URL을 로컬 스토리지에 저장
+        localStorage.setItem("croppedImage", croppedImageDataUrl);
+      })
+      .catch((error) => {
+        console.error("캡처 중 오류 발생:", error);
+      });
   }
 }
 
