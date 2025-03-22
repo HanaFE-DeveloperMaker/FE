@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     start: {
       type: "text",
       text: "... ... ... ... ...",
-      background: "url('../assets/img_transport.webp)",
+      background: "url('../assets/img_transport.webp')",
       next: "start1"
     },
     start0: {
