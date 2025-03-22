@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "DOSGothic";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/DOSGothic.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+h1,
+p,
+span,
+label,
+button,
+div {
+  font-family: "DOSGothic";
+}
+
 body {
   width: 100vw;
   height: 100vh;
@@ -7,11 +23,11 @@ body {
   align-items: center;
   margin: 0;
 }
-h1,
+/* h1,
 p {
   font-family: "42dot Sans", sans-serif;
   font-style: normal;
-}
+} */
 section {
   width: 80%;
   height: 80%;
@@ -281,7 +297,7 @@ header {
 }
 
 .carousel-slide {
-  min-width: 80%;
+  min-width: 50%;
   /* height: 600px; */
   display: flex;
   background-color: #000000;
@@ -292,8 +308,8 @@ header {
   flex-shrink: 0;
 }
 
-.carousel-slide img {
-  width: auto;
+.carousel-slide div {
+  width: 100%;
   height: 100%;
   mask-image: radial-gradient(
     ellipse,
@@ -306,6 +322,9 @@ header {
     rgba(0, 0, 0, 0) 110%
   );
   border-radius: 12px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 #thanksto {
