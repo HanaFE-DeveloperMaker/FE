@@ -32,8 +32,7 @@ export function initializeScene(texts, endings, nextPage) {
         bellSound.pause(); // 4초 후 정지
         bellSound.currentTime = 0; // 다시 처음부터 재생 가능하도록 초기화
       }, 2000);
-    } 
-    else if (texts[index] === "하아아아아암...") {
+    } else if (texts[index] === "하아아아아암...") {
       alarmSound.play();
     }
   }
@@ -94,9 +93,16 @@ export function initializeScene(texts, endings, nextPage) {
 
   function showEnding(event) {
     const selectedEnding = event.target.dataset.ending;
+    let scenes = JSON.parse(localStorage.getItem("scenes")) || [];
+    let scoreList = JSON.parse(localStorage.getItem("scoreList")) || [];
 
     if (endings[selectedEnding]) {
       body.style.backgroundImage = endings[selectedEnding].background;
+      scenes.push(endings[selectedEnding].background);
+      console.log(scenes);
+      scoreList.push(endings[selectedEnding].score);
+      localStorage.setItem("scenes", JSON.stringify(scenes));
+      localStorage.setItem("scoreList", JSON.stringify(scoreList));
 
       choices.style.display = "none";
 

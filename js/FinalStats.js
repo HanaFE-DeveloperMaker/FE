@@ -7,6 +7,31 @@ for (let key in scores) {
 
 const username = localStorage.getItem("nickname");
 usernameDiv.innerText = `${username}님`;
+const resultBtn = document.getElementById("result-button");
+const result = localStorage.getItem("result");
+resultBtn.innerText = result;
+if (result === "SUCCESS") {
+  resultBtn.classList.add("success-btn");
+} else {
+  resultBtn.classList.add("fail-btn");
+}
+
+resultBtn.addEventListener("mouseover", (event) => {
+  if (event.target.textContent === "SUCCESS") {
+    event.target.classList.add("success-btn-hover");
+  } else {
+    event.target.classList.add("fail-btn-hover");
+  }
+});
+
+resultBtn.addEventListener("mouseout", (event) => {
+  if (event.target.textContent === "SUCCESS") {
+    event.target.classList.remove("success-btn-hover");
+  } else {
+    event.target.classList.remove("fail-btn-hover");
+  }
+});
+
 document.querySelectorAll(".donut-chart").forEach((chart) => {
   let percent = (totalScore / 150) * 100;
   let circle = chart.querySelector(".circle");
