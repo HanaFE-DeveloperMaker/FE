@@ -204,7 +204,7 @@ h1 {
 }
 
 .clothes-panel {
-  background: url("../assets/cloth/closet.png") no-repeat center center;
+  background: url("../assets/cloth/closet1.png") no-repeat center center;
   background-size: contain;
   height: 100%;
   width: 100%;
@@ -230,7 +230,7 @@ h1 {
   gap: 93px;
   justify-content: center;
   align-items: center;
-  top: 24%;
+  top: 31%;
   left: 18%;
   z-index: 1;
 }
@@ -244,7 +244,7 @@ h1 {
   gap: 71px;
   justify-content: center;
   align-items: center;
-  top: 35%;
+  top: 39%;
   left: 8%;
   z-index: 1;
 }
@@ -272,7 +272,7 @@ h1 {
   gap: 39px;
   justify-content: center;
   align-items: center;
-  top: 58%;
+  top: 56%;
   left: 12%;
   z-index: 1;
 }
@@ -281,7 +281,7 @@ h1 {
   position: absolute;
   width: 59%;
   height: 5%;
-  top: 72%;
+  top: 65%;
   left: 7%;
   display: flex;
   flex-wrap: wrap;
