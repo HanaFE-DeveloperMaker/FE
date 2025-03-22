@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setTimeout(() => {
       window.location.href = "Study.html";
-    }, 1200);
+    }, 1400);
   });
 
   const walkerContainer = document.getElementById("walker-container");

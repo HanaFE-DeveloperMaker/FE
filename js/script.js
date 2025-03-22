@@ -21,7 +21,7 @@ export function initializeScene(texts, endings, nextPage) {
     // 검정 오버레이를 서서히 사라지게 함
     setTimeout(() => {
       fadeInOverlay.style.opacity = "0"; // 오버레이 점점 투명해짐
-      setTimeout(() => fadeInOverlay.style.display = "none", 1000); // 애니메이션 후 요소 삭제
+      setTimeout(() => fadeInOverlay.style.display = "none", 550); // 애니메이션 후 요소 삭제
     }, 100);
   };
 
@@ -132,7 +132,7 @@ export function initializeScene(texts, endings, nextPage) {
           }, 50);
           setTimeout(() => {
             window.location.href = nextPage;
-          }, 1050);
+          }, 550);
         }
 
         next.addEventListener("click", goToNextPage, { once: true });
