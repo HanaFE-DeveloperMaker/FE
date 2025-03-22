@@ -1,7 +1,7 @@
 export const scenes = {
   study0: {
     type: "text",
-    text: "내일 드디어 하나금융TI 최종 면접이다! 면접 준비를 더 할까, 쉴까?",
+    text: "내일 드디어 하나금융TI 최종 면접이다! \n 면접 준비를 더 할까, 쉴까?",
     background: "url(../assets/study.webp)",
     next: "study1",
   },
@@ -77,7 +77,7 @@ export const scenes = {
   },
   wakeUp1: {
     type: "text",
-    text: "7시에 일어났더니 피곤하네. 면접까지는 좀 시간이 남았는데 10분만 더 잘까?",
+    text: "7시에 일어났더니 피곤하네. \n 면접까지는 좀 시간이 남았는데 10분만 더 잘까?",
     background: "url(../assets/wake_up.png)",
     next: "wakeUp_choice",
   },
@@ -98,7 +98,7 @@ export const scenes = {
   },
   wakeUp_choice0: {
     type: "text",
-    text: "으악! 10분만 잔다는 게 그만... 늦었다! 얼른 일어나서 씻어야지!!",
+    text: "으악! 10분만 잔다는 게 그만... \n 늦었다! 얼른 일어나서 씻어야지!!",
     background: "url(../assets/late.png)",
     next: "dress0",
   },
@@ -133,7 +133,7 @@ export const scenes = {
   },
   start1: {
     type: "text",
-    text: "면접장까지 1시간 반... 이번에 새로 생긴 버스가 빠르다고 한다.<br>새롭게 도전해볼까?",
+    text: "면접장까지 1시간 반... 이번에 새로 생긴 버스가 빠르다고 한다. \n 새롭게 도전해볼까?",
     background: "url('../assets/img_transport.webp')",
     next: "start_choice",
     sound: "../assets/sound/transport.wav",
@@ -199,7 +199,7 @@ export const scenes = {
   },
   nude: {
     type: "text",
-    text: "???: 예끼 이놈아! 공공장소에 누가 그런 차림으로 다녀?! 당장 나가!!",
+    text: "???: 예끼 이놈아! 공공장소에 누가 그런 차림으로 다녀?! \n 당장 나가!!",
     background: "url('../assets/img_nude.png')",
     next: "fail_nude2",
     sound: null,
@@ -213,7 +213,7 @@ export const scenes = {
   },
   bus3: {
     type: "text",
-    text: "어제 잠을 많이 못자서 피곤하긴 한데...<br>자리를 양보해 드릴까?",
+    text: "어제 잠을 많이 못자서 피곤하긴 한데...\n자리를 양보해 드릴까?",
     background: "url('../assets/img_bus_grandmother.webp')",
     next: "bus4",
     sound: null,
@@ -291,7 +291,7 @@ export const scenes = {
   },
   hana1: {
     type: "text",
-    text: "휴 드디어 도착했다.<br>건물이 너무 멋지잖아?! 꼭 합격하고 말거야 !!",
+    text: "휴 드디어 도착했다.\n건물이 너무 멋지잖아?! 꼭 합격하고 말거야 !!",
     background: "url('../assets/img_hana.png')",
     next: "interview0",
   },
@@ -334,7 +334,7 @@ export const scenes = {
         score: { 열정: 10, 전문성: 10 },
       },
       {
-        text: "면접도 망한 것 같은데, 빨리 끝내고 싶어... 최종 인사로 마무리 하자.",
+        text: "면접도 망한 것 같은데, 빨리 끝내고 싶어... \n 최종 인사로 마무리 하자.",
         next: "interview_bad0",
         score: { 전문성: 0 },
       },
