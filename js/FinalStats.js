@@ -4,7 +4,7 @@ const reminder = document.querySelector("#reminder");
 const track = document.querySelector("#carousel-track");
 const scenes = JSON.parse(localStorage.getItem("scenes")) || [];
 const scores = JSON.parse(localStorage.getItem("scores"));
-const usernameDiv = document.getElementById("username");
+// const usernameDiv = document.getElementById("username");
 const process = document.getElementById("process");
 const processHeader = document.getElementById("process-header");
 // const imgCreator = document.createElement("img");
@@ -16,7 +16,7 @@ for (let key in scores) {
 }
 
 const username = localStorage.getItem("nickname");
-usernameDiv.innerText = `${username}님`;
+// usernameDiv.innerText = `${username}님`;
 processHeader.textContent = `${username}님의 선택 기록`;
 const resultBtn = document.getElementById("result-button");
 const result = localStorage.getItem("result");
@@ -113,7 +113,7 @@ resultBtn.addEventListener("mouseout", (event) => {
 });
 
 document.querySelectorAll(".donut-chart").forEach((chart) => {
-  let percent = (totalScore / 150) * 100;
+  let percent = (totalScore / 120) * 100;
   let circle = chart.querySelector(".circle");
   let text = chart.querySelector(".percentage");
   let overlay = chart.querySelector(".overlay");
@@ -179,6 +179,16 @@ document.addEventListener("DOMContentLoaded", function () {
       chart.style.width = `${(Number(scores[label.textContent]) * 100) / 30}%`;
     }, 100);
   });
+});
+
+const downloadBtn = document.getElementById("img-download");
+downloadBtn.addEventListener("click", () => {
+  const imgUrl = localStorage.getItem("croppedImage");
+  if (imgUrl) {
+    downloadBtn.href = imgUrl;
+    downloadBtn.setAttribute("download", `${username}-OOTD.png`);
+    // downloadBtn.style.display = "inline-block"; // 버튼 보이기
+  }
 });
 
 scenes.forEach((scene) => {

@@ -387,6 +387,23 @@ header {
 .integrity-modal p {
   margin: 4px;
 }
+#img-download {
+  width: 160px;
+  height: 40px;
+  background-color: #e4c5997c;
+  border: 1px solid #e4c599;
+  color: white;
+  border-radius: 4px;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+#img-download:hover {
+  background-color: #bd99687c;
+  box-shadow: 0px 0px 10px #e4c599;
+}
 #retry {
   width: 120px;
   height: 60px;
@@ -504,6 +521,42 @@ header {
 #closet {
   left: 0%;
   top: 72%;
+}
+.score-modal {
+  width: 120px;
+  height: 60px;
+  display: none;
+  align-items: center;
+  position: absolute;
+  background-color: #ffffffb1;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 250;
+  backdrop-filter: blur(10px);
+}
+#scoremodal-1 {
+  left: 10%;
+  top: 0%;
+}
+#scoremodal-2 {
+  left: 27%;
+  top: 55%;
+}
+#scoremodal-3 {
+  left: 60%;
+  top: 58%;
+}
+#scoremodal-4 {
+  left: 10%;
+  top: 72%;
+}
+#scoremodal-5 {
+  left: 64%;
+  top: 6%;
+}
+#scoremodal-6 {
+  left: 70%;
+  top: 20%;
 }
 .display-none {
   display: none;
