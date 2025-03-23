@@ -11,7 +11,9 @@ window.onload = function () {
     }, 1000); 
 
     alarmClock.addEventListener("click", function () {
-      alarmSound.play().then(() => {
+        const message = document.querySelector(".message");
+        message.textContent = "진짜 시계를 찾았다!";
+        alarmSound.play().then(() => {
         setTimeout(() => {
           alarmSound.currentTime = 0;
 
@@ -26,4 +28,11 @@ window.onload = function () {
         console.warn("알람 재생 실패", e);
       });
     });
+
+    document.querySelectorAll(".fake-clock").forEach((fakeClock) => {
+        fakeClock.addEventListener("click", () => {
+          wrongSound.currentTime = 0;
+          wrongSound.play();
+        });
+      });
   };
