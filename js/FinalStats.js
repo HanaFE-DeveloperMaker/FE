@@ -8,7 +8,7 @@ const usernameDiv = document.getElementById("username");
 const process = document.getElementById("process");
 const processHeader = document.getElementById("process-header");
 // const imgCreator = document.createElement("img");
-localStorage.setItem("scene","study0");
+localStorage.setItem("scene", "study0");
 
 let totalScore = 0;
 for (let key in scores) {
@@ -17,7 +17,7 @@ for (let key in scores) {
 
 const username = localStorage.getItem("nickname");
 usernameDiv.innerText = `${username}님`;
-processHeader.textContent = `${username}님의 진행 과정`;
+processHeader.textContent = `${username}님의 선택 기록`;
 const resultBtn = document.getElementById("result-button");
 const result = localStorage.getItem("result");
 resultBtn.innerText = result;

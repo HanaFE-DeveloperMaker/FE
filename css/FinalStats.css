@@ -405,7 +405,7 @@ header {
 }
 #process {
   position: fixed;
-  width: 60%;
+  width: 50%;
   height: 80%;
   top: 50%;
   left: 50%;
@@ -438,23 +438,34 @@ header {
   font-weight: bold;
 }
 #process-map {
-  width: 90%;
+  width: 80%;
   height: 80%;
-  background-color: #bda98dd5;
+  background-color: #e1a863;
   position: relative;
   overflow: hidden;
   margin-top: 20px;
   border-radius: 16px;
-  border: 1px solid #938065;
-  background-image: url("../assets/map/background.jfif");
+  border: 2px solid #ab875a;
+  background-image: url("../assets/map/background.jpg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px); /* 위로 살짝 튀기 */
+  }
 }
 #process-map img:not(#character) {
   position: absolute;
   width: 80px;
   height: auto;
+  filter: drop-shadow(0 0 10px #ffffff);
+  animation: bounce 1s infinite ease-in-out;
 }
 #character {
   width: 50px; /* 캐릭터 크기 */
@@ -467,32 +478,32 @@ header {
   top: 0%;
 }
 #bed {
-  left: 0%;
-  top: 0%;
+  left: 17%;
+  top: 55%;
 }
 #bus {
-  left: 0%;
-  top: 0%;
+  left: 60%;
+  top: 20%;
 }
 #subway {
-  left: 0%;
-  top: 0%;
+  left: 60%;
+  top: 20%;
 }
 #grandma {
-  left: 0%;
-  top: 0%;
+  left: 50%;
+  top: 58%;
 }
 #man {
-  left: 83%;
-  top: 17%;
+  left: 80%;
+  top: 6%;
 }
 #building {
-  left: 86%;
-  top: 14%;
+  left: 83%;
+  top: 3%;
 }
 #closet {
   left: 0%;
-  top: 0%;
+  top: 72%;
 }
 .display-none {
   display: none;
