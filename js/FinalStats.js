@@ -34,6 +34,30 @@ resultBtn.addEventListener("click", () => {
   const character = document.getElementById("character");
   const map = document.querySelector("#process-map");
 
+  let scoreList = JSON.parse(localStorage.getItem("scoreList")) || [];
+
+  if (scoreList[2]) {
+    const score = scoreList[2];
+
+    // "subway" 추가 조건: 열린마음이 15점
+    if (score["열린마음"] === 15) {
+      const subway = document.createElement("img");
+      subway.src = "../assets/map/subway.png";
+      subway.alt = "subway";
+      subway.id = "subway";
+      map.appendChild(subway);
+    }
+
+    // "bus" 추가 조건: 전문성 5점, 존중과배려 10점
+    else if (score["전문성"] === 5 && score["존중과배려"] === 10) {
+      const bus = document.createElement("img");
+      bus.src = "../assets/map/bus.png";
+      bus.alt = "bus";
+      bus.id = "bus";
+      map.appendChild(bus);
+    }
+  }
+
   // 캐릭터 초기 위치
   let x = 0;
   let y = 0;
