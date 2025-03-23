@@ -71,8 +71,8 @@ h1 {
 
 .character {
   position: absolute;
-  top: 250px;
-  left: 230px;
+  top: 32.05vh;
+  left: 15.97vw;
   transform: translate(-50%, -50%);
   z-index: 0;
 }
