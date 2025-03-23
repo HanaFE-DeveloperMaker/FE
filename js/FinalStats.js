@@ -17,7 +17,7 @@ for (let key in scores) {
 
 const username = localStorage.getItem("nickname");
 // usernameDiv.innerText = `${username}님`;
-processHeader.textContent = `${username}님의 선택 기록`;
+processHeader.textContent = `${username}님의 면접 여정`;
 const resultBtn = document.getElementById("result-button");
 const result = localStorage.getItem("result");
 resultBtn.innerText = result;
@@ -31,32 +31,125 @@ resultBtn.addEventListener("click", () => {
   modalOverlay.classList.remove("display-none");
   process.classList.remove("display-none");
 
+  // const house = document.getElementById("house");
+  // const bed = document.getElementById("bed");
+  // const closet = document.getElementById("closet");
+  // const grandma = document.getElementById("grandma");
+  // const man = document.getElementById("man");
+  const targetIds = ["house", "bed", "closet", "grandma", "man"];
+
   const character = document.getElementById("character");
+
+  let isColliding = Array(targetIds.length).fill(false);
   const map = document.querySelector("#process-map");
 
   let scoreList = JSON.parse(localStorage.getItem("scoreList")) || [];
+  const score1 = document.getElementById("scoremodal-1");
+  const score2 = document.getElementById("scoremodal-2");
+  const score3 = document.getElementById("scoremodal-3");
+  const score4 = document.getElementById("scoremodal-4");
+  const score5 = document.getElementById("scoremodal-5");
+  const score6 = document.getElementById("scoremodal-6");
 
-  if (scoreList[2]) {
+  let dynamicTargets = [];
+
+  if (scoreList[3]) {
     const score = scoreList[3];
 
-    // "subway" 추가 조건: 열린마음이 15점
     if (score["열린마음"] === 5) {
-      const subway = document.createElement("img");
-      subway.src = "../assets/map/bus.png";
-      subway.alt = "subway";
-      subway.id = "subway";
-      map.appendChild(subway);
-    }
-
-    // "bus" 추가 조건: 전문성 5점, 존중과배려 10점
-    else if (score["손님우선"] === 5) {
       const bus = document.createElement("img");
-      bus.src = "../assets/map/subway.png";
+      bus.src = "../assets/map/bus.png";
       bus.alt = "bus";
       bus.id = "bus";
       map.appendChild(bus);
+      targetIds.push("bus");
+      dynamicTargets.push(bus);
+    }
+
+    if (score["손님우선"] === 5) {
+      const subway = document.createElement("img");
+      subway.src = "../assets/map/subway.png";
+      subway.alt = "subway";
+      subway.id = "subway";
+      map.appendChild(subway);
+      targetIds.push("subway");
+      dynamicTargets.push(subway);
     }
   }
+  function checkCollision() {
+    const charRect = character.getBoundingClientRect();
+
+    // targetIds 배열을 순회하며 각 target과 충돌 여부 체크
+    targetIds.forEach((item, index) => {
+      const targetElement = document.getElementById(item);
+      const processModal = document.getElementById(`scoremodal-${index + 1}`); // 해당 모달
+
+      if (targetElement && processModal) {
+        const targetRect = targetElement.getBoundingClientRect();
+        let collisionDetected =
+          charRect.right > targetRect.left &&
+          charRect.left < targetRect.right &&
+          charRect.bottom > targetRect.top &&
+          charRect.top < targetRect.bottom;
+
+        if (collisionDetected) {
+          if (!isColliding[index]) {
+            processModal.classList.remove("display-none"); // 모달 열기
+          }
+          isColliding[index] = true;
+        } else {
+          if (isColliding[index]) {
+            processModal.classList.add("display-none"); // 모달 닫기
+          }
+          isColliding[index] = false;
+        }
+      }
+    });
+
+    dynamicTargets.forEach((target) => {
+      const targetRect = target.getBoundingClientRect();
+      let collisionDetected =
+        charRect.right > targetRect.left &&
+        charRect.left < targetRect.right &&
+        charRect.bottom > targetRect.top &&
+        charRect.top < targetRect.bottom;
+
+      if (collisionDetected) {
+        score6.classList.remove("display-none");
+        score6.innerHTML = `<strong>이동 수단 선택</strong>${Object.entries(
+          scoreList[3]
+        )
+          .map(([key, value]) => `<p>${key} ${value}</p>`)
+          .join("")}`;
+      } else {
+        score6.classList.add("display-none");
+      }
+    });
+  }
+
+  score1.innerHTML = `<strong>전날 밤</strong>${Object.entries(scoreList[0])
+    .map(([key, value]) => `<p>${key} ${value}</p>`)
+    .join("")}`;
+
+  score2.innerHTML = `<strong>면접날 아침</strong>${Object.entries(scoreList[1])
+    .map(([key, value]) => `<p>${key} ${value}</p>`)
+    .join("")}`;
+
+  score3.innerHTML = `<strong>OOTD</strong>${Object.entries(scoreList[2])
+    .map(([key, value]) => `<p>${key} ${value}</p>`)
+    .join("")}`;
+
+  score4.innerHTML = `<strong>할머니의 도움</strong>${Object.entries(
+    scoreList[4]
+  )
+    .map(([key, value]) => `<p>${key} ${value}</p>`)
+    .join("")}`;
+
+  score5.innerHTML = `<strong>마지막 한마디</strong>${Object.entries(
+    scoreList[5]
+  )
+    .map(([key, value]) => `<p>${key} ${value}</p>`)
+    .join("")}`;
 
   // 캐릭터 초기 위치
   let x = 0;
@@ -93,6 +186,7 @@ resultBtn.addEventListener("click", () => {
     // 캐릭터 위치 업데이트
     character.style.left = `${x}px`;
     character.style.top = `${y}px`;
+    checkCollision();
   });
 });
 
