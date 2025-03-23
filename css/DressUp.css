@@ -3,7 +3,7 @@ body {
   flex-direction: column;
   height: 100vh;
   margin: 0;
-  padding: 20px;
+  padding: 2.78vh;
   background: url("../assets/cloth/dressup_background.png") no-repeat center
     center fixed;
   background-size: cover;
@@ -19,9 +19,9 @@ html {
 h1 {
   color: #ffffff;
   text-align: center;
-  font-size: 40px;
-  margin: 0 0 15px 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-size: 2.78vw;
+  margin: 0 0 1.04vh 0;
+  text-shadow: 0.14vw 0.14vw 0.28vw rgba(0, 0, 0, 0.3);
   flex-shrink: 0;
 }
 
@@ -30,24 +30,24 @@ h1 {
   justify-content: center;
   flex: 1;
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  border-radius: 1.04vw;
+  box-shadow: 0 0 1.39vw rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
 }
 
 .left-panel {
   flex: 0 0 85%;
-  max-width: 1200px;
+  max-width: 83.33vw;
   height: 100%;
   box-sizing: border-box;
-  margin-left: -144px;
+  margin-left: -10vw;
 }
 
 .left-panel img {
-  transform: scale(1.6);
+  transform: scale(1.2);
 }
 .left-panel img:hover {
-  transform: scale(1.8);
+  transform: scale(1.4);
 }
 
 .right-panel {
@@ -56,17 +56,17 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 400px;
+  min-width: 27.78vw;
   height: 100%;
-  margin-left: -144px;
+  margin-left: -10vw;
 }
 
 .container {
   position: relative;
-  width: 455px;
-  height: 455px;
+  width: 31.6vw;
+  height: 31.6vw;
   border: none;
-  margin-bottom: 20px;
+  margin-bottom: 2.78vh;
 }
 
 .character {
@@ -196,63 +196,63 @@ h1 {
 /* 섹션 스타일 */
 .hair-section {
   position: absolute;
-  width: 41%;
-  height: 7%;
+  width: 41vw;
+  height: 7vh;
   display: flex;
   flex-wrap: wrap;
-  gap: 110px;
+  gap: 7.64vw;
   justify-content: center;
   align-items: center;
-  top: 17%;
-  left: 28%;
+  top: 15vh;
+  left: 19.4vw;
   z-index: 1;
 }
 
 .shirt-section {
   position: absolute;
-  width: 60%;
-  height: 8%;
+  width: 60vw;
+  height: 8vh;
   display: flex;
   flex-wrap: wrap;
-  gap: 75px;
+  gap: 4.3vw;
   justify-content: center;
   align-items: center;
-  top: 35%;
-  left: 18%;
+  top: 32vh;
+  left: 10.3vw;
   z-index: 1;
 }
 
 .pants-section {
   position: absolute;
-  width: 60%;
-  height: 8%;
+  width: 60vw;
+  height: 8vh;
   display: flex;
   flex-wrap: wrap;
-  gap: 75px;
+  gap: 4.5vw;
   justify-content: center;
   align-items: center;
-  top: 50%;
-  left: 18%;
+  top: 46vh;
+  left: 10.5vw;
   z-index: 1;
 }
 .pants-section img {
-  transform: scale(1.1);
+  transform: scale(1);
 }
 .pants-section img:hover {
-  transform: scale(1.3);
+  transform: scale(1.2);
 }
 
 .accessary-section {
   position: absolute;
-  width: 51%;
-  height: 7%;
+  width: 51vw;
+  height: 7vh;
   display: flex;
   flex-wrap: wrap;
-  gap: 65px;
+  gap: 4vw;
   justify-content: center;
   align-items: center;
-  top: 68%;
-  left: 23%;
+  top: 64vh;
+  left: 15vw;
   z-index: 1;
 }
 .accessary-section img:nth-child(3) {
@@ -264,58 +264,58 @@ h1 {
 
 .shoes-section {
   position: absolute;
-  width: 78%;
-  height: 0%;
+  width: 78vw;
+  height: 0vh;
   display: flex;
   flex-wrap: wrap;
-  gap: 75px;
+  gap: 4vw;
   justify-content: center;
   align-items: center;
-  top: 84%;
-  left: 10%;
+  top: 39vh;
+  left: 0.7vw;
   z-index: 1;
 }
 
 /* 버튼 스타일 */
 .button-container {
   display: flex;
-  gap: 10px;
+  gap: 0.7vw;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 6.4vh;
 }
 
 .reset-button,
 .complete-button {
-  margin-top: 20px;
-  padding: 12px 25px;
-  font-size: 16px;
+  margin-top: 2.6vh;
+  padding: 1.54vh 1.74vw;
+  font-size: 2.05vh;
   color: white;
   border: none;
-  border-radius: 25px;
+  border-radius: 3.2vh;
   transition: transform 0.2s, box-shadow 0.2s;
   align-self: center;
 }
 
 .reset-button {
   background: linear-gradient(to right, #ff6b6b, #ff5252);
-  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  box-shadow: 0 0.5vh 1.92vh rgba(255, 107, 107, 0.3);
 }
 
 .reset-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+  transform: translateY(-0.26vh);
+  box-shadow: 0 0.8vh 2.56vh rgba(255, 107, 107, 0.4);
   background: linear-gradient(to right, #ff5252, #ff4242);
 }
 
 .complete-button {
   background: linear-gradient(to right, #4caf50, #45a049);
-  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
-  margin-left: 10px;
+  box-shadow: 0 0.5vh 1.92vh rgba(76, 175, 80, 0.3);
+  margin-left: 0.7vw;
 }
 
 .complete-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+  transform: translateY(-0.26vh);
+  box-shadow: 0 0.8vh 2.56vh rgba(76, 175, 80, 0.4);
   background: linear-gradient(to right, #45a049, #3d8b40);
 }
 
@@ -325,8 +325,8 @@ h1 {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
   justify-content: center;
@@ -335,56 +335,56 @@ h1 {
 
 .modal-content {
   background: white;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  padding: 3.85vh;
+  border-radius: 1.92vh;
+  box-shadow: 0 0.64vh 1.92vh rgba(0, 0, 0, 0.3);
   text-align: center;
-  max-width: 400px;
+  max-width: 27.8vw;
   width: 90%;
 }
 
 .modal-title {
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 3.08vh;
+  margin-bottom: 2.56vh;
   color: #333;
 }
 
 .modal-buttons {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 1.04vw;
 }
 
 .modal-button {
-  padding: 10px 25px;
-  font-size: 16px;
+  padding: 1.28vh 1.74vw;
+  font-size: 2.05vh;
   border: none;
-  border-radius: 25px;
+  border-radius: 3.2vh;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .modal-confirm {
   background: linear-gradient(to right, #4caf50, #45a049);
   color: white;
-  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+  box-shadow: 0 0.5vh 1.92vh rgba(76, 175, 80, 0.3);
 }
 
 .modal-cancel {
   background: linear-gradient(to right, #ff6b6b, #ff5252);
   color: white;
-  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  box-shadow: 0 0.5vh 1.92vh rgba(255, 107, 107, 0.3);
 }
 
 .modal-button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-0.26vh);
 }
 
 .modal-confirm:hover {
-  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+  box-shadow: 0 0.8vh 2.56vh rgba(76, 175, 80, 0.4);
 }
 
 .modal-cancel:hover {
-  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+  box-shadow: 0 0.8vh 2.56vh rgba(255, 107, 107, 0.4);
 }
 
 /* 로딩 스피너 스타일 */
@@ -392,8 +392,8 @@ h1 {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background: rgba(255, 255, 255, 0.9);
   display: flex;
   justify-content: center;
@@ -408,6 +408,6 @@ h1 {
 }
 
 .loading-spinner {
-  width: 500px;
-  height: 500px;
+  width: 34.7vw;
+  height: 64.1vh;
 }
