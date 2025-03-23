@@ -36,12 +36,12 @@ export const scenes = {
       {
         text: "그래도 내일이 면접인데.. 면접 준비를 더 하다 잔다",
         next: "study_choice0",
-        score: { 열정: 10, 존중과배려: -5 },
+        score: { 열정: 10, 전문성: 10 },
       },
       {
         text: "친구가 최고지! 친구 고민상담 들어준다",
         next: "study_choice1",
-        score: { 존중과배려: 5, 열린마음: 10, 손님우선: 5 },
+        score: { 존중과배려: 10, 열린마음: 10},
       },
       {
         text: "아 몰라... 그냥 쉰다",
@@ -88,12 +88,12 @@ export const scenes = {
       {
         text: "잠깐은 괜찮겠지... 다시 눕는다.",
         next: "wakeUp_choice0",
-        score: { 열정: -10 },
+        score: { 열정: -5 },
       },
       {
         text: "일찍 일어난 김에 빨리 씻자! 정신을 부여잡고 씻으러 간다.",
         next: "wakeUp_choice1",
-        score: { 열정: 10 },
+        score: { 열정: 5 },
       },
     ],
   },
@@ -145,12 +145,12 @@ export const scenes = {
       {
         text: "검증되지 않은 노선은 좀.. 안전하게 지하철 타고 가기",
         next: "subway0",
-        score: { 전문성: 5, 존중과배려: 10 },
+        score: { 손님우선: 5 },
       },
       {
         text: "30분이나 빠르다고?! 새로 생긴 버스 타고 가기",
         next: "bus0",
-        score: { 열린마음: 15 },
+        score: { 열린마음: 5 },
       },
     ],
   },
@@ -225,12 +225,12 @@ export const scenes = {
       {
         text: "마음이 안좋아.. 자리를 양보한다.",
         next: "bus_good0",
-        score: { 열린마음: 5, 존중과배려: 15, 손님우선: 15 },
+        score: { 존중과배려: 10, 손님우선: 10 },
       },
       {
         text: "좋은 컨디션으로 면접 봐야지.. 모르는 척 한다.",
         next: "bus_bad0",
-        score: { 존중과배려: 1 },
+        score: { 손님우선:-10,존중과배려: -5 },
       },
     ],
   },
@@ -332,12 +332,12 @@ export const scenes = {
       {
         text: "아까 미쳐 제대로 답변하지 못한 질문에 대한 보완을 하자!",
         next: "interview_good0",
-        score: { 열정: 10, 전문성: 10 },
+        score: { 열정: 5, 전문성: 5 },
       },
       {
         text: "면접도 망한 것 같은데, 빨리 끝내고 싶어...\n최종 인사로 마무리 하자.",
         next: "interview_bad0",
-        score: { 전문성: 0 },
+        score: { 전문성: -5 },
       },
     ],
   },

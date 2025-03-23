@@ -25,7 +25,6 @@ body {
   top: 12%;
   left: 92%;
   transform: translate(-100%, 0) scale(1);
-  cursor: pointer;
   transition: transform 0.3s, filter 0.3s, box-shadow 0.3s;
 }
 
@@ -36,7 +35,6 @@ body {
   top: 3%;
   left: 25%;
   transform: translate(-100%, 0) scale(1);
-  cursor: pointer;
   transition: transform 0.3s, filter 0.3s, box-shadow 0.3s;
 }
 
@@ -47,7 +45,6 @@ body {
   top: 75%;
   left: 15%;
   transform: translate(-100%, 0) scale(1);
-  cursor: pointer;
   transition: transform 0.3s, filter 0.3s, box-shadow 0.3s;
 }
 
