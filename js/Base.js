@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
         열린마음: 0,
         손님우선: 0,
         전문성: 0,
-        존중과배려: 0
+        존중과배려: 0,
       };
       localStorage.setItem("scores", JSON.stringify(scores));
       setTimeout(() => {
@@ -108,7 +108,12 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 500);
     }
 
-    if (sceneKey === "success2" || sceneKey === "fail2" || sceneKey === "start"|| sceneKey === "wakeUp0") {
+    if (
+      sceneKey === "success2" ||
+      sceneKey === "fail2" ||
+      sceneKey === "start" ||
+      sceneKey === "wakeUp0"
+    ) {
       fadeInOverlay.style.opacity = "0";
       fadeInOverlay.style.display = "none";
     }
@@ -138,19 +143,31 @@ document.addEventListener("DOMContentLoaded", function () {
         열린마음: 0,
         손님우선: 0,
         전문성: 0,
-        존중과배려: 0
+        존중과배려: 0,
       };
-    
-      Object.keys(totalScores).forEach(key => {
+
+      Object.keys(totalScores).forEach((key) => {
         totalScores[key] += 10;
       });
-    
-      const totalScore = Object.values(totalScores).reduce((acc, val) => acc + val, 0);
+
+      const totalScore = Object.values(totalScores).reduce(
+        (acc, val) => acc + val,
+        0
+      );
       localStorage.setItem("scores", JSON.stringify(totalScores));
       localStorage.setItem("result", totalScore >= 100 ? "SUCCESS" : "FAIL");
       const nextScene = totalScore >= 100 ? "success2" : "fail2";
       localStorage.setItem("scene", nextScene);
-      window.location.href = totalScore >= 100 ? "ResultSuccess.html" : "ResultFail.html";
+      fadeInOverlay.style.display = "block";
+      fadeInOverlay.style.opacity = "0";
+      setTimeout(() => {
+        fadeInOverlay.style.opacity = "1";
+      }, 10);
+
+      setTimeout(() => {
+        window.location.href =
+          totalScore >= 100 ? "ResultSuccess.html" : "ResultFail.html";
+      }, 600); // 0.6초 후 페이지 이동
     }
 
     if (scene.background) {
