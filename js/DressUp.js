@@ -230,12 +230,12 @@ class EventHandlers {
         };
         const interviewValue =
           parseInt(localStorage.getItem("interview-dialog"), 10) || 0;
-        if (interviewValue % 2 === 0) {
-          scores["전문성"] += 15;
-          scores["손님우선"] -= 5;
-        } else {
-          scores["손님우선"] += 10;
-        }
+          if (interviewValue % 2 === 0) {
+            scores["열린마음"] += 5;
+          } else {
+            scores["전문성"] += 5;
+            scores["손님우선"] += 5;
+          }
         localStorage.setItem("scores", JSON.stringify(scores));
       }.bind(this)
     );
