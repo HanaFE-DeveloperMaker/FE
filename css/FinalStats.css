@@ -455,8 +455,8 @@ header {
   font-weight: bold;
 }
 #process-map {
-  width: 80%;
-  height: 80%;
+  width: 680px;
+  height: 500px;
   background-color: #e1a863;
   position: relative;
   overflow: hidden;
@@ -491,36 +491,36 @@ header {
   /* position: absolute; */
 }
 #house {
-  left: 0%;
-  top: 0%;
+  left: 0px;
+  top: 30px;
 }
 #bed {
-  left: 17%;
-  top: 55%;
+  left: 120px;
+  top: 270px;
 }
 #bus {
-  left: 60%;
-  top: 20%;
+  left: 410px;
+  top: 100px;
 }
 #subway {
-  left: 60%;
-  top: 20%;
+  left: 410px;
+  top: 100px;
 }
 #grandma {
-  left: 50%;
-  top: 58%;
+  left: 360px;
+  top: 280px;
 }
 #man {
-  left: 80%;
-  top: 6%;
+  left: 540px;
+  top: 40px;
 }
 #building {
-  left: 83%;
-  top: 3%;
+  left: 570px;
+  top: 20px;
 }
 #closet {
-  left: 0%;
-  top: 72%;
+  left: 10px;
+  top: 350px;
 }
 .score-modal {
   width: 120px;
@@ -535,28 +535,28 @@ header {
   backdrop-filter: blur(10px);
 }
 #scoremodal-1 {
-  left: 10%;
-  top: 0%;
+  left: 10px;
+  top: 0px;
 }
 #scoremodal-2 {
-  left: 27%;
-  top: 55%;
+  left: 27px;
+  top: 55px;
 }
 #scoremodal-3 {
-  left: 60%;
-  top: 58%;
+  left: 60px;
+  top: 58px;
 }
 #scoremodal-4 {
-  left: 10%;
-  top: 72%;
+  left: 10px;
+  top: 72px;
 }
 #scoremodal-5 {
-  left: 64%;
-  top: 6%;
+  left: 64px;
+  top: 6px;
 }
 #scoremodal-6 {
-  left: 70%;
-  top: 20%;
+  left: 70px;
+  top: 20px;
 }
 .display-none {
   display: none;
