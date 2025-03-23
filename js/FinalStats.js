@@ -1,6 +1,7 @@
 const scores = JSON.parse(localStorage.getItem("scores"));
 const usernameDiv = document.getElementById("username");
 // const imgCreator = document.createElement("img");
+localStorage.setItem("scene","study0");
 
 let totalScore = 0;
 for (let key in scores) {

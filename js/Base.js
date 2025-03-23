@@ -112,6 +112,16 @@ document.addEventListener("DOMContentLoaded", function () {
       fadeInOverlay.style.display = "none";
     }
 
+    if (sceneKey === "wakeUp0") {
+      fadeInOverlay.style.opacity = "0";
+      fadeInOverlay.style.display = "none";
+    }
+
+    if (sceneKey === "Alarm") {
+      localStorage.setItem("scene", "wakeUp0");
+      window.location.href = "Alarm.html";
+    }
+
     if (sceneKey === "dressUp") {
       localStorage.setItem("scene", "start");
       window.location.href = "DressUp.html";
