@@ -14,6 +14,12 @@ window.onload = function () {
   alarmClock.addEventListener("click", function () {
     const message = document.querySelector(".message");
     message.textContent = "진짜 시계를 찾았다!";
+
+    alarmClock.classList.add("active-effect");
+    setTimeout(() => {
+      alarmClock.classList.remove("active-effect");
+    }, 2000);
+
     if (isAudioEnabled) {
       alarmSound
         .play()
@@ -48,6 +54,11 @@ window.onload = function () {
       if (isAudioEnabled) {
         wrongSound.currentTime = 0;
         wrongSound.play();
+
+        fakeClock.classList.add("active-effect");
+        setTimeout(() => {
+          fakeClock.classList.remove("active-effect");
+        }, 1000);
       }
     });
   });
