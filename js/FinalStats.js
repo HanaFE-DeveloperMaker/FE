@@ -37,21 +37,21 @@ resultBtn.addEventListener("click", () => {
   let scoreList = JSON.parse(localStorage.getItem("scoreList")) || [];
 
   if (scoreList[2]) {
-    const score = scoreList[2];
+    const score = scoreList[3];
 
     // "subway" 추가 조건: 열린마음이 15점
-    if (score["열린마음"] === 15) {
+    if (score["열린마음"] === 5) {
       const subway = document.createElement("img");
-      subway.src = "../assets/map/subway.png";
+      subway.src = "../assets/map/bus.png";
       subway.alt = "subway";
       subway.id = "subway";
       map.appendChild(subway);
     }
 
     // "bus" 추가 조건: 전문성 5점, 존중과배려 10점
-    else if (score["전문성"] === 5 && score["존중과배려"] === 10) {
+    else if (score["손님우선"] === 5) {
       const bus = document.createElement("img");
-      bus.src = "../assets/map/bus.png";
+      bus.src = "../assets/map/subway.png";
       bus.alt = "bus";
       bus.id = "bus";
       map.appendChild(bus);
