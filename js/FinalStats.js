@@ -41,7 +41,41 @@ resultBtn.addEventListener("click", () => {
   const character = document.getElementById("character");
 
   let isColliding = Array(targetIds.length).fill(false);
+  const map = document.querySelector("#process-map");
 
+  let scoreList = JSON.parse(localStorage.getItem("scoreList")) || [];
+  const score1 = document.getElementById("scoremodal-1");
+  const score2 = document.getElementById("scoremodal-2");
+  const score3 = document.getElementById("scoremodal-3");
+  const score4 = document.getElementById("scoremodal-4");
+  const score5 = document.getElementById("scoremodal-5");
+  const score6 = document.getElementById("scoremodal-6");
+
+  let dynamicTargets = [];
+
+  if (scoreList[3]) {
+    const score = scoreList[3];
+
+    if (score["열린마음"] === 5) {
+      const bus = document.createElement("img");
+      bus.src = "../assets/map/bus.png";
+      bus.alt = "bus";
+      bus.id = "bus";
+      map.appendChild(bus);
+      targetIds.push("bus");
+      dynamicTargets.push(bus);
+    }
+
+    if (score["손님우선"] === 5) {
+      const subway = document.createElement("img");
+      subway.src = "../assets/map/subway.png";
+      subway.alt = "subway";
+      subway.id = "subway";
+      map.appendChild(subway);
+      targetIds.push("subway");
+      dynamicTargets.push(subway);
+    }
+  }
   function checkCollision() {
     const charRect = character.getBoundingClientRect();
 
@@ -71,17 +105,27 @@ resultBtn.addEventListener("click", () => {
         }
       }
     });
+
+    dynamicTargets.forEach((target) => {
+      const targetRect = target.getBoundingClientRect();
+      let collisionDetected =
+        charRect.right > targetRect.left &&
+        charRect.left < targetRect.right &&
+        charRect.bottom > targetRect.top &&
+        charRect.top < targetRect.bottom;
+
+      if (collisionDetected) {
+        score6.classList.remove("display-none");
+        score6.innerHTML = `<strong>이동 수단 선택</strong>${Object.entries(
+          scoreList[3]
+        )
+          .map(([key, value]) => `<p>${key} ${value}</p>`)
+          .join("")}`;
+      } else {
+        score6.classList.add("display-none");
+      }
+    });
   }
-
-  const map = document.querySelector("#process-map");
-
-  let scoreList = JSON.parse(localStorage.getItem("scoreList")) || [];
-  const score1 = document.getElementById("scoremodal-1");
-  const score2 = document.getElementById("scoremodal-2");
-  const score3 = document.getElementById("scoremodal-3");
-  const score4 = document.getElementById("scoremodal-4");
-  const score5 = document.getElementById("scoremodal-5");
-  const score6 = document.getElementById("scoremodal-6");
 
   score1.innerHTML = `<strong>전날 밤</strong>${Object.entries(scoreList[0])
     .map(([key, value]) => `<p>${key} ${value}</p>`)
@@ -106,28 +150,6 @@ resultBtn.addEventListener("click", () => {
   )
     .map(([key, value]) => `<p>${key} ${value}</p>`)
     .join("")}`;
-
-  if (scoreList[3]) {
-    const score = scoreList[3];
-
-    // "subway" 추가 조건: 열린마음이 15점
-    if (score["열린마음"] === 5) {
-      const bus = document.createElement("img");
-      bus.src = "../assets/map/bus.png";
-      bus.alt = "bus";
-      bus.id = "bus";
-      map.appendChild(bus);
-    }
-
-    // "bus" 추가 조건: 전문성 5점, 존중과배려 10점
-    else if (score["손님우선"] === 5) {
-      const subway = document.createElement("img");
-      subway.src = "../assets/map/subway.png";
-      subway.alt = "subway";
-      subway.id = "subway";
-      map.appendChild(subway);
-    }
-  }
 
   // 캐릭터 초기 위치
   let x = 0;
