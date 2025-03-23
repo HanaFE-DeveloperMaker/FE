@@ -135,7 +135,6 @@ document.addEventListener("DOMContentLoaded", function () {
       textElement.style.display = "block";
       choices.style.display = "none";
       next.style.display = "none";
-
       if (
         sceneKey === "success1" ||
         sceneKey === "fail1" ||
@@ -186,7 +185,6 @@ document.addEventListener("DOMContentLoaded", function () {
       textElement.style.display = "none";
       next.style.display = "none";
       choices.style.display = "flex";
-      let scoreList = JSON.parse(localStorage.getItem("scoreList")) || [];
 
       choices.innerHTML = "";
       scene.choices.forEach((choice) => {
@@ -195,8 +193,11 @@ document.addEventListener("DOMContentLoaded", function () {
         button.textContent = choice.text;
         button.dataset.nextScene = choice.next;
         button.addEventListener("click", () => {
-          scoreList.push(choice.score);
-          localStorage.setItem("scoreList", JSON.stringify(scoreList));
+          if (currentScene !== "dress_choice") {
+            let scoreList = JSON.parse(localStorage.getItem("scoreList")) || [];
+            scoreList.push(choice.score);
+            localStorage.setItem("scoreList", JSON.stringify(scoreList));
+          }
           Object.keys(choice.score).forEach((key) => {
             scores[key] += choice.score[key];
           });

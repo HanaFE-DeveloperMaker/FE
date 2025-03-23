@@ -1,5 +1,12 @@
+const remindBtn = document.querySelector("#remind-btn");
+const modalOverlay = document.querySelector(".modal-overlay");
+const reminder = document.querySelector("#reminder");
+const track = document.querySelector("#carousel-track");
+const scenes = JSON.parse(localStorage.getItem("scenes")) || [];
 const scores = JSON.parse(localStorage.getItem("scores"));
 const usernameDiv = document.getElementById("username");
+const process = document.getElementById("process");
+const processHeader = document.getElementById("process-header");
 // const imgCreator = document.createElement("img");
 
 let totalScore = 0;
@@ -9,6 +16,7 @@ for (let key in scores) {
 
 const username = localStorage.getItem("nickname");
 usernameDiv.innerText = `${username}님`;
+processHeader.textContent = `${username}님의 진행 과정`;
 const resultBtn = document.getElementById("result-button");
 const result = localStorage.getItem("result");
 resultBtn.innerText = result;
@@ -17,6 +25,51 @@ if (result === "SUCCESS") {
 } else {
   resultBtn.classList.add("fail-btn");
 }
+
+resultBtn.addEventListener("click", () => {
+  modalOverlay.classList.remove("display-none");
+  process.classList.remove("display-none");
+
+  const character = document.getElementById("character");
+  const map = document.querySelector("#process-map");
+
+  // 캐릭터 초기 위치
+  let x = 0;
+  let y = 0;
+  const step = 10; // 한 번에 이동하는 거리 (px)
+
+  // 부모 영역 크기 가져오기
+  const mapRect = map.getBoundingClientRect();
+  const charRect = character.getBoundingClientRect();
+
+  // 캐릭터 초기 위치 조정
+  character.style.position = "absolute";
+  character.style.left = `${x}px`;
+  character.style.top = `${y}px`;
+
+  document.addEventListener("keydown", (event) => {
+    switch (event.key) {
+      case "ArrowUp":
+        if (y > 0) y -= step;
+        break;
+      case "ArrowDown":
+        if (y + charRect.height < mapRect.height) y += step;
+        break;
+      case "ArrowLeft":
+        if (x > 0) x -= step;
+        character.style.transform = "scaleX(-1)";
+        break;
+      case "ArrowRight":
+        if (x + charRect.width < mapRect.width) x += step;
+        character.style.transform = "scaleX(1)";
+        break;
+    }
+
+    // 캐릭터 위치 업데이트
+    character.style.left = `${x}px`;
+    character.style.top = `${y}px`;
+  });
+});
 
 resultBtn.addEventListener("mouseover", (event) => {
   if (event.target.textContent === "SUCCESS") {
@@ -103,11 +156,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-const remindBtn = document.querySelector("#remind-btn");
-const modalOverlay = document.querySelector(".modal-overlay");
-const reminder = document.querySelector("#reminder");
-const track = document.querySelector("#carousel-track");
-const scenes = JSON.parse(localStorage.getItem("scenes")) || [];
 scenes.forEach((scene) => {
   const slide = document.createElement("div");
   slide.classList.add("carousel-slide");
@@ -141,6 +189,7 @@ remindBtn.addEventListener("click", () => {
 modalOverlay.addEventListener("click", () => {
   modalOverlay.classList.add("display-none");
   reminder.classList.add("display-none");
+  process.classList.add("display-none");
 });
 
 const retryBtn = document.getElementById("retry");
@@ -152,7 +201,7 @@ retryBtn.addEventListener("click", () => {
     confirmButtonText: "확인",
   }).then((result) => {
     if (result.isConfirmed) {
-      window.location.href = "Start.html";
+      window.location.href = "../index.html";
     }
   });
 });
