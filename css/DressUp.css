@@ -19,7 +19,7 @@ html {
 h1 {
   color: #ffffff;
   text-align: center;
-  font-size: 2.5em;
+  font-size: 40px;
   margin: 0 0 15px 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   flex-shrink: 0;
@@ -40,7 +40,7 @@ h1 {
   max-width: 1200px;
   height: 100%;
   box-sizing: border-box;
-  margin-left: -10vw;
+  margin-left: -144px;
 }
 
 .left-panel img {
@@ -58,7 +58,7 @@ h1 {
   justify-content: center;
   min-width: 400px;
   height: 100%;
-  margin-left: -10vw;
+  margin-left: -144px;
 }
 
 .container {
@@ -71,8 +71,8 @@ h1 {
 
 .character {
   position: absolute;
-  top: 56%;
-  left: 52%;
+  top: 250px;
+  left: 230px;
   transform: translate(-50%, -50%);
   z-index: 0;
 }
@@ -93,86 +93,86 @@ h1 {
   z-index: 2;
 }
 
-/* 의상 위치 스타일 */
+/* 옷 위치 조정 */
 .clothes.dropped.hair1,
 .clothes.dropped.hair2,
 .clothes.dropped.hair3 {
-  top: 6%;
-  left: 52%;
+  top: 26px;
+  left: 230px;
   z-index: 3;
 }
 .clothes.dropped.shirt1 {
-  top: 41%;
-  left: 52.5%;
+  top: 180px;
+  left: 233px;
   z-index: 2;
 }
 .clothes.dropped.shirt2 {
-  top: 34%;
-  left: 30%;
+  top: 150px;
+  left: 130px;
   z-index: 2;
   transform: scale(0.92);
 }
 .clothes.dropped.shirt3 {
-  top: 39%;
-  left: 49%;
+  top: 176px;
+  left: 218px;
   z-index: 2;
 }
 .clothes.dropped.shirt4 {
-  top: 39%;
-  left: 50%;
+  top: 176px;
+  left: 220px;
   z-index: 2;
 }
 .clothes.dropped.pants1 {
-  top: 60%;
-  left: 51%;
+  top: 266px;
+  left: 226px;
   z-index: 1;
 }
 .clothes.dropped.pants2,
 .clothes.dropped.pants3,
 .clothes.dropped.pants4 {
-  top: 61%;
-  left: 53%;
+  top: 272px;
+  left: 235px;
   z-index: 1;
 }
 .clothes.dropped.accessary1 {
-  top: 26%;
-  left: 50%;
+  top: 115px;
+  left: 220px;
   z-index: 4;
 }
 .clothes.dropped.accessary2 {
-  top: 19%;
-  left: 49%;
+  top: 85px;
+  left: 218px;
   z-index: 4;
 }
 .clothes.dropped.accessary3 {
-  top: 64%;
-  left: 64%;
+  top: 285px;
+  left: 285px;
   z-index: 4;
 }
 .clothes.dropped.accessary4,
 .clothes.dropped.accessary5 {
-  top: 42%;
-  left: 51%;
+  top: 185px;
+  left: 227px;
   z-index: 4;
 }
 .clothes.dropped.shoes1 {
-  top: 92%;
-  left: 50%;
+  top: 420px;
+  left: 223px;
   z-index: 4;
 }
 .clothes.dropped.shoes2 {
-  top: 97%;
-  left: 50%;
+  top: 440px;
+  left: 222px;
   z-index: 4;
 }
 .clothes.dropped.shoes3 {
-  top: 97%;
-  left: 51%;
+  top: 437px;
+  left: 225px;
   z-index: 4;
 }
 .clothes.dropped.shoes4 {
-  top: 95%;
-  left: 50%;
+  top: 430px;
+  left: 220px;
   z-index: 4;
 }
 
