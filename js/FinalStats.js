@@ -1,7 +1,14 @@
+const remindBtn = document.querySelector("#remind-btn");
+const modalOverlay = document.querySelector(".modal-overlay");
+const reminder = document.querySelector("#reminder");
+const track = document.querySelector("#carousel-track");
+const scenes = JSON.parse(localStorage.getItem("scenes")) || [];
 const scores = JSON.parse(localStorage.getItem("scores"));
 const usernameDiv = document.getElementById("username");
+const process = document.getElementById("process");
+const processHeader = document.getElementById("process-header");
 // const imgCreator = document.createElement("img");
-localStorage.setItem("scene","study0");
+localStorage.setItem("scene", "study0");
 
 let totalScore = 0;
 for (let key in scores) {
@@ -10,6 +17,7 @@ for (let key in scores) {
 
 const username = localStorage.getItem("nickname");
 usernameDiv.innerText = `${username}님`;
+processHeader.textContent = `${username}님의 선택 기록`;
 const resultBtn = document.getElementById("result-button");
 const result = localStorage.getItem("result");
 resultBtn.innerText = result;
@@ -18,6 +26,75 @@ if (result === "SUCCESS") {
 } else {
   resultBtn.classList.add("fail-btn");
 }
+
+resultBtn.addEventListener("click", () => {
+  modalOverlay.classList.remove("display-none");
+  process.classList.remove("display-none");
+
+  const character = document.getElementById("character");
+  const map = document.querySelector("#process-map");
+
+  let scoreList = JSON.parse(localStorage.getItem("scoreList")) || [];
+
+  if (scoreList[2]) {
+    const score = scoreList[2];
+
+    // "subway" 추가 조건: 열린마음이 15점
+    if (score["열린마음"] === 15) {
+      const subway = document.createElement("img");
+      subway.src = "../assets/map/subway.png";
+      subway.alt = "subway";
+      subway.id = "subway";
+      map.appendChild(subway);
+    }
+
+    // "bus" 추가 조건: 전문성 5점, 존중과배려 10점
+    else if (score["전문성"] === 5 && score["존중과배려"] === 10) {
+      const bus = document.createElement("img");
+      bus.src = "../assets/map/bus.png";
+      bus.alt = "bus";
+      bus.id = "bus";
+      map.appendChild(bus);
+    }
+  }
+
+  // 캐릭터 초기 위치
+  let x = 0;
+  let y = 0;
+  const step = 10; // 한 번에 이동하는 거리 (px)
+
+  // 부모 영역 크기 가져오기
+  const mapRect = map.getBoundingClientRect();
+  const charRect = character.getBoundingClientRect();
+
+  // 캐릭터 초기 위치 조정
+  character.style.position = "absolute";
+  character.style.left = `${x}px`;
+  character.style.top = `${y}px`;
+
+  document.addEventListener("keydown", (event) => {
+    switch (event.key) {
+      case "ArrowUp":
+        if (y > 0) y -= step;
+        break;
+      case "ArrowDown":
+        if (y + charRect.height < mapRect.height) y += step;
+        break;
+      case "ArrowLeft":
+        if (x > 0) x -= step;
+        character.style.transform = "scaleX(-1)";
+        break;
+      case "ArrowRight":
+        if (x + charRect.width < mapRect.width) x += step;
+        character.style.transform = "scaleX(1)";
+        break;
+    }
+
+    // 캐릭터 위치 업데이트
+    character.style.left = `${x}px`;
+    character.style.top = `${y}px`;
+  });
+});
 
 resultBtn.addEventListener("mouseover", (event) => {
   if (event.target.textContent === "SUCCESS") {
@@ -104,11 +181,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-const remindBtn = document.querySelector("#remind-btn");
-const modalOverlay = document.querySelector(".modal-overlay");
-const reminder = document.querySelector("#reminder");
-const track = document.querySelector("#carousel-track");
-const scenes = JSON.parse(localStorage.getItem("scenes")) || [];
 scenes.forEach((scene) => {
   const slide = document.createElement("div");
   slide.classList.add("carousel-slide");
@@ -142,64 +214,19 @@ remindBtn.addEventListener("click", () => {
 modalOverlay.addEventListener("click", () => {
   modalOverlay.classList.add("display-none");
   reminder.classList.add("display-none");
+  process.classList.add("display-none");
 });
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   const track = document.querySelector(".carousel-track");
-//   const slides = Array.from(document.querySelectorAll(".carousel-slide")); // 슬라이드를 배열로 변환
-
-//   let currentIndex = 0;
-//   const totalSlides = slides.length;
-//   let autoScroll;
-
-//   // 슬라이드 높이를 동적으로 설정
-//   function updateSlideHeight() {
-//     if (window.getComputedStyle(reminder).display === "none") {
-//       return; // reminder가 보이지 않으면 높이 설정 안 함
-//     }
-//     const reminderHeight = reminder.clientHeight;
-
-//     slides.forEach((slide) => {
-//       slide.style.height = `${reminderHeight}px`;
-//     });
-
-//     // track의 높이를 슬라이드 개수만큼 설정
-//     track.style.height = `${reminderHeight * totalSlides}px`;
-//   }
-
-//   function moveToNextSlide() {
-//     console.log(`currentIndex: ${currentIndex}, totalSlides: ${totalSlides}`);
-
-//     if (currentIndex < totalSlides - 1) {
-//       currentIndex++;
-//       const translateYValue = -currentIndex * reminder.clientHeight; // 부모 높이를 기준으로 이동
-//       track.style.transform = `translateY(${translateYValue}px)`;
-//       track.style.transition = "transform 1.5s ease-in-out"; // 부드러운 애니메이션 적용
-//       console.log(`Transform: ${track.style.transform}`);
-//     } else {
-//       clearInterval(autoScroll); // 마지막 슬라이드에서 멈춤
-//       console.log("Carousel Stopped.");
-//     }
-//   }
-
-//   let prevDisplay = window.getComputedStyle(reminder).display;
-
-//   setInterval(() => {
-//     const currentDisplay = window.getComputedStyle(reminder).display;
-
-//     // reminder가 보이기 시작하면 슬라이드 높이 업데이트
-//     if (currentDisplay !== prevDisplay) {
-//       prevDisplay = currentDisplay;
-//       if (currentDisplay !== "none") {
-//         updateSlideHeight();
-//       }
-//     }
-//   }, 100);
-
-//   window.addEventListener("resize", updateSlideHeight);
-//   updateSlideHeight();
-
-//   autoScroll = setInterval(moveToNextSlide, 5000);
-
-//   track.classList.add("auto-scroll");
-// });
+const retryBtn = document.getElementById("retry");
+retryBtn.addEventListener("click", () => {
+  Swal.fire({
+    title: "다시 시작하기",
+    html: "다시 시작하시면 기존 데이터는 사라집니다. <br>다시 시작할까요?",
+    icon: "question",
+    confirmButtonText: "확인",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = "../index.html";
+    }
+  });
+});

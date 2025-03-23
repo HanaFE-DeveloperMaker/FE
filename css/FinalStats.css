@@ -31,6 +31,7 @@ p {
 section {
   width: 80%;
   height: 80%;
+  max-height: 80%;
   aspect-ratio: 16 / 9;
   display: flex;
   justify-content: center;
@@ -38,6 +39,7 @@ section {
   border: 1px solid #e4c599;
   border-radius: 8px;
   position: relative;
+  /* overflow: hidden; */
   /* background-color: #ffffff23; */
 }
 header {
@@ -369,6 +371,7 @@ header {
   z-index: 100;
   word-break: keep-all;
   left: 80px;
+  backdrop-filter: blur(10px);
 }
 #score-list > div {
   position: relative;
@@ -384,66 +387,124 @@ header {
 .integrity-modal p {
   margin: 4px;
 }
+#retry {
+  width: 120px;
+  height: 60px;
+  background-color: #c0c0c076;
+  border: 1px solid #c0c0c0;
+  border-radius: 4px;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+#retry:hover {
+  background-color: #9d9d9dc0;
+  box-shadow: 0 0 10px 2px #c0c0c0;
+}
+#process {
+  position: fixed;
+  width: 50%;
+  height: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffffaf;
+  animation: fade-in 0.5s;
+  box-shadow: 0 0px 20px rgba(255, 255, 255, 0.662);
+  z-index: 200;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  padding: 20px;
+}
+#process > div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#process > div > div:first-child {
+  width: 40%;
+  height: 10%;
+  background-color: #c0ac90b8;
+  border: 1px solid #938065;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+#process-map {
+  width: 80%;
+  height: 80%;
+  background-color: #e1a863;
+  position: relative;
+  overflow: hidden;
+  margin-top: 20px;
+  border-radius: 16px;
+  border: 2px solid #ab875a;
+  background-image: url("../assets/map/background.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px); /* 위로 살짝 튀기 */
+  }
+}
+#process-map img:not(#character) {
+  position: absolute;
+  width: 80px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #ffffff);
+  animation: bounce 1s infinite ease-in-out;
+}
+#character {
+  width: 50px; /* 캐릭터 크기 */
+  height: auto;
+  z-index: 300;
+  /* position: absolute; */
+}
+#house {
+  left: 0%;
+  top: 0%;
+}
+#bed {
+  left: 17%;
+  top: 55%;
+}
+#bus {
+  left: 60%;
+  top: 20%;
+}
+#subway {
+  left: 60%;
+  top: 20%;
+}
+#grandma {
+  left: 50%;
+  top: 58%;
+}
+#man {
+  left: 80%;
+  top: 6%;
+}
+#building {
+  left: 83%;
+  top: 3%;
+}
+#closet {
+  left: 0%;
+  top: 72%;
+}
 .display-none {
   display: none;
 }
-/* @keyframes scrollAnimation {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-100%);
-  }
-}
-
-.carousel-track.auto-scroll {
-  animation: scrollAnimation 6s linear infinite;
-} */
-
-/* 버튼 스타일 */
-/* .prev,
-.next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-  font-size: 18px;
-  border-radius: 50%;
-}
-
-.prev {
-  left: 10px;
-}
-.next {
-  right: 10px;
-}
-
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-} */
-
-/* 인디케이터 (점) */
-/* .carousel-dots {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-.carousel-dots span {
-  width: 12px;
-  height: 12px;
-  background-color: #bbb;
-  border-radius: 50%;
-  margin: 0 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.carousel-dots span.active {
-  background-color: #333;
-} */
