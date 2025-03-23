@@ -220,7 +220,7 @@ class EventHandlers {
       "click",
       function () {
         this.handleComplete();
-
+        let scoreList = JSON.parse(localStorage.getItem("scoreList"))
         let scores = JSON.parse(localStorage.getItem("scores")) || {
           열정: 0,
           열린마음: 0,
@@ -228,15 +228,21 @@ class EventHandlers {
           전문성: 0,
           존중과배려: 0,
         };
+        const currentScore = {};
         const interviewValue =
           parseInt(localStorage.getItem("interview-dialog"), 10) || 0;
           if (interviewValue % 2 === 0) {
             scores["열린마음"] += 5;
+            currentScore["열린마음"] = 5;
           } else {
             scores["전문성"] += 5;
             scores["손님우선"] += 5;
+            currentScore["전문성"] = 5;
+            currentScore["손님우선"] = 5;
           }
         localStorage.setItem("scores", JSON.stringify(scores));
+        scoreList.push(currentScore);
+        localStorage.setItem("scoreList", JSON.stringify(scoreList));
       }.bind(this)
     );
 
