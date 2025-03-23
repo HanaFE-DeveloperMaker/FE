@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>개발자 키우기</title>
+    <link rel="icon" type="image/png" href="../assets/global/favicon.png" />
+    <link rel="stylesheet" href="../css/Alarm.css" />
+  </head>
+  <body>
+    <div class="loading-container" id="loadingContainer">
+      <img
+        src="../assets/global/loading.gif"
+        alt="로딩 중..."
+        class="loading-spinner"
+      />
+    </div>
+
+    <div class="room">
+      <div class="message">시계를 눌러 깨워주세요!</div>
+      <img src="../assets/img_alarm.png" class="alarm-clock" id="alarmClock" />
+    </div>
+
+    <audio id="alarmSound" loop>
+      <source src="../assets/sound/alarm.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script type="module" src="../js/Alarm.js"></script>
+  </body>
+</html>
