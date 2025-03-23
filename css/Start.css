@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "DOSGothic";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/DOSGothic.woff")
+    format("woff");
+}
+
 html,
 body {
   width: 100vw;
@@ -46,14 +52,17 @@ body {
 }
 
 input {
-  margin-top: -5px;
+  margin-top: -8px;
   margin-bottom: 10px;
   padding: 6px;
   font-size: 18px;
   text-align: center;
-  width: 200px;
+  width: 210px;
+  height: 25px;
   border: 2px solid #8d8d8d;
   border-radius: 4px;
+  font-family: "DOSGothic";
+  font-size: 20px;
 }
 input:focus {
   outline: none;

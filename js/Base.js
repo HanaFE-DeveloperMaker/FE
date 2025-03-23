@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (sceneKey === "start") {
       fadeInOverlay.style.opacity = "0";
-      fadeInOverlay.remove();
+      fadeInOverlay.style.display = "none";
     }
 
     if (sceneKey === "dressUp") {
@@ -152,6 +152,11 @@ document.addEventListener("DOMContentLoaded", function () {
         sceneKey === "fail_nude4"
       ) {
         dialog.style.display = "none";
+        fadeInOverlay.style.display = "block";
+        setTimeout(() => {
+          fadeInOverlay.style.opacity = "1";
+        }, 10);
+
         setTimeout(() => {
           window.location.href = "FinalStats.html";
         }, 1000);
