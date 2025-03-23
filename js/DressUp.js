@@ -51,13 +51,26 @@ const getInterviewValue = () => {
 
 // DOM 요소
 const elements = {
+  // clothesItems: document.querySelectorAll(".clothes"),
+  // container: document.querySelector(".container"),
+  // resetButton: document.getElementById("resetButton"),
+  // completeButton: document.getElementById("completeButton"),
+  // modal: document.getElementById("confirmModal"),
+  // modalConfirm: document.getElementById("modalConfirm"),
+  // modalCancel: document.getElementById("modalCancel"),
+  // loadingContainer: document.querySelector(".loading-container"),
   clothesItems: document.querySelectorAll(".clothes"),
   container: document.querySelector(".container"),
   resetButton: document.getElementById("resetButton"),
   completeButton: document.getElementById("completeButton"),
+  // 완료 모달은 기존 id 그대로 사용
   modal: document.getElementById("confirmModal"),
   modalConfirm: document.getElementById("modalConfirm"),
   modalCancel: document.getElementById("modalCancel"),
+  // 초기화 모달 요소 추가 (새 id 사용)
+  resetModal: document.getElementById("resetModal"),
+  modalConfirmReset: document.getElementById("modalConfirmReset"),
+  modalCancelReset: document.getElementById("modalCancelReset"),
   loadingContainer: document.querySelector(".loading-container"),
 };
 
@@ -180,7 +193,23 @@ class EventHandlers {
     });
 
     // 버튼 이벤트
-    elements.resetButton.addEventListener("click", this.handleReset.bind(this));
+    // elements.resetButton.addEventListener("click", this.handleReset.bind(this));
+    elements.resetButton.addEventListener("click", () => {
+      elements.resetModal.style.display = "flex";
+    });
+
+    // 초기화 모달 이벤트
+    elements.modalConfirmReset.addEventListener("click", () => {
+      this.handleReset();
+      elements.resetModal.style.display = "none";
+    });
+    elements.modalCancelReset.addEventListener("click", () => {
+      elements.resetModal.style.display = "none";
+    });
+    elements.resetModal.addEventListener("click", (e) => {
+      if (e.target === elements.resetModal)
+        elements.resetModal.style.display = "none";
+    });
     elements.completeButton.addEventListener("click", () => {
       elements.modal.style.display = "flex"; // 모달 표시
       this.handleCrop(); // handleCrop 호출 추가
