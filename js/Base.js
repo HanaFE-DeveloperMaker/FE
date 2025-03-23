@@ -93,20 +93,43 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (sceneKey === "study0") {
+      localStorage.setItem("scoreList", JSON.stringify([]));
+      scores = {
+        열정: 0,
+        열린마음: 0,
+        손님우선: 0,
+        전문성: 0,
+        존중과배려: 0,
+      };
+      localStorage.setItem("scores", JSON.stringify(scores));
       setTimeout(() => {
         fadeInOverlay.style.opacity = "0";
-        setTimeout(() => fadeInOverlay.remove(), 600);
+        setTimeout(() => (fadeInOverlay.style.display = "none"), 600);
       }, 500);
     }
 
-    if (sceneKey === "success2" || sceneKey === "fail2" || sceneKey === "start"|| sceneKey === "wakeUp0") {
+    if (
+      sceneKey === "success2" ||
+      sceneKey === "fail2" ||
+      sceneKey === "start" ||
+      sceneKey === "wakeUp0"
+    ) {
       fadeInOverlay.style.opacity = "0";
       fadeInOverlay.style.display = "none";
     }
 
     if (sceneKey === "Alarm") {
-      localStorage.setItem("scene", "wakeUp0");
-      window.location.href = "Alarm.html";
+      dialog.style.display = "none";
+      fadeInOverlay.style.display = "block";
+      setTimeout(() => {
+        fadeInOverlay.style.opacity = "1";
+      }, 10);
+
+      setTimeout(() => {
+        localStorage.setItem("scene", "wakeUp0");
+        window.location.href = "Alarm.html";
+      }, 600);
+      return;
     }
 
     if (sceneKey === "dressUp") {
@@ -115,12 +138,36 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (sceneKey === "result") {
-      const totalScore = Object.values(scores).reduce((acc, val) => acc + val, 0);
-      localStorage.setItem("scores", JSON.stringify(scores));
+      let totalScores = JSON.parse(localStorage.getItem("scores")) || {
+        열정: 0,
+        열린마음: 0,
+        손님우선: 0,
+        전문성: 0,
+        존중과배려: 0,
+      };
+
+      Object.keys(totalScores).forEach((key) => {
+        totalScores[key] += 10;
+      });
+
+      const totalScore = Object.values(totalScores).reduce(
+        (acc, val) => acc + val,
+        0
+      );
+      localStorage.setItem("scores", JSON.stringify(totalScores));
       localStorage.setItem("result", totalScore >= 100 ? "SUCCESS" : "FAIL");
       const nextScene = totalScore >= 100 ? "success2" : "fail2";
       localStorage.setItem("scene", nextScene);
-      window.location.href = totalScore >= 100 ? "ResultSuccess.html" : "ResultFail.html";
+      fadeInOverlay.style.display = "block";
+      fadeInOverlay.style.opacity = "0";
+      setTimeout(() => {
+        fadeInOverlay.style.opacity = "1";
+      }, 10);
+
+      setTimeout(() => {
+        window.location.href =
+          totalScore >= 100 ? "ResultSuccess.html" : "ResultFail.html";
+      }, 600); // 0.6초 후 페이지 이동
     }
 
     if (scene.background) {
@@ -141,7 +188,6 @@ document.addEventListener("DOMContentLoaded", function () {
       textElement.style.display = "block";
       choices.style.display = "none";
       next.style.display = "none";
-
       if (
         sceneKey === "success1" ||
         sceneKey === "fail1" ||
@@ -192,7 +238,6 @@ document.addEventListener("DOMContentLoaded", function () {
       textElement.style.display = "none";
       next.style.display = "none";
       choices.style.display = "flex";
-      let scoreList = JSON.parse(localStorage.getItem("scoreList")) || [];
 
       choices.innerHTML = "";
       scene.choices.forEach((choice) => {
@@ -201,11 +246,20 @@ document.addEventListener("DOMContentLoaded", function () {
         button.textContent = choice.text;
         button.dataset.nextScene = choice.next;
         button.addEventListener("click", () => {
-          scoreList.push(choice.score);
-          localStorage.setItem("scoreList", JSON.stringify(scoreList));
+          if (currentScene !== "dress_choice") {
+            let scoreList = JSON.parse(localStorage.getItem("scoreList")) || [];
+            scoreList.push(choice.score);
+            localStorage.setItem("scoreList", JSON.stringify(scoreList));
+          }
           Object.keys(choice.score).forEach((key) => {
-            scores[key] += choice.score[key];
+            if (scores.hasOwnProperty(key)) {
+              scores[key] += choice.score[key];
+            } else {
+              scores[key] = choice.score[key];
+            }
           });
+          localStorage.setItem("scores", JSON.stringify(scores));
+          console.log(scores);
           console.log(currentScene, interviewResult);
           if (currentScene === "start_choice" && interviewResult === "0") {
             showScene("nude");

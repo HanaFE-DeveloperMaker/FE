@@ -7,12 +7,14 @@
     <link rel="icon" type="image/png" href="../assets/global/favicon.png" />
     <link rel="stylesheet" href="../css/FinalStats.css" />
     <link rel="stylesheet" href="../css/Global.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
     <section>
       <header><h1>최종 결과</h1></header>
       <div id="profile">
-        <div id="username"></div>
+        <!-- <div id="username"></div> -->
+        <a id="img-download">면접 OOTD 다운받기</a>
         <div class="donut-chart">
           <svg viewBox="0 0 36 36" class="circular-chart">
             <path
@@ -123,8 +125,33 @@
         </div>
         <button id="remind-btn">나의 오늘 하루 되짚어보기🔍</button>
       </div>
+      <button id="retry">RETRY?</button>
     </section>
     <div class="modal-overlay display-none"></div>
+    <div id="process" class="display-none">
+      <div>
+        <div>
+          <span id="process-header"></span>
+        </div>
+        <div id="process-map">
+          <img src="../assets/map/house.png" alt="house" id="house" />
+          <img src="../assets/map/bed.png" alt="bed" id="bed" />
+          <img src="../assets/map/closet.png" alt="closet" id="closet" />
+          <!-- <img src="../assets/map/bus.png" alt="bus" id="bus" />
+          <img src="../assets/map/subway.png" alt="subway" id="subway" /> -->
+          <img src="../assets/map/grandma.png" alt="grandma" id="grandma" />
+          <img src="../assets/map/building.png" alt="building" id="building" />
+          <img src="../assets/map/man.png" alt="man" id="man" />
+          <img src="../assets/walking.gif" alt="character" id="character" />
+          <div class="score-modal" id="scoremodal-1"></div>
+          <div class="score-modal" id="scoremodal-2"></div>
+          <div class="score-modal" id="scoremodal-3"></div>
+          <div class="score-modal" id="scoremodal-4"></div>
+          <div class="score-modal" id="scoremodal-5"></div>
+          <div class="score-modal" id="scoremodal-6"></div>
+        </div>
+      </div>
+    </div>
     <div id="reminder" class="display-none">
       <div id="carousel-track">
         <div class="carousel-slide">
