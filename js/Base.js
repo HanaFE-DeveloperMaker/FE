@@ -53,15 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function showScene(sceneKey) {
-    if (sceneKey === "mail3") {
-      let totalScore = Object.values(scores).reduce((acc, val) => acc + val, 0);
-      localStorage.setItem("scores", JSON.stringify(scores));
-      localStorage.getItem("totalscores" + totalScore);
-      localStorage.getItem("scores" + scores);
-      sceneKey = totalScore >= 100 ? "success1" : "fail1";
-      localStorage.setItem("result", totalScore >= 100 ? "SUCCESS" : "FAIL");
-    }
-
     if (sceneKey === "nude") {
       let totalScore = Object.values(scores).reduce((acc, val) => acc + val, 0);
       localStorage.setItem("scores", JSON.stringify(scores));
@@ -104,28 +95,41 @@ document.addEventListener("DOMContentLoaded", function () {
     if (sceneKey === "study0") {
       setTimeout(() => {
         fadeInOverlay.style.opacity = "0";
-        setTimeout(() => fadeInOverlay.remove(), 600);
+        setTimeout(() => (fadeInOverlay.style.display = "none"), 600);
       }, 500);
     }
 
-    if (sceneKey === "start") {
-      fadeInOverlay.style.opacity = "0";
-      fadeInOverlay.style.display = "none";
-    }
-
-    if (sceneKey === "wakeUp0") {
+    if (sceneKey === "success2" || sceneKey === "fail2" || sceneKey === "start"|| sceneKey === "wakeUp0") {
       fadeInOverlay.style.opacity = "0";
       fadeInOverlay.style.display = "none";
     }
 
     if (sceneKey === "Alarm") {
-      localStorage.setItem("scene", "wakeUp0");
-      window.location.href = "Alarm.html";
+      dialog.style.display = "none";
+      fadeInOverlay.style.display = "block";
+      setTimeout(() => {
+        fadeInOverlay.style.opacity = "1";
+      }, 10);
+
+      setTimeout(() => {
+        localStorage.setItem("scene", "wakeUp0");
+        window.location.href = "Alarm.html";
+      }, 600);
+      return;
     }
 
     if (sceneKey === "dressUp") {
       localStorage.setItem("scene", "start");
       window.location.href = "DressUp.html";
+    }
+
+    if (sceneKey === "result") {
+      const totalScore = Object.values(scores).reduce((acc, val) => acc + val, 0);
+      localStorage.setItem("scores", JSON.stringify(scores));
+      localStorage.setItem("result", totalScore >= 100 ? "SUCCESS" : "FAIL");
+      const nextScene = totalScore >= 100 ? "success2" : "fail2";
+      localStorage.setItem("scene", nextScene);
+      window.location.href = totalScore >= 100 ? "ResultSuccess.html" : "ResultFail.html";
     }
 
     if (scene.background) {
