@@ -29,7 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
   document.body.appendChild(fadeInOverlay);
 
   function playSound(soundSrc) {
-    if (soundSrc === null) {
+    let isAudioEnabled = localStorage.getItem("audioEnabled") !== "false"; // 오디오 설정 확인
+    if (!isAudioEnabled || soundSrc === null) {
       if (currentAudio instanceof Audio) {
         currentAudio.pause();
         currentAudio.currentTime = 0;
@@ -110,6 +111,16 @@ document.addEventListener("DOMContentLoaded", function () {
     if (sceneKey === "start") {
       fadeInOverlay.style.opacity = "0";
       fadeInOverlay.style.display = "none";
+    }
+
+    if (sceneKey === "wakeUp0") {
+      fadeInOverlay.style.opacity = "0";
+      fadeInOverlay.style.display = "none";
+    }
+
+    if (sceneKey === "Alarm") {
+      localStorage.setItem("scene", "wakeUp0");
+      window.location.href = "Alarm.html";
     }
 
     if (sceneKey === "dressUp") {

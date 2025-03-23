@@ -8,6 +8,7 @@ const usernameDiv = document.getElementById("username");
 const process = document.getElementById("process");
 const processHeader = document.getElementById("process-header");
 // const imgCreator = document.createElement("img");
+localStorage.setItem("scene","study0");
 
 let totalScore = 0;
 for (let key in scores) {

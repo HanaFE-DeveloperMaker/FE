@@ -54,32 +54,33 @@ export const scenes = {
     type: "text",
     text: "좀 정리가 되는 것 같아",
     background: "url('../assets/study_more.png')",
-    next: "wakeUp0",
+    next: "Alarm",
   },
   study_choice1: {
     type: "text",
     text: "친구: 아니 글쎄 여자친구가 .... ....",
     background: "url(../assets/friend.webp)",
-    next: "wakeUp0",
+    next: "Alarm",
   },
   study_choice2: {
     type: "text",
     text: "잠도 안오는데 유튜브나 봐야겠다 ~",
     background: "url(../assets/rest.png)",
-    next: "wakeUp0",
+    next: "Alarm"
   },
   wakeUp0: {
     type: "text",
     text: "하아아아아암...",
     background: "url(../assets/wake_up.png)",
     next: "wakeUp1",
-    sound: "../assets/sound/alarm.mp3",
+    sound: "../assets/sound/yawn.mp3",
   },
   wakeUp1: {
     type: "text",
     text: "7시에 일어났더니 피곤하네. \n 면접까지는 좀 시간이 남았는데 10분만 더 잘까?",
     background: "url(../assets/wake_up.png)",
     next: "wakeUp_choice",
+    sound: null
   },
   wakeUp_choice: {
     type: "choice",
