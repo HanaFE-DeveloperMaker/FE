@@ -14,11 +14,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
   localStorage.clear();
 
-  const startSound = new Audio("./assets/sound/start.wav"); // 시작 버튼 효과음
+  const startSound = new Audio("./assets/sound/start.wav");
 
   const fadeOverlay = document.createElement("div");
   fadeOverlay.classList.add("fade-overlay");
   document.body.appendChild(fadeOverlay);
+
+  const audioToggle = document.body.querySelector(".audio-btn");
+  let isAudioEnabled = localStorage.getItem("audioEnabled") !== "false"; // 기본값: ON
+
+  function updateAudioButton() {
+    audioToggle.src = isAudioEnabled
+      ? "./assets/sound_on.png"
+      : "./assets/sound_off.png";
+    audioToggle.alt = isAudioEnabled ? "소리 켜기" : "소리 끄기";
+  }
+
+  audioToggle.addEventListener("click", function () {
+    isAudioEnabled = !isAudioEnabled;
+    localStorage.setItem("audioEnabled", isAudioEnabled);
+    updateAudioButton();
+  });
+
+  // 초기 버튼 상태 설정
+  updateAudioButton();
 
   if (!isFullScreen()) {
     Swal.fire({
@@ -51,7 +70,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     localStorage.setItem("nickname", nickname.value);
 
-    startSound.play();
+    if (isAudioEnabled) {
+      startSound.play();
+    }
 
     fadeOverlay.style.opacity = "1";
 

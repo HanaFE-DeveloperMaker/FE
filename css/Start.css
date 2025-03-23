@@ -142,3 +142,16 @@ input:focus {
     left: -200px;
   }
 }
+
+.audio-btn {
+  position: absolute;
+  top: 15px;
+  right: 65px;
+  transition: opacity 0.3s ease-in-out;
+  width: 80px;
+}
+
+.audio-btn:hover,
+.audio-btn:active {
+  opacity: 0.7;
+}
