@@ -93,6 +93,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (sceneKey === "study0") {
+      localStorage.setItem("scoreList", JSON.stringify([]));
+      scores = {
+        열정: 0,
+        열린마음: 0,
+        손님우선: 0,
+        전문성: 0,
+        존중과배려: 0
+      };
+      localStorage.setItem("scores", JSON.stringify(scores));
       setTimeout(() => {
         fadeInOverlay.style.opacity = "0";
         setTimeout(() => (fadeInOverlay.style.display = "none"), 600);
@@ -124,8 +133,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (sceneKey === "result") {
-      const totalScore = Object.values(scores).reduce((acc, val) => acc + val, 0);
-      localStorage.setItem("scores", JSON.stringify(scores));
+      let totalScores = JSON.parse(localStorage.getItem("scores")) || {
+        열정: 0,
+        열린마음: 0,
+        손님우선: 0,
+        전문성: 0,
+        존중과배려: 0
+      };
+    
+      Object.keys(totalScores).forEach(key => {
+        totalScores[key] += 10;
+      });
+    
+      const totalScore = Object.values(totalScores).reduce((acc, val) => acc + val, 0);
+      localStorage.setItem("scores", JSON.stringify(totalScores));
       localStorage.setItem("result", totalScore >= 100 ? "SUCCESS" : "FAIL");
       const nextScene = totalScore >= 100 ? "success2" : "fail2";
       localStorage.setItem("scene", nextScene);
@@ -214,8 +235,14 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem("scoreList", JSON.stringify(scoreList));
           }
           Object.keys(choice.score).forEach((key) => {
-            scores[key] += choice.score[key];
+            if (scores.hasOwnProperty(key)) {
+              scores[key] += choice.score[key];
+            } else {
+              scores[key] = choice.score[key];
+            }
           });
+          localStorage.setItem("scores", JSON.stringify(scores));
+          console.log(scores);
           console.log(currentScene, interviewResult);
           if (currentScene === "start_choice" && interviewResult === "0") {
             showScene("nude");
