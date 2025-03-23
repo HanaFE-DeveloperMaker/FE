@@ -388,20 +388,14 @@ export const scenes = {
     type: "text",
     text: "헉 결과 메일이잖아? 얼른 확인해야지",
     background: "url('../assets/img_mail.webp')",
-    next: "mail3",
+    next: "result",
     sound: null,
   },
   mail3: {
     type: "text",
     text: "헉 결과 메일이잖아? 얼른 확인해야지",
     background: "url('../assets/img_mail.webp')",
-    next: null,
-  },
-  success1: {
-    type: "text",
-    text: "",
-    background: "url('../assets/img_mail_success.png')",
-    next: "success2",
+    next: "result",
   },
   success2: {
     type: "text",
@@ -414,12 +408,6 @@ export const scenes = {
     text: "",
     background: "url('../assets/img_happy.png')",
     next: null,
-  },
-  fail1: {
-    type: "text",
-    text: "",
-    background: "url('../assets/img_mail_fail.png')",
-    next: "fail2",
   },
   fail2: {
     type: "text",
