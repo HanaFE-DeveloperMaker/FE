@@ -389,12 +389,16 @@ class EventHandlers {
   handleCrop() {
     const container = document.querySelector(".container");
 
-    // 캡처할 영역의 크기와 위치를 설정
-    const cropX = 145; // 캡처할 영역의 X 위치
+    // 캐릭터 전신화 값
+    const cropX = 130; // 캡처할 영역의 X 위치
     const cropY = 10; // 캡처할 영역의 Y 위치
-    const cropWidth = 170; // 캡처할 영역의 너비
-    const cropHeight = 160; // 캡처할 영역의 높이
-
+    const cropWidth = 200; // 캡처할 영역의 너비
+    const cropHeight = 500; // 캡처할 영역의 높이
+    // 캐릭터 초상화 값
+    // const cropX = 145; // 고정된 X 위치
+    // const cropY = 10; // 고정된 Y 위치
+    // const cropWidth = 170; // 고정된 너비
+    // const cropHeight = 160; // 고정된 높이 -->
     // html2canvas를 사용하여 .container의 특정 영역을 캡처
     html2canvas(container, {
       x: cropX,
