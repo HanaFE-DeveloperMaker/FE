@@ -180,12 +180,18 @@ class EventHandlers {
     });
 
     // 버튼 이벤트
-    elements.resetButton.addEventListener("click", this.handleReset.bind(this));
-    elements.completeButton.addEventListener("click", () => {
-      elements.modal.style.display = "flex"; // 모달 표시
-      this.handleCrop(); // handleCrop 호출 추가
+    elements.resetButton.addEventListener(
+      "click",
+      this.showResetConfirmation.bind(this)
+    );
+    elements.completeButton.addEventListener(
+      "click",
+      this.showCompleteConfirmation.bind(this)
+    );
+    elements.modalConfirm.addEventListener("click", () => {
+      this.handleComplete();
+      elements.modal.style.display = "none"; // 모달 숨기기
     });
-
     // 모달 확인 버튼 이벤트 추가
     elements.modalConfirm.addEventListener(
       "click",
@@ -218,6 +224,36 @@ class EventHandlers {
     elements.modal.addEventListener("click", (e) => {
       if (e.target === elements.modal) elements.modal.style.display = "none";
     });
+  }
+
+  showResetConfirmation() {
+    // 초기화 모달 제목 및 버튼 텍스트 설정
+    const modalTitle = elements.modal.querySelector(".modal-title");
+    modalTitle.textContent = "입은 옷을 초기화 하시겠습니까?"; // 제목 설정
+    elements.modalConfirm.textContent = "완료";
+    elements.modalCancel.textContent = "취소";
+    elements.modal.style.display = "flex"; // 모달 표시
+
+    // 모달 확인 버튼 클릭 시 초기화 처리
+    elements.modalConfirm.onclick = () => {
+      this.handleReset();
+      elements.modal.style.display = "none"; // 모달 숨기기
+    };
+  }
+
+  showCompleteConfirmation() {
+    // 완료 모달 제목 및 버튼 텍스트 설정
+    const modalTitle = elements.modal.querySelector(".modal-title");
+    modalTitle.textContent = "현재 옷을 입고 나가시겠습니까?"; // 제목 설정
+    elements.modalConfirm.textContent = "완료";
+    elements.modalCancel.textContent = "취소";
+    elements.modal.style.display = "flex"; // 모달 표시
+
+    // 모달 확인 버튼 클릭 시 완료 처리
+    elements.modalConfirm.onclick = () => {
+      this.handleComplete();
+      elements.modal.style.display = "none"; // 모달 숨기기
+    };
   }
 
   async handlePageLoad() {
