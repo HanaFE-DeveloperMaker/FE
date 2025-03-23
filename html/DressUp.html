@@ -64,20 +64,28 @@
     </div>
   </div>
 
-  <!-- 모달 HTML -->
+  <!-- 완료 모달 -->
   <div class="modal" id="confirmModal">
     <div class="modal-content">
       <h2 class="modal-title">정말로 완료하시겠습니까?</h2>
       <div class="modal-buttons">
-        <button class="modal-button modal-confirm" id="modalConfirm">
-          확인
-        </button>
-        <button class="modal-button modal-cancel" id="modalCancel">
-          취소
-        </button>
+        <button class="modal-button modal-confirm" id="modalConfirm">확인</button>
+        <button class="modal-button modal-cancel" id="modalCancel">취소</button>
       </div>
     </div>
   </div>
+
+  <!-- 초기화 모달 (id 변경) -->
+  <div class="modal" id="resetModal">
+    <div class="modal-content">
+      <h2 class="modal-title">정말로 초기화하시겠습니까?</h2>
+      <div class="modal-buttons">
+        <button class="modal-button modal-confirm" id="modalConfirmReset">확인</button>
+        <button class="modal-button modal-cancel" id="modalCancelReset">취소</button>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="../js/DressUp.js"></script>
 </body>
