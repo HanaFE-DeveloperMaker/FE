@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (sceneKey === "study0") {
       setTimeout(() => {
         fadeInOverlay.style.opacity = "0";
-        setTimeout(() => fadeInOverlay.remove(), 600);
+        setTimeout(() => (fadeInOverlay.style.display = "none"), 600);
       }, 500);
     }
 
@@ -119,8 +119,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (sceneKey === "Alarm") {
-      localStorage.setItem("scene", "wakeUp0");
-      window.location.href = "Alarm.html";
+      dialog.style.display = "none";
+      fadeInOverlay.style.display = "block";
+      setTimeout(() => {
+        fadeInOverlay.style.opacity = "1";
+      }, 10);
+
+      setTimeout(() => {
+        localStorage.setItem("scene", "wakeUp0");
+        window.location.href = "Alarm.html";
+      }, 600);
+      return;
     }
 
     if (sceneKey === "dressUp") {

@@ -3,13 +3,14 @@ window.onload = function () {
   const alarmSound = document.getElementById("alarmSound");
   const alarmClock = document.getElementById("alarmClock");
   let isAudioEnabled = localStorage.getItem("audioEnabled") !== "false"; // 기본값: ON
+  const fadeOutOverlay = document.querySelector(".fade-out-overlay");
 
   setTimeout(() => {
-    loadingContainer.classList.add("fade-out");
+    fadeOutOverlay.style.opacity = "0";
     setTimeout(() => {
-      loadingContainer.style.display = "none";
+      fadeOutOverlay.remove();
     }, 500);
-  }, 1000);
+  }, 2000);
 
   alarmClock.addEventListener("click", function () {
     const message = document.querySelector(".message");
@@ -51,14 +52,13 @@ window.onload = function () {
 
   document.querySelectorAll(".fake-clock").forEach((fakeClock) => {
     fakeClock.addEventListener("click", () => {
+      fakeClock.classList.add("active-effect");
+      setTimeout(() => {
+        fakeClock.classList.remove("active-effect");
+      }, 1000);
       if (isAudioEnabled) {
         wrongSound.currentTime = 0;
         wrongSound.play();
-
-        fakeClock.classList.add("active-effect");
-        setTimeout(() => {
-          fakeClock.classList.remove("active-effect");
-        }, 1000);
       }
     });
   });
