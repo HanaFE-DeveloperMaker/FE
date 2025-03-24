@@ -71,10 +71,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const newScene = scene?.background;
     if (newScene) {
       if (
-        !lastScene ||
-        JSON.stringify(lastScene) !== JSON.stringify(newScene)
+        sceneList.includes("url('../assets/img_bus_good.webp')") &&
+        newScene === "url('../assets/img_bus_bad.webp')"
       ) {
-        sceneList.push(scene?.background);
+        sceneList = sceneList.filter(
+          (s) => s !== "url('../assets/img_bus_good.webp')"
+        );
+      }
+
+      if (!lastScene ||JSON.stringify(lastScene) !== JSON.stringify(newScene)) {
+        sceneList.push(newScene);
+        localStorage.setItem("scenes", JSON.stringify(sceneList));
+      } else {
         localStorage.setItem("scenes", JSON.stringify(sceneList));
       }
     }
@@ -102,6 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
         존중과배려: 0,
       };
       localStorage.setItem("scores", JSON.stringify(scores));
+      localStorage.setItem("scenes", JSON.stringify([]));
       setTimeout(() => {
         fadeInOverlay.style.opacity = "0";
         setTimeout(() => (fadeInOverlay.style.display = "none"), 600);
