@@ -195,21 +195,21 @@ header {
 .circle-bg {
   fill: none;
   stroke: #747474;
-  stroke-width: 3.8;
+  stroke-width: 5.4;
 }
 
 .circle {
   fill: none;
   stroke: #e4c599;
-  stroke-width: 3.8;
+  stroke-width: 5.4;
   stroke-dasharray: 75, 100;
   stroke-linecap: round;
 }
 
 .percentage {
-  font-size: 8px;
+  font-size: 20px;
   fill: #ffffff;
-  font-weight: bold;
+  /* font-weight: bold; */
   text-anchor: middle;
   dominant-baseline: middle;
 }
