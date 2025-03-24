@@ -139,17 +139,24 @@ resultBtn.addEventListener("click", () => {
     .map(([key, value]) => `<p>${key} ${value}</p>`)
     .join("")}`;
 
-  score4.innerHTML = `<strong>할머니의 도움</strong>${Object.entries(
-    scoreList[4]
-  )
-    .map(([key, value]) => `<p>${key} ${value}</p>`)
-    .join("")}`;
+  if (scoreList.length >= 5) {
+    console.log(scoreList);
+    score4.innerHTML = `<strong>할머니의 도움</strong>${Object.entries(
+      scoreList[4]
+    )
+      .map(([key, value]) => `<p>${key} ${value}</p>`)
+      .join("")}`;
 
-  score5.innerHTML = `<strong>마지막 한마디</strong>${Object.entries(
-    scoreList[5]
-  )
-    .map(([key, value]) => `<p>${key} ${value}</p>`)
-    .join("")}`;
+    score5.innerHTML = `<strong>마지막 한마디</strong>${Object.entries(
+      scoreList[5]
+    )
+      .map(([key, value]) => `<p>${key} ${value}</p>`)
+      .join("")}`;
+  } else {
+    score4.innerHTML = `<strong>Secret!</strong><p>다시 진행해 보세요.</p>`;
+
+    score5.innerHTML = `<strong>Secret!</strong><p>다시 진행해 보세요.</p>`;
+  }
 
   // 캐릭터 초기 위치
   let x = 0;
