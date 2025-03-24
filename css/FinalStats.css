@@ -218,6 +218,29 @@ header {
   height: 15px; */
   clip-path: circle(50%);
 }
+.speech-bubble {
+  position: relative;
+  background: #9ae7e3cb;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 10px;
+  max-width: 200px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* 위쪽 꼬리 */
+.speech-bubble.top::after {
+  content: "";
+  position: absolute;
+  top: -20px; /* 말풍선 위쪽에 배치 */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #9ae7e3cb transparent;
+}
+
 .overlay {
   position: absolute;
   top: 0;
