@@ -7,6 +7,7 @@ const scores = JSON.parse(localStorage.getItem("scores"));
 // const usernameDiv = document.getElementById("username");
 const process = document.getElementById("process");
 const processHeader = document.getElementById("process-header");
+const imgUrl = localStorage.getItem("croppedImage");
 // const imgCreator = document.createElement("img");
 localStorage.setItem("scene", "study0");
 
@@ -221,7 +222,13 @@ document.querySelectorAll(".donut-chart").forEach((chart) => {
 
   let profileImg = chart.querySelector(".profile-img");
 
-  profileImg.setAttribute("href", "../assets/profile_success.png");
+  profileImg.setAttribute("href", imgUrl);
+
+  let circumference = 2 * Math.PI * 31.831;
+  let strokeValue = (percent / 100) * circumference;
+
+  circle.style.strokeDasharray = `${strokeValue} ${circumference}`;
+  text.textContent = `${percent}%`;
 
   circle.style.strokeDasharray = `${percent}, 100`;
   text.textContent = `${percent}%`;
@@ -235,7 +242,8 @@ document.querySelectorAll(".donut-chart").forEach((chart) => {
       }, 3000);
     } else {
       currentPercent++;
-      circle.style.strokeDasharray = `${currentPercent}, 100`;
+      let animatedStroke = (currentPercent / 100) * circumference;
+      circle.style.strokeDasharray = `${animatedStroke} ${circumference}`;
       text.textContent = `${currentPercent}%`;
     }
   }, 15);
@@ -284,7 +292,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const downloadBtn = document.getElementById("img-download");
 downloadBtn.addEventListener("click", () => {
-  const imgUrl = localStorage.getItem("croppedImage");
   if (imgUrl) {
     downloadBtn.href = imgUrl;
     downloadBtn.setAttribute("download", `${username}-OOTD.png`);
