@@ -16,8 +16,8 @@
 
 ## 기술 스택
 
-- **HTML**: 웹 페이지 구조
-- **CSS**: 스타일링
+- **HTML5**: 웹 페이지 구조
+- **CSS3**: 스타일링
 - **JavaScript**: 동적 기능 구현
 - **html2canvas**: 캡처 기능
 
@@ -38,37 +38,47 @@
      ![시작하기](assets/docs/intro.png)
 
 2. **면접 전날**:
+
    - `base.html` 파일을 열어 면접 전날 스토리를 진행하며 자신에게 맞는 선택지를 선택합니다.
      ![면접 전날](assets/docs/story1.png)
-3. **의상 선택**:
+     ![면접 전날 선택택](assets/docs/choice.png)
+
+3. **기상**:
+
+   - `Alarm.html` 파일을 열어 플레이어의 기상을 돕기 위해 진짜 알람 시계를 찾아 클릭합니다다.
+     ![기상](assets/docs/alarm.png)
+
+4. **의상 선택**:
 
    - `dressup.html` 페이지에서 다양한 의상을 선택하고 캐릭터에 드래그하여 적용합니다.
      ![의상 입히기 전](assets/docs/dressup1.png)
      ![의상 입힌 후](assets/docs/dressup2.png)
 
-4. **출근길**:
+5. **출근길**:
 
    - `base.html`: 자신에게 맞는 선택지를 선택합니다.
      ![출근길](assets/docs/story2.png)
 
-5. **교통수단 안**:
+6. **교통수단 안**:
 
    - `base.html`: 자신에게 맞는 선택지를 선택합니다.
      ![교통수단 안](assets/docs/story3.png)
 
-6. **면접장**:
+7. **면접장**:
 
 - `base.html`: 자신에게 맞는 선택지를 선택합니다.
   ![면접장](assets/docs/story4.png)
 
-7. **합격 불합격**:
+8. **합격 불합격**:
 
 - `ResultSucces.html`: 면접에 붙었을 때 나타납니다.
   ![합격](assets/docs/resultsuccess.png)
 - `ResultFail.html`: 면접에 떨어졌을 때 나타납니다.
   ![불합격](assets/docs/resultfail.png)
 
-8. **결과창**:
+9. **결과창**:
 
 - `FinalStats.html`: 면접 주요 데이터를 조회할 수 있습니다.
-  ![결과창](assets/docs/finalstat.png)
+  ![결과창](assets/docs/finalstat1.png)
+  ![오늘 하루 되짚어보기](assets/docs/finalstat2.png)
+  ![면접 여정 미니맵](assets/docs/finalstat3.png)
